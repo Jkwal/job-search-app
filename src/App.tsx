@@ -1,9 +1,14 @@
-import AppRoutes from "./AppRoutes";
+import './styles/global.scss'
+
+import {Layout} from "./components";
+import {AppRoutes} from "./AppRoutes";
 
 
 function App() {
     return (
-        <AppRoutes/>
+        <Layout>
+            <AppRoutes/>
+        </Layout>
     );
 }
 

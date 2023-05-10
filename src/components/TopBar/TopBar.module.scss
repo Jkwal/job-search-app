@@ -1,0 +1,23 @@
+.topBar {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+.wrapper {
+  width: 100%;
+  padding-top: 3px;
+  margin-left: 128px;
+
+  display: flex;
+}
+
+.logo {
+  padding-top:6px;
+}
+
+.links {
+  display: flex;
+  column-gap: 66px;
+}

@@ -1,10 +1,9 @@
 import {FC} from "react";
 
 
-const FavoritesPage: FC = () => {
+export const FavoritesPage: FC = () => {
     return (
         <div>FavoritesPage</div>
     )
 }
 
-export default FavoritesPage;

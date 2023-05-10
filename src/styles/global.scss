@@ -1,0 +1,29 @@
+@import "variables";
+
+* {
+  padding: 0;
+  margin: 0 auto;
+
+  font-family: 'Inter', sans-serif;
+
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 1440px;
+  padding: 0 162px;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+  cursor: pointer;
+}
+
+header {
+  background-color: $Grey-200;
+}
+

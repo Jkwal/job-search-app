@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/job-search-app/static/js/main.3b3e052e.js",
+    "index.html": "/job-search-app/index.html",
+    "main.3b3e052e.js.map": "/job-search-app/static/js/main.3b3e052e.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.3b3e052e.js"
+  ]
+}

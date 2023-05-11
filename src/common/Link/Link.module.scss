@@ -1,6 +1,6 @@
 @import "styles/variables";
 
-.link {
+a {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -8,7 +8,9 @@
   letter-spacing: 0.3px;
   color: $Black;
 
-  &:focus {
+  transition: color .4s ease-in-out;
+
+  &:active, &.active {
     font-weight: 500;
     color: $Blue-500;
   }

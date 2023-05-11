@@ -1,18 +1,25 @@
 import {FC} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 import styles from './Link.module.scss';
 
 
 interface NavLinkProps {
-    to: string,
+    path: string,
     name: string,
 }
 
 
-export const Link: FC<NavLinkProps> = ({name, to}) => {
+export const Link: FC<NavLinkProps> = ({name, path}) => {
+
+    const location = useLocation();
+    const currentPath = location.pathname;
+
     return (
-        <NavLink to={to} className={styles.link}>
+        <NavLink
+            to={path}
+            className={currentPath === path ? styles.active : ''}
+        >
             {name}
         </NavLink>
     )

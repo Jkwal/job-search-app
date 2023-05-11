@@ -1,0 +1,33 @@
+@import "styles/variables";
+
+.button {
+  width: 83px;
+  height: 32px;
+  padding: 4px 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+
+  color: $White;
+  background-color: $Blue-500;
+
+  cursor: pointer;
+
+  transition: background-color .2s ease-in-out;
+
+
+
+  &:hover{
+    background-color: $Blue-400;
+  }
+
+  &:active{
+    background-color: $Blue-600;
+  }
+}

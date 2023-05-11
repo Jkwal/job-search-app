@@ -1,0 +1,12 @@
+@import "styles/variables";
+
+.filters {
+  width: 335px;
+  min-height: 360px;
+  padding: 20px;
+
+  border: 1px solid $Grey-200;
+  border-radius: 12px;
+
+  background: $White;
+}

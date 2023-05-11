@@ -15,10 +15,10 @@ export const TopBar: FC = () => {
             <div className={styles.wrapper}>
                 <ul className={styles.links}>
                     <li>
-                        <Link to={ROUTES.HOME} name='Поиск Вакансий'/>
+                        <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
                     </li>
                     <li>
-                        <Link to={ROUTES.FAVORITES} name='Избранное'/>
+                        <Link path={ROUTES.FAVORITES} name='Избранное'/>
                     </li>
                 </ul>
             </div>

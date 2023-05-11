@@ -1,0 +1,11 @@
+.homePage {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 28px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}

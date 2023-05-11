@@ -1,0 +1,13 @@
+@import "styles/variables";
+
+.header {
+  min-height: 84px;
+  padding: 0 162px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px 12px 0 0;
+  background-color: $White;
+}

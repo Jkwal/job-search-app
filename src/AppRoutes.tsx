@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {Route, Routes} from "react-router-dom";
 
-import {HomePage} from "./pages/HomePage";
+import {HomePage} from "./pages/HomePage/HomePage";
 import {VacancyPage} from "./pages/VacancyPage";
 import {NotFoundPage} from "./pages/NotFoundPage";
 import {FavoritesPage} from "./pages/FavoritesPage";

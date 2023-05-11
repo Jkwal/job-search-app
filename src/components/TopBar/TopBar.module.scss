@@ -8,16 +8,17 @@
 .wrapper {
   width: 100%;
   padding-top: 3px;
-  margin-left: 128px;
+  margin-right: 8.75rem;
 
   display: flex;
+  justify-content: center;
 }
 
 .logo {
-  padding-top:6px;
+  padding-top: 6px;
 }
 
 .links {
   display: flex;
-  column-gap: 66px;
+  column-gap:4.125rem;
 }

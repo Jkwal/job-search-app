@@ -1,19 +1,27 @@
-import {FC} from "react";
+import {FC, ReactNode} from "react";
+import classNames from 'classnames';
 
 import styles from './Button.module.scss';
 
 
+type ButtonSize = 'small' | 'medium';
+
 interface ButtonProps {
-    name: string,
+    children: ReactNode,
+    size: ButtonSize;
 }
 
 
-export const Button: FC<ButtonProps> = ({name}) => {
+export const Button: FC<ButtonProps> = ({children, size}) => {
+
+    const buttonClasses = classNames({
+        [styles.buttonSmall]: size === 'small',
+        [styles.buttonMedium]: size === 'medium',
+    });
+
     return (
-        <button
-            className={styles.button}
-        >
-            {name}
+        <button className={buttonClasses}>
+            {children}
         </button>
-    )
-}
+    );
+};

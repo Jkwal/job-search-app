@@ -13,7 +13,7 @@ export const Search: FC = () => {
                 <IconSearch className={styles.icon}/>
             </div>
             <Input placeholder='Введите название вакансии'/>
-            <Button name="Поиск"/>
+            <Button size='small'>Поиск</Button>
         </div>
     )
 }

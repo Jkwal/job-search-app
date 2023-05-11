@@ -1,13 +1,14 @@
 @import "styles/variables";
 
-.button {
+@mixin buttonStyles {
   width: 83px;
-  height: 32px;
+  min-height: 32px;
   padding: 4px 20px;
 
   border: none;
   border-radius: 8px;
 
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -21,13 +22,22 @@
 
   transition: background-color .2s ease-in-out;
 
-
-
-  &:hover{
+  &:hover {
     background-color: $Blue-400;
   }
 
-  &:active{
+  &:active {
     background-color: $Blue-600;
   }
+}
+
+
+.buttonSmall {
+  @include buttonStyles;
+}
+
+.buttonMedium {
+  @include buttonStyles;
+  width: 118px;
+  min-height: 40px;
 }

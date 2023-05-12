@@ -18,7 +18,6 @@ export const HomePage: FC = () => {
                 <div className={styles.pagination}>
                     <Pagination/>
                 </div>
-
             </div>
 
         </section>

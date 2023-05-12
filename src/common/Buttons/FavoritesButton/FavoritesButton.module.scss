@@ -1,0 +1,26 @@
+@import "styles/variables";
+
+.favoritesButton{
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+}
+
+.iconStar {
+  cursor: pointer;
+
+  &:hover {
+    path {
+      stroke: $Blue-500;
+    }
+  }
+
+  &:active {
+    path {
+      stroke: $Blue-500;
+    }
+
+    fill: $Blue-500;
+  }
+}

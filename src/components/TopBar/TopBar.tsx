@@ -14,12 +14,9 @@ export const TopBar: FC = () => {
             </div>
             <div className={styles.wrapper}>
                 <ul className={styles.links}>
-                    <li>
                         <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
-                    </li>
-                    <li>
+
                         <Link path={ROUTES.FAVORITES} name='Избранное'/>
-                    </li>
                 </ul>
             </div>
         </div>

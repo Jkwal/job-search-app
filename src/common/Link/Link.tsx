@@ -16,11 +16,14 @@ export const Link: FC<NavLinkProps> = ({name, path}) => {
     const currentPath = location.pathname;
 
     return (
-        <NavLink
-            to={path}
-            className={currentPath === path ? styles.active : ''}
-        >
-            {name}
-        </NavLink>
+        <li>
+            <NavLink
+                to={path}
+                className={currentPath === path ? styles.active : ''}
+            >
+                {name}
+            </NavLink>
+        </li>
+
     )
 }

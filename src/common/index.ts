@@ -1,4 +1,5 @@
-export {Logo} from './Logo/Logo';
 export {Link} from './Link/Link';
-export {Input} from './Input/Input';
-export {Button} from './Button/Button';
+export {Logo} from './Logo/Logo';
+export {Select} from './Select/Select';
+export {Input, NumberInput} from './Inputs';
+export {PrimaryButton, ResetButton} from './Buttons';

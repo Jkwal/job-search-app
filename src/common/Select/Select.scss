@@ -1,0 +1,60 @@
+@import "styles/variables";
+
+.mantine-Select-input {
+  width: 275px;
+  height: 42px;
+
+  border: 1px solid $Grey-300;
+  border-radius: 8px;
+
+  background: $White;
+
+  &::placeholder {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+
+    color: $Grey-500;
+  }
+
+  &:active {
+    border: 1px solid $Blue-500;
+  }
+}
+
+.mantine-Select-rightSection {
+  margin-right: 7px;
+
+  pointer-events: none;
+
+  .iconSelect {
+      width: 16px;
+      height: 8px;
+    }
+}
+
+
+.mantine-Select-item {
+  border-radius: 8px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  color: $Black;
+
+  &:hover {
+    background: $Blue-100;
+  }
+
+  &:active{
+    font-weight: 500;
+
+    color: $White;
+    background: $Blue-500;
+  }
+}

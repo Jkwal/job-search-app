@@ -2,8 +2,9 @@ import {FC} from "react";
 import {ReactComponent as IconSearch} from "assets/IconSearch.svg";
 
 import styles from './Search.module.scss';
+import {Input, PrimaryButton} from "common";
 
-import {Button, Input} from "common";
+
 
 
 export const Search: FC = () => {
@@ -13,7 +14,7 @@ export const Search: FC = () => {
                 <IconSearch className={styles.icon}/>
             </div>
             <Input placeholder='Введите название вакансии'/>
-            <Button size='small'>Поиск</Button>
+            <PrimaryButton size='small'>Поиск</PrimaryButton>
         </div>
     )
 }

@@ -1,0 +1,39 @@
+@import "styles/variables";
+
+.resetButton {
+  padding: 1px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+
+  background: none;
+  color: $Grey-500;
+
+  cursor: pointer;
+
+  &:hover {
+    color: $Blue-400;
+
+    .iconCross line {
+      stroke: $Blue-400;
+    }
+
+  }
+
+  &:active {
+    color: $Blue-500;
+
+    .iconCross line {
+      stroke: $Blue-500;
+    }
+  }
+
+}

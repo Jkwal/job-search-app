@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import 'styles/variables';
 
 @mixin buttonStyles {
   width: 83px;
@@ -13,7 +13,6 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  text-align: center;
 
   color: $White;
   background-color: $Blue-500;
@@ -36,8 +35,9 @@
   @include buttonStyles;
 }
 
-.buttonMedium {
+.buttonLarge {
   @include buttonStyles;
-  width: 118px;
+  width: 275px;
   min-height: 40px;
+  margin-left: -1px;
 }

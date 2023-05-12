@@ -1,0 +1,17 @@
+@import "styles/variables";
+
+.mantine-Pagination-control {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+
+  color: $Black;
+
+
+  &[data-active]{
+    background-color: $Blue-500;
+  }
+
+}

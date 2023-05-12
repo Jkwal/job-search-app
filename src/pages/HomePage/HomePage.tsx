@@ -2,6 +2,7 @@ import {FC} from "react";
 
 import styles from './HomePage.module.scss';
 
+import {Pagination} from "common";
 import {Filters, JobList, Search} from "components";
 
 
@@ -14,6 +15,10 @@ export const HomePage: FC = () => {
             <div className={styles.list}>
                 <Search/>
                 <JobList/>
+                <div className={styles.pagination}>
+                    <Pagination/>
+                </div>
+
             </div>
 
         </section>

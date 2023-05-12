@@ -20,7 +20,7 @@ export const Select: FC = () => {
             placeholder="Выберeте отрасль"
             rightSection={
                 isOpen
-                    ? <IconUp className='iconSelect'/>
+                    ? <IconUp className='iconSelect active'/>
                     : <IconDown className='iconSelect'/>
             }
             data={['React', 'Angular', 'Svelte', 'Vue']}

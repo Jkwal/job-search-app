@@ -1,6 +1,6 @@
 @import "styles/variables";
 
-.favoritesButton{
+.favoritesButton {
   width: 24px;
   height: 24px;
   border: none;
@@ -15,12 +15,12 @@
       stroke: $Blue-500;
     }
   }
+}
 
-  &:active {
-    path {
-      stroke: $Blue-500;
-    }
-
-    fill: $Blue-500;
+.favorite {
+  path {
+    stroke: $Blue-500;
   }
+
+  fill: $Blue-500;
 }

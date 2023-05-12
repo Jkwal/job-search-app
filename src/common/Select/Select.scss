@@ -30,9 +30,9 @@
   pointer-events: none;
 
   .iconSelect {
-      width: 16px;
-      height: 8px;
-    }
+    width: 16px;
+    height: 8px;
+  }
 }
 
 
@@ -51,10 +51,16 @@
     background: $Blue-100;
   }
 
-  &:active{
+  &:active {
     font-weight: 500;
 
     color: $White;
     background: $Blue-500;
+  }
+}
+
+.iconSelect.active {
+  path {
+    stroke: $Blue-500;
   }
 }

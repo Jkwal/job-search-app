@@ -10,7 +10,10 @@ export const TopBar: FC = () => {
     return (
         <div className={styles.topBar}>
             <div className={styles.logo}>
-                <Logo/>
+                <div className={styles.image}>
+                    <Logo/>
+                </div>
+                <h1 className={styles.header}>Jobored</h1>
             </div>
             <div className={styles.wrapper}>
                 <ul className={styles.links}>

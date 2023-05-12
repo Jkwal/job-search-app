@@ -1,8 +1,31 @@
+@import "styles/variables";
+
 .topBar {
   width: 100%;
 
   display: flex;
   align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.image{
+  margin-top: 6px;
+}
+
+.header {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+
+  color: $Black;
 }
 
 .wrapper {
@@ -13,11 +36,8 @@
   justify-content: center;
 }
 
-.logo {
-  padding-top: 6px;
-}
 
 .links {
   display: flex;
-  column-gap:50px;
+  column-gap: 50px;
 }

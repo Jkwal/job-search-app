@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/job-search-app/static/css/main.51aab80b.css",
-    "main.js": "/job-search-app/static/js/main.3c53d860.js",
+    "main.css": "/job-search-app/static/css/main.d3d00b2c.css",
+    "main.js": "/job-search-app/static/js/main.d4d9dc6f.js",
     "static/media/Logo.svg": "/job-search-app/static/media/Logo.fc834db5ebaf00f2f9fad805ab33c29c.svg",
     "index.html": "/job-search-app/index.html",
     "static/media/IconSearch.svg": "/job-search-app/static/media/IconSearch.06548291525b262aaf6bfddeb6eee7ea.svg",
-    "main.51aab80b.css.map": "/job-search-app/static/css/main.51aab80b.css.map",
-    "main.3c53d860.js.map": "/job-search-app/static/js/main.3c53d860.js.map"
+    "static/media/IconCross.svg": "/job-search-app/static/media/IconCross.63977825dcdcfe3b2510577dccc0b9b6.svg",
+    "static/media/IconDown.svg": "/job-search-app/static/media/IconDown.24927a79772e470bc4af7a84daaa233a.svg",
+    "static/media/IconUp.svg": "/job-search-app/static/media/IconUp.4bbc402a029fbdd4690e05d2401aeb0b.svg",
+    "main.d3d00b2c.css.map": "/job-search-app/static/css/main.d3d00b2c.css.map",
+    "main.d4d9dc6f.js.map": "/job-search-app/static/js/main.d4d9dc6f.js.map"
   },
   "entrypoints": [
-    "static/css/main.51aab80b.css",
-    "static/js/main.3c53d860.js"
+    "static/css/main.d3d00b2c.css",
+    "static/js/main.d4d9dc6f.js"
   ]
 }

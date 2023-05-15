@@ -22,16 +22,16 @@ body {
 }
 
 main {
-  padding: 40px 162px;
+  padding: 40px 162px 52px 162px;
 }
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 li {
   list-style-type: none;
-  cursor: pointer;
 }
 
 header {

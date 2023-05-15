@@ -8,17 +8,17 @@ export const Filters: FC = () => {
     return (
         <div className={styles.filters}>
             <div className={styles.header}>
-                <h3 className={styles.title}>Фильтры</h3>
+                <h2 className={styles.title}>Фильтры</h2>
                 <ResetButton/>
             </div>
 
             <div className={styles.body}>
                 <div className={styles.select}>
-                    <h4>Отрасль</h4>
+                    <h3>Отрасль</h3>
                     <Select/>
                 </div>
                 <div className={styles.numberInput}>
-                    <h4>Оклад</h4>
+                    <h3>Оклад</h3>
                     <div className={styles.inputs}>
                         <NumberInput placeholder='От'/>
                         <NumberInput placeholder='До'/>

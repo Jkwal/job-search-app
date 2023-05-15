@@ -2,9 +2,8 @@ import {FC} from "react";
 import {ReactComponent as IconSearch} from "assets/IconSearch.svg";
 
 import styles from './Search.module.scss';
+
 import {Input, PrimaryButton} from "common";
-
-
 
 
 export const Search: FC = () => {

@@ -1,0 +1,17 @@
+@import "styles/variables";
+
+.vacancyDescription {
+  width: 773px;
+  min-height: 548px;
+  padding: 23px 24px 24px 23px;
+
+  border: 1px solid $Grey-200;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+
+  background: $White;
+}

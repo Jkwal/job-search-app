@@ -1,32 +1,48 @@
 import {FC} from "react";
-import {NavLink} from "react-router-dom";
 
-import styles from './VacancyHeader.module.scss';
-
-
+import {useStyles} from "./useStyles";
 import {FavoritesButton} from "common";
 import {ReactComponent as IconDot} from "assets/IconDot.svg";
 import {ReactComponent as IconLocation} from "assets/IconLocation.svg";
 
 
-export const VacancyHeader: FC = () => {
+interface VacancyHeaderProps {
+    useOtherStyles?: boolean;
+}
+
+
+export const VacancyHeader: FC<VacancyHeaderProps> = ({useOtherStyles}) => {
+
+    const {
+        infoClasses,
+        rateClasses,
+        titleClasses,
+        aboutClasses,
+        salaryClasses,
+        addressClasses,
+        locationClasses,
+        ContainerComponent,
+        vacancyHeaderClasses
+    } = useStyles(useOtherStyles!);
+
+
     return (
-        <div className={styles.vacancyHeader}>
+        <div className={vacancyHeaderClasses}>
 
-            <NavLink to={'/vacancy/1'} className={styles.about}>
-                <h2 className={styles.title}>Менеджер-дизайнер</h2>
+            <ContainerComponent to={'/vacancy/1'} className={aboutClasses}>
+                <h2 className={titleClasses}>Менеджер-дизайнер</h2>
 
-                <div className={styles.info}>
-                    <p className={styles.salary}>з/п от 70000 rub</p>
+                <div className={infoClasses}>
+                    <p className={salaryClasses}>з/п от 70000 rub</p>
                     <IconDot/>
-                    <p className={styles.rate}>Полный рабочий день</p>
+                    <p className={rateClasses}>Полный рабочий день</p>
                 </div>
 
-                <div className={styles.location}>
+                <div className={locationClasses}>
                     <IconLocation/>
-                    <p className={styles.address}>Новый Уренгой</p>
+                    <p className={addressClasses}>Новый Уренгой</p>
                 </div>
-            </NavLink>
+            </ContainerComponent>
 
             <FavoritesButton/>
 

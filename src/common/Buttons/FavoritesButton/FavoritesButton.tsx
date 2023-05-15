@@ -5,6 +5,7 @@ import styles from './FavoritesButton.module.scss';
 
 import {ReactComponent as IconStar} from "assets/IconStar.svg";
 
+
 export const FavoritesButton: FC = () => {
     const [isFavorite, setIsFavorite] = useState(false);
 

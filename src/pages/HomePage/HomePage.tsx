@@ -3,7 +3,7 @@ import {FC} from "react";
 import styles from './HomePage.module.scss';
 
 import {Pagination} from "common";
-import {Filters, JobList, Search} from "components";
+import {Filters, ListJob, Search} from "components";
 
 
 export const HomePage: FC = () => {
@@ -14,7 +14,7 @@ export const HomePage: FC = () => {
 
             <div className={styles.list}>
                 <Search/>
-                <JobList/>
+                <ListJob/>
                 <div className={styles.pagination}>
                     <Pagination/>
                 </div>

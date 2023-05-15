@@ -1,12 +1,12 @@
 import {FC} from "react";
 
-import styles from './JobList.module.scss';
+import styles from './ListJob.module.scss';
 
 import {VacancyHeader} from "../VacancyHeader/VacancyHeader";
 
-export const JobList: FC = () => {
+export const ListJob: FC = () => {
     return (
-        <div className={styles.jobList}>
+        <div className={styles.listJob}>
             <VacancyHeader/>
             <VacancyHeader/>
             <VacancyHeader/>

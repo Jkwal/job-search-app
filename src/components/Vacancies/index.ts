@@ -1,4 +1,2 @@
-export {JobList} from './JobList/JobList';
+export {ListJob} from './ListJob/ListJob';
 export {VacancyCard} from './VacancyCard/VacancyCard';
-export {VacancyHeader} from './VacancyHeader/VacancyHeader';
-export {VacancyDescription} from './VacancyDescription/VacancyDescription';

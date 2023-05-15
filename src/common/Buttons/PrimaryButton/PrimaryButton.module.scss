@@ -1,4 +1,5 @@
 @import 'styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
 @mixin buttonStyles {
   width: 83px;
@@ -33,6 +34,34 @@
 
 .buttonSmall {
   @include buttonStyles;
+}
+
+.buttonMedium {
+  @include buttonStyles;
+  width: 164px;
+  min-height: 42px;
+
+  font-weight: 600;
+  line-height: 22px;
+
+  > a {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 22px;
+    color: $Blue-600;
+  }
+
+  background-color: $Blue-100;
+
+  &:hover {
+    background-color: $Blue-200;
+  }
+
+  &:active {
+    background-color: $Blue-300;
+  }
 }
 
 .buttonLarge {

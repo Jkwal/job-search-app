@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './PrimaryButton.module.scss';
 
 
-type ButtonSize = 'small' | 'large';
+type ButtonSize = 'small' |'medium'| 'large';
 
 interface ButtonProps {
     children: ReactNode,
@@ -16,6 +16,7 @@ export const PrimaryButton: FC<ButtonProps> = ({children, size}) => {
 
     const buttonClasses = classNames({
         [styles.buttonSmall]: size === 'small',
+        [styles.buttonMedium]: size === 'medium',
         [styles.buttonLarge]: size === 'large',
     });
 

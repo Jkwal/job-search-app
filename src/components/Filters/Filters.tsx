@@ -6,7 +6,7 @@ import {NumberInput, PrimaryButton, ResetButton, Select} from "common";
 
 export const Filters: FC = () => {
     return (
-        <div className={styles.filters}>
+        <form className={styles.filters}>
             <div className={styles.header}>
                 <h2 className={styles.title}>Фильтры</h2>
                 <ResetButton/>
@@ -26,8 +26,6 @@ export const Filters: FC = () => {
                 </div>
                 <PrimaryButton size='large'>Применить</PrimaryButton>
             </div>
-
-
-        </div>
+        </form>
     )
 }

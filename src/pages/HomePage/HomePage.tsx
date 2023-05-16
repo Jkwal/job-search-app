@@ -9,12 +9,19 @@ import {Filters, ListJob, Search} from "components";
 
 
 export const HomePage: FC = () => {
+
     const [activePage, setPage] = useState(1);
+    const [value, setValue] = useState('')
     const [vacancies, setVacancies] = useState<Vacancies>({objects: []});
 
     useEffect(() => {
-        fetchVacancies(activePage).then(data => setVacancies(data))
-    }, [activePage]);
+        fetchVacancies(activePage, value).then(data => setVacancies(data))
+    }, [activePage, value]);
+
+
+    const onSearch = (e: any) => {
+        setValue(e.target.value)
+    }
 
     return (
         <section className={styles.homePage}>
@@ -22,7 +29,7 @@ export const HomePage: FC = () => {
             <Filters/>
 
             <div className={styles.list}>
-                <Search/>
+                <Search value={value} onChange={onSearch}/>
                 <ListJob vacancies={vacancies}/>
                 <div className={styles.pagination}>
                     {

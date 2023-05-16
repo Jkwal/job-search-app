@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 
 import styles from './HomePage.module.scss';
 
@@ -10,18 +10,18 @@ import {Filters, ListJob, Search} from "components";
 
 export const HomePage: FC = () => {
 
+    const [keyword, setKeyword] = useState('');
     const [activePage, setPage] = useState(1);
-    const [value, setValue] = useState('')
     const [vacancies, setVacancies] = useState<Vacancies>({objects: []});
 
     useEffect(() => {
-        fetchVacancies(activePage, value).then(data => setVacancies(data))
-    }, [activePage, value]);
+        fetchVacancies(activePage, keyword).then(data => setVacancies(data))
+    }, [activePage, keyword]);
 
 
-    const onSearch = (e: any) => {
-        setValue(e.target.value)
-    }
+    const handleSearch = (searchValue: string) => {
+       setKeyword(searchValue)
+    };
 
     return (
         <section className={styles.homePage}>
@@ -29,7 +29,7 @@ export const HomePage: FC = () => {
             <Filters/>
 
             <div className={styles.list}>
-                <Search value={value} onChange={onSearch}/>
+                <Search onSubmit={handleSearch} />
                 <ListJob vacancies={vacancies}/>
                 <div className={styles.pagination}>
                     {
@@ -43,7 +43,6 @@ export const HomePage: FC = () => {
                                     : (500 / 4)
                             }/>
                     }
-
                 </div>
             </div>
 

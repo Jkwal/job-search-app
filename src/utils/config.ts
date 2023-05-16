@@ -2,9 +2,8 @@ const BASE_URL = 'https://startup-summer-2023-proxy.onrender.com/2.0/oauth2';
 const VACANCIES = `${BASE_URL}/vacancies`;
 
 
-export const fetchVacancies = async (activePage: number, value: string) => {
-    const response =
-        await fetch(`${VACANCIES}/?keyword=${value}&page=${activePage}&count=4&published=1`, {
+export const fetchVacancies = async (activePage: number, keyword: string) => {
+    const response = await fetch(`${VACANCIES}/?keyword=${keyword}&page=${activePage}&count=4&published=1`, {
             method: 'GET',
             headers: {
                 'x-secret-key': 'GEU4nvd3rej*jeh.eqp',

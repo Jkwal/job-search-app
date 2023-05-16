@@ -9,10 +9,11 @@ type ButtonSize = 'small' |'medium'| 'large';
 interface ButtonProps {
     children: ReactNode,
     size: ButtonSize;
+    type?:"button" | "submit" | "reset"
 }
 
 
-export const PrimaryButton: FC<ButtonProps> = ({children, size}) => {
+export const PrimaryButton: FC<ButtonProps> = ({children, size,type}) => {
 
     const buttonClasses = classNames({
         [styles.buttonSmall]: size === 'small',
@@ -21,7 +22,7 @@ export const PrimaryButton: FC<ButtonProps> = ({children, size}) => {
     });
 
     return (
-        <button className={buttonClasses}>
+        <button type={type} className={buttonClasses}>
             {children}
         </button>
     );

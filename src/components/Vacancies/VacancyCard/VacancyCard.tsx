@@ -7,13 +7,16 @@ import {VacancyHeader} from "../VacancyHeader/VacancyHeader";
 import {VacancyDescription} from "../VacancyDescription/VacancyDescription";
 
 interface VacancyCardProps {
-  vacancy: IVacancy
+  vacancy: IVacancy;
+  addFavoriteVacancy: (vacancy: IVacancy) => void;
+  removeFavoriteVacancy: (vacancy: IVacancy) => void;
+  isFavorite1: boolean;
 }
 
-export const VacancyCard: FC<VacancyCardProps> = ({vacancy}) => {
+export const VacancyCard: FC<VacancyCardProps> = ({isFavorite1,removeFavoriteVacancy,vacancy,addFavoriteVacancy}) => {
   return (
     <div className={styles.vacancyCard}>
-      <VacancyHeader vacancy={vacancy} useOtherStyles={true}/>
+      <VacancyHeader   isFavorite1={isFavorite1} removeFavoriteVacancy={removeFavoriteVacancy} vacancy={vacancy} useOtherStyles={true} addFavoriteVacancy={addFavoriteVacancy}/>
       <VacancyDescription vacancy={vacancy}/>
     </div>
   )

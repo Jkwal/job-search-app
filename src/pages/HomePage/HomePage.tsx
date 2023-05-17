@@ -2,13 +2,18 @@ import React, {FC, useEffect, useState} from "react";
 
 import styles from './HomePage.module.scss';
 
-import {IVacancies} from "types";
+import {IVacancies, IVacancy} from "types";
 import {fetchVacancies} from "utils";
 import {Loader, Pagination} from "common";
 import {Filters, ListJob, Search} from "components";
 
+interface HomePageProps {
+  addFavoriteVacancy: (vacancy: IVacancy) => void;
+  removeFavoriteVacancy: (vacancy: IVacancy) => void;
+  isFavorite1: boolean;
+}
 
-export const HomePage: FC = () => {
+export const HomePage: FC<HomePageProps> = ({isFavorite1, removeFavoriteVacancy,addFavoriteVacancy}) => {
 
   const [keyword, setKeyword] = useState('');
   const [activePage, setPage] = useState(1);
@@ -30,12 +35,14 @@ export const HomePage: FC = () => {
       <Filters/>
 
       <div className={styles.list}>
+
         <Search onSubmit={handleSearch}/>
+
         {
           vacancies.objects.length <= 0
             ? <Loader/>
             : <>
-              <ListJob vacancies={vacancies}/>
+              <ListJob  isFavorite1={isFavorite1} removeFavoriteVacancy={removeFavoriteVacancy} addFavoriteVacancy={addFavoriteVacancy} vacancies={vacancies}/>
               <div className={styles.pagination}>
                 {
                   !!vacancies.total

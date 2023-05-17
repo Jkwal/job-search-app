@@ -1,20 +1,26 @@
-import {FC} from "react";
-
-import {IVacancy} from "types";
-import {useStyles} from "./useStyles";
-import {FavoritesButton, Loader} from "common";
-import {ReactComponent as IconDot} from "assets/IconDot.svg";
-import {ReactComponent as IconLocation} from "assets/IconLocation.svg";
-
+import { FC, useState } from "react";
+import { IVacancy } from "types";
+import { useStyles } from "./useStyles";
+import { FavoritesButton, Loader } from "common";
+import { ReactComponent as IconDot } from "assets/IconDot.svg";
+import { ReactComponent as IconLocation } from "assets/IconLocation.svg";
 
 interface VacancyHeaderProps {
   useOtherStyles?: boolean;
   vacancy: IVacancy;
+  addFavoriteVacancy: (vacancy: IVacancy) => void;
+  removeFavoriteVacancy: (vacancy: IVacancy) => void;
+  isFavorite1: boolean;
+
 }
 
-
-export const VacancyHeader: FC<VacancyHeaderProps> = ({useOtherStyles, vacancy}) => {
-
+export const VacancyHeader: FC<VacancyHeaderProps> = ({
+                                                        useOtherStyles,
+                                                        vacancy,
+                                                        removeFavoriteVacancy,
+                                                        addFavoriteVacancy,
+                                                        isFavorite1,
+                                                      }) => {
   const {
     infoClasses,
     rateClasses,
@@ -24,9 +30,8 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({useOtherStyles, vacancy})
     addressClasses,
     locationClasses,
     ContainerComponent,
-    vacancyHeaderClasses
+    vacancyHeaderClasses,
   } = useStyles(useOtherStyles!);
-
 
   const {
     id,
@@ -35,45 +40,55 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({useOtherStyles, vacancy})
     payment_to,
     currency,
     type_of_work,
-    town
+    town,
   } = vacancy;
 
+  const [isFavorite, setIsFavorite] = useState(isFavorite1);
+
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+
+    if (!isFavorite) {
+      addFavoriteVacancy(vacancy);
+    } else {
+      removeFavoriteVacancy(vacancy);
+    }
+  };
 
   return (
     <div className={vacancyHeaderClasses}>
-      {
-        !id
-          ? <Loader/>
-          : <>
-            <ContainerComponent to={`/vacancy/${id}`} className={aboutClasses}>
+      {!id ? (
+        <Loader />
+      ) : (
+        <>
+          <ContainerComponent to={`/vacancy/${id}`} className={aboutClasses}>
+            <h2 className={titleClasses}>{profession}</h2>
 
-              <h2 className={titleClasses}>{profession}</h2>
+            <div className={infoClasses}>
+              <p className={salaryClasses}>
+                {payment_to === 0 && payment_from === 0
+                  ? "з/п не указана"
+                  : `з/п
+                      ${payment_from === 0 ? "" : `от ${payment_from}`}
+                      ${payment_to === 0 ? "" : `до ${payment_to}`}
+                      ${currency === "rub" && " руб"}`}
+              </p>
+              <IconDot />
+              <p className={rateClasses}>{type_of_work?.title}</p>
+            </div>
 
-              <div className={infoClasses}>
-                <p className={salaryClasses}>
-                  {
-                    payment_to === 0 && payment_from === 0
-                      ? 'з/п не указана'
-                      : (`з/п
-                        ${payment_from === 0 ? "" : `от ${payment_from}`}
-                        ${payment_to === 0 ? "" : `до ${payment_to}`}
-                        ${currency === 'rub' && ' руб'}`)
-                  }
+            <div className={locationClasses}>
+              <IconLocation />
+              <p className={addressClasses}>{town?.title}</p>
+            </div>
+          </ContainerComponent>
 
-                </p>
-                <IconDot/>
-                <p className={rateClasses}>{type_of_work?.title}</p>
-              </div>
-
-              <div className={locationClasses}>
-                <IconLocation/>
-                <p className={addressClasses}>{town?.title}</p>
-              </div>
-            </ContainerComponent>
-
-            <FavoritesButton/>
-          </>
-      }
+          <FavoritesButton
+            onClick={handleFavoriteClick}
+            isFavorite1={isFavorite}
+          />
+        </>
+      )}
     </div>
-  )
-}
+  );
+};

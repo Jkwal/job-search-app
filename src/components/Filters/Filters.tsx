@@ -26,8 +26,6 @@ export const Filters: FC = () => {
                 </div>
                 <PrimaryButton size='large'>Применить</PrimaryButton>
             </div>
-
-
         </div>
     )
 }

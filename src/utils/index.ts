@@ -1,2 +1,2 @@
 export {ROUTES} from './routes';
-export {fetchVacancies} from './config';
+export {fetchVacancies, getVacancy} from './config';

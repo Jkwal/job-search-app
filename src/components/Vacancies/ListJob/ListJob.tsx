@@ -2,12 +2,12 @@ import {FC} from "react";
 
 import styles from './ListJob.module.scss';
 
-import {Vacancies} from "types";
+import {IVacancies} from "types";
 import {VacancyHeader} from "../VacancyHeader/VacancyHeader";
 
 
 interface ListJobProps {
-    vacancies: Vacancies;
+    vacancies: IVacancies;
 }
 
 

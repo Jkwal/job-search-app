@@ -10,13 +10,14 @@ import {useParams} from "react-router-dom";
 interface VacancyPageProps {
   addFavoriteVacancy: (vacancy: IVacancy) => void;
   removeFavoriteVacancy: (vacancy: IVacancy) => void;
-  isFavorite1: boolean;
+  favoriteVacancies: IVacancy[];
 }
 
-export const VacancyPage: FC<VacancyPageProps> = ({isFavorite1,removeFavoriteVacancy,addFavoriteVacancy}) => {
+export const VacancyPage: FC<VacancyPageProps> = ({favoriteVacancies,removeFavoriteVacancy,addFavoriteVacancy}) => {
 
   const {id} = useParams();
   const [vacancy, setVacancy] = useState<IVacancy>({} as IVacancy)
+  const isFavorite = favoriteVacancies.some((fav) => fav.id === vacancy.id);
 
   useEffect(() => {
 
@@ -27,7 +28,7 @@ export const VacancyPage: FC<VacancyPageProps> = ({isFavorite1,removeFavoriteVac
   return (
 
     <section className={styles.vacancyPage}>
-      <VacancyCard isFavorite1={isFavorite1} removeFavoriteVacancy={removeFavoriteVacancy} addFavoriteVacancy={addFavoriteVacancy} vacancy={vacancy}/>
+      <VacancyCard isFavorite1={isFavorite} removeFavoriteVacancy={removeFavoriteVacancy} addFavoriteVacancy={addFavoriteVacancy} vacancy={vacancy}/>
     </section>
   )
 }

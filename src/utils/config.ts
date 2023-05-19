@@ -1,7 +1,8 @@
-import {IVacancies, IVacancy} from "types";
+import {ICatalogues, IVacancies, IVacancy} from "types";
 
-const BASE_URL = 'https://startup-summer-2023-proxy.onrender.com/2.0/oauth2';
-const VACANCIES = `${BASE_URL}/vacancies`;
+const BASE_URL = 'https://startup-summer-2023-proxy.onrender.com/2.0';
+const VACANCIES = `${BASE_URL}/oauth2/vacancies`;
+const CATALOGUES = `${BASE_URL}/catalogues`;
 
 const SECRET_KEY = 'GEU4nvd3rej*jeh.eqp';
 const API_APP_ID = 'v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948';
@@ -31,10 +32,18 @@ const AUTH_TOKEN = 'Bearer v3.r.137440105.fb1855dcb0ca5d08fd835ac41812c156105d3d
 // }).then(response => response.json())
 
 
-export const fetchVacancies = async (activePage: number, keyword: string): Promise<IVacancies> => {
+export const fetchVacancies = async (activePage: number, keyword: string, paymentFrom: string, paymentTo: string, selectedCatalogue: string): Promise<IVacancies> => {
 
-  const queryParams = `?keyword=${keyword}&page=${activePage}&count=4&published=1`;
-  const url = `${VACANCIES}/${queryParams}`;
+  const queryParams = new URLSearchParams({
+    published: '1',
+    count: '4',
+    page: activePage.toString(),
+    keyword: keyword || "",
+    catalogues: selectedCatalogue || '',
+    payment_from: paymentFrom || '',
+    payment_to: paymentTo || '',
+  });
+  const url = `${VACANCIES}/?${queryParams.toString()}`;
 
   const headers = {
     'x-secret-key': SECRET_KEY,
@@ -46,13 +55,13 @@ export const fetchVacancies = async (activePage: number, keyword: string): Promi
     method: 'GET',
     headers: headers,
   });
-
   if (!response.ok) {
-    throw new Error('Failed to fetch vacancies');
+    return {objects: [], total: 0};
   }
 
   return response.json();
-};
+
+}
 
 export const getVacancy = async (id: string): Promise<IVacancy> => {
 
@@ -70,7 +79,28 @@ export const getVacancy = async (id: string): Promise<IVacancy> => {
   });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch vacancies');
+    throw new Error('Failed to fetch vacancy');
+  }
+
+  return response.json();
+}
+
+export const getCatalogues = async (): Promise<ICatalogues[]> => {
+  const url = `${CATALOGUES}`;
+
+  const headers = {
+    'x-secret-key': SECRET_KEY,
+    'X-Api-App-Id': API_APP_ID,
+    'Authorization': AUTH_TOKEN,
+  };
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: headers,
+  });
+
+  if (!response.ok) {
+    return []
   }
 
   return response.json();

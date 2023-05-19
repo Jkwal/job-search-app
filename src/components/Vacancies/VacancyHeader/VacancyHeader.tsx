@@ -1,9 +1,9 @@
-import { FC, useState } from "react";
-import { IVacancy } from "types";
-import { useStyles } from "./useStyles";
-import { FavoritesButton, Loader } from "common";
-import { ReactComponent as IconDot } from "assets/IconDot.svg";
-import { ReactComponent as IconLocation } from "assets/IconLocation.svg";
+import {FC, useEffect, useState} from "react";
+import {IVacancy} from "types";
+import {useStyles} from "./useStyles";
+import {FavoritesButton, Loader} from "common";
+import {ReactComponent as IconDot} from "assets/IconDot.svg";
+import {ReactComponent as IconLocation} from "assets/IconLocation.svg";
 
 interface VacancyHeaderProps {
   useOtherStyles?: boolean;
@@ -45,6 +45,10 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
 
   const [isFavorite, setIsFavorite] = useState(isFavorite1);
 
+  useEffect(() => {
+    setIsFavorite(isFavorite1);
+  }, [isFavorite1]);
+
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
 
@@ -58,7 +62,7 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
   return (
     <div className={vacancyHeaderClasses}>
       {!id ? (
-        <Loader />
+        <Loader/>
       ) : (
         <>
           <ContainerComponent to={`/vacancy/${id}`} className={aboutClasses}>
@@ -73,12 +77,12 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
                       ${payment_to === 0 ? "" : `до ${payment_to}`}
                       ${currency === "rub" && " руб"}`}
               </p>
-              <IconDot />
+              <IconDot/>
               <p className={rateClasses}>{type_of_work?.title}</p>
             </div>
 
             <div className={locationClasses}>
-              <IconLocation />
+              <IconLocation/>
               <p className={addressClasses}>{town?.title}</p>
             </div>
           </ContainerComponent>

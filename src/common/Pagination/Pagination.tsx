@@ -19,8 +19,8 @@ export const Pagination: FC<PaginationProps> = ({total, value,onChange}) => {
             value={value}
             total={total}
             onChange={onChange}
-            previousIcon={IconLeft}
             nextIcon={IconRight}
+            previousIcon={IconLeft}
         />
     )
 }

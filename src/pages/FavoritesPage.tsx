@@ -7,10 +7,9 @@ interface FavoritesPageProps {
   favoriteVacancies: IVacancy[];
   addFavoriteVacancy: (vacancy: IVacancy) => void;
   removeFavoriteVacancy: (vacancy: IVacancy) => void;
-  isFavorite1: boolean;
 }
 
-export const FavoritesPage: FC<FavoritesPageProps> = ({isFavorite1,
+export const FavoritesPage: FC<FavoritesPageProps> = ({
                                                         favoriteVacancies,
                                                         removeFavoriteVacancy,
                                                         addFavoriteVacancy,
@@ -20,7 +19,7 @@ export const FavoritesPage: FC<FavoritesPageProps> = ({isFavorite1,
       <div>
         {favoriteVacancies.map((vacancy) => (
           <VacancyHeader
-            isFavorite1={isFavorite1}
+            isFavorite1={true}
             key={vacancy.id}
             vacancy={vacancy}
             addFavoriteVacancy={addFavoriteVacancy}

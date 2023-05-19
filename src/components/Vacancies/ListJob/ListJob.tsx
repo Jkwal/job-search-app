@@ -1,28 +1,41 @@
 import {FC} from "react";
 
-import styles from './ListJob.module.scss';
+import styles from "./ListJob.module.scss";
 
 import {IVacancies, IVacancy} from "types";
 import {VacancyHeader} from "../VacancyHeader/VacancyHeader";
 
 
 interface ListJobProps {
-    vacancies: IVacancies;
-    addFavoriteVacancy: (vacancy: IVacancy) => void;
-    removeFavoriteVacancy: (vacancy: IVacancy) => void;
-    isFavorite1: boolean;
+  vacancies: IVacancies;
+  favoriteVacancies: IVacancy[];
+  addFavoriteVacancy: (vacancy: IVacancy) => void;
+  removeFavoriteVacancy: (vacancy: IVacancy) => void;
 }
 
 
-export const ListJob: FC<ListJobProps> = ({isFavorite1,removeFavoriteVacancy, vacancies,addFavoriteVacancy}) => {
+export const ListJob: FC<ListJobProps> = ({
+                                            vacancies,
+                                            favoriteVacancies,
+                                            addFavoriteVacancy,
+                                            removeFavoriteVacancy,
+                                          }) => {
 
-    return (
-        <div className={styles.listJob}>
-            {
-                vacancies.objects.map((item) => (
-                    <VacancyHeader  isFavorite1={isFavorite1} removeFavoriteVacancy={removeFavoriteVacancy} key={item.id} vacancy={{...item} } addFavoriteVacancy={addFavoriteVacancy}/>
-                ))
-            }
-        </div>
-    )
-}
+  const favoriteVacancyIds = favoriteVacancies.map((fav) => fav.id);
+
+  return (
+    <div className={styles.listJob}>
+      {
+        vacancies.objects.map((item) => (
+          <VacancyHeader
+            key={item.id}
+            vacancy={{...item}}
+            addFavoriteVacancy={addFavoriteVacancy}
+            removeFavoriteVacancy={removeFavoriteVacancy}
+            isFavorite1={favoriteVacancyIds.includes(item.id)}
+          />
+        ))
+      }
+    </div>
+  );
+};

@@ -1,1 +1,1 @@
-export type {IVacancy, IVacancies} from './vacancy';
+export type {IVacancy, IVacancies, ICatalogues} from './vacancy';

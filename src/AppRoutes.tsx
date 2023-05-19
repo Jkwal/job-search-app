@@ -1,44 +1,26 @@
-import React, {FC, useEffect, useState} from "react";
-import { Route, Routes } from "react-router-dom";
+import React, {FC} from "react";
+import {Route, Routes} from "react-router-dom";
 
-import { NotFoundPage } from "./pages/NotFoundPage";
-import { HomePage } from "./pages/HomePage/HomePage";
-import { FavoritesPage } from "./pages/FavoritesPage";
-import { VacancyPage } from "./pages/VacancyPage/VacancyPage";
+import {NotFoundPage} from "./pages/NotFoundPage";
+import {HomePage} from "./pages/HomePage/HomePage";
+import {FavoritesPage} from "./pages/FavoritesPage";
+import {VacancyPage} from "./pages/VacancyPage/VacancyPage";
 
-import { ROUTES } from "./utils";
-import { IVacancy } from "./types";
+import {ROUTES} from "./utils";
+import {IVacancy} from "./types";
+import {EmptyPage} from "./pages/EmptyPage/EmptyPage";
 
-export const AppRoutes: FC = () => {
-  const [favoriteVacancies, setFavoriteVacancies] = useState<IVacancy[]>([]);
+interface AppRoutesProps {
+  favoriteVacancies: IVacancy[];
+  addFavoriteVacancy: (vacancy: IVacancy) => void;
+  removeFavoriteVacancy: (vacancy: IVacancy) => void;
+}
 
-  useEffect(() => {
-    const storedFavorites = localStorage.getItem("favoriteVacancies");
-    if (storedFavorites) {
-      setFavoriteVacancies(JSON.parse(storedFavorites));
-    }
-  }, []);
-
-
-  useEffect(() => {
-    localStorage.setItem("favoriteVacancies", JSON.stringify(favoriteVacancies));
-  }, [favoriteVacancies]);
-
-  const addFavoriteVacancy = (vacancy: IVacancy) => {
-    const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
-    if (!isFavorite) {
-      setFavoriteVacancies((prevVacancies) => [...prevVacancies, vacancy]);
-    }
-  };
-
-  const removeFavoriteVacancy = (vacancy: IVacancy) => {
-    const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
-    if (isFavorite) {
-      setFavoriteVacancies((prevVacancies) =>
-        prevVacancies.filter((item) => item.id !== vacancy.id)
-      );
-    }
-  };
+export const AppRoutes: FC<AppRoutesProps> = ({
+                                                favoriteVacancies,
+                                                addFavoriteVacancy,
+                                                removeFavoriteVacancy,
+                                              }) => {
 
   return (
     <Routes>
@@ -46,9 +28,9 @@ export const AppRoutes: FC = () => {
         path={ROUTES.HOME}
         element={
           <HomePage
-            isFavorite1={false}
-            removeFavoriteVacancy={removeFavoriteVacancy}
+            favoriteVacancies={favoriteVacancies}
             addFavoriteVacancy={addFavoriteVacancy}
+            removeFavoriteVacancy={removeFavoriteVacancy}
           />
         }
       />
@@ -56,24 +38,25 @@ export const AppRoutes: FC = () => {
         path={ROUTES.VACANCY}
         element={
           <VacancyPage
-            isFavorite1={false}
-            removeFavoriteVacancy={removeFavoriteVacancy}
-            addFavoriteVacancy={addFavoriteVacancy}
-          />
-        }
-      />
-      <Route
-        path={ROUTES.FAVORITES}
-        element={
-          <FavoritesPage
-            isFavorite1={true}
             favoriteVacancies={favoriteVacancies}
             addFavoriteVacancy={addFavoriteVacancy}
             removeFavoriteVacancy={removeFavoriteVacancy}
           />
         }
       />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route
+        path={ROUTES.FAVORITES}
+        element={
+          favoriteVacancies.length === 0
+            ? <EmptyPage/>
+            : <FavoritesPage
+              favoriteVacancies={favoriteVacancies}
+              addFavoriteVacancy={addFavoriteVacancy}
+              removeFavoriteVacancy={removeFavoriteVacancy}
+            />
+        }
+      />
+      <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
   );
 };

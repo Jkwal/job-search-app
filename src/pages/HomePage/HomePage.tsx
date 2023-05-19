@@ -60,7 +60,7 @@ export const HomePage: FC<HomePageProps> = ({favoriteVacancies, removeFavoriteVa
 
         {
           (() => {
-            if (vacancies.objects) return <Loader/>;
+            if (!vacancies.objects) return <Loader/>;
             return !vacancies.objects.length ? <EmptyPage/> :
               <>
                 <ListJob

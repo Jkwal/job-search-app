@@ -1,23 +1,27 @@
-import {FC} from "react";
+import React, {FC} from "react";
 
 import styles from './Input.module.scss';
 
 
 interface InputProps {
-    placeholder: string
-    value: string
-    onChange: (e: any) => void
+  value: string,
+  placeholder: string,
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 
-export const Input: FC<InputProps> = ({placeholder, onChange, value}) => {
-    return (
-        <input
-            className={styles.input}
-            type='text'
-            placeholder={placeholder}
-            onChange={onChange}
-            value={value}
-        />
-    )
+export const Input: FC<InputProps> = ({
+                                        value,
+                                        onChange,
+                                        placeholder
+                                      }) => {
+  return (
+    <input
+      type='text'
+      value={value}
+      onChange={onChange}
+      className={styles.input}
+      placeholder={placeholder}
+    />
+  )
 }

@@ -1,7 +1,8 @@
-import { FC } from "react";
+import {FC} from "react";
 
-import { IVacancy } from "types";
-import { VacancyHeader } from "components/Vacancies/VacancyHeader/VacancyHeader";
+import {IVacancy} from "types";
+import {VacancyHeader} from "components/Vacancies/VacancyHeader/VacancyHeader";
+
 
 interface FavoritesPageProps {
   favoriteVacancies: IVacancy[];
@@ -9,23 +10,28 @@ interface FavoritesPageProps {
   removeFavoriteVacancy: (vacancy: IVacancy) => void;
 }
 
+
 export const FavoritesPage: FC<FavoritesPageProps> = ({
                                                         favoriteVacancies,
-                                                        removeFavoriteVacancy,
                                                         addFavoriteVacancy,
+                                                        removeFavoriteVacancy
                                                       }) => {
   return (
     <>
       <div>
-        {favoriteVacancies.map((vacancy) => (
-          <VacancyHeader
-            isFavorite1={true}
-            key={vacancy.id}
-            vacancy={vacancy}
-            addFavoriteVacancy={addFavoriteVacancy}
-            removeFavoriteVacancy={removeFavoriteVacancy}
-          />
-        ))}
+
+        {
+          favoriteVacancies.map((vacancy) => (
+            <VacancyHeader
+              key={vacancy.id}
+              vacancy={vacancy}
+              isFavorite1={true}
+              addFavoriteVacancy={addFavoriteVacancy}
+              removeFavoriteVacancy={removeFavoriteVacancy}
+            />
+          ))
+        }
+
       </div>
     </>
   );

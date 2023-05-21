@@ -7,19 +7,35 @@ import {FavoritesPage} from "./pages/FavoritesPage";
 import {VacancyPage} from "./pages/VacancyPage/VacancyPage";
 
 import {ROUTES} from "./utils";
-import {IVacancy} from "./types";
+import {ICatalogues, IVacancies, IVacancy} from "./types";
 import {EmptyPage} from "./pages/EmptyPage/EmptyPage";
 
+
 interface AppRoutesProps {
-  favoriteVacancies: IVacancy[];
-  addFavoriteVacancy: (vacancy: IVacancy) => void;
-  removeFavoriteVacancy: (vacancy: IVacancy) => void;
+  activePage: number,
+  isLoading: boolean,
+  vacancies: IVacancies,
+  catalogues: ICatalogues[],
+  favoriteVacancies: IVacancy[],
+  handleSearch: (searchValue: string) => void,
+  addFavoriteVacancy: (vacancy: IVacancy) => void,
+  removeFavoriteVacancy: (vacancy: IVacancy) => void,
+  setPage: React.Dispatch<React.SetStateAction<number>>,
+  handleFilters: (paymentFrom: string, paymentTo: string, selectedCatalogue: string) => void,
 }
 
+
 export const AppRoutes: FC<AppRoutesProps> = ({
+                                                setPage,
+                                                isLoading,
+                                                vacancies,
+                                                activePage,
+                                                catalogues,
+                                                handleSearch,
+                                                handleFilters,
                                                 favoriteVacancies,
                                                 addFavoriteVacancy,
-                                                removeFavoriteVacancy,
+                                                removeFavoriteVacancy
                                               }) => {
 
   return (
@@ -28,6 +44,17 @@ export const AppRoutes: FC<AppRoutesProps> = ({
         path={ROUTES.HOME}
         element={
           <HomePage
+            isLoading={isLoading}
+
+            vacancies={vacancies}
+            catalogues={catalogues}
+
+            setPage={setPage}
+            activePage={activePage}
+
+            handleSearch={handleSearch}
+            handleFilters={handleFilters}
+
             favoriteVacancies={favoriteVacancies}
             addFavoriteVacancy={addFavoriteVacancy}
             removeFavoriteVacancy={removeFavoriteVacancy}

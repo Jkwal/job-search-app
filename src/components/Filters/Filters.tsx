@@ -7,27 +7,28 @@ import {NumberInput, PrimaryButton, ResetButton, Select} from "common";
 
 interface FiltersProps {
   catalogues: ICatalogues[],
-  onSubmit: (paymentFrom: string, paymentTo: string, selectedCatalogue: string) => void;
+  onSubmit: (
+    paymentTo: string,
+    paymentFrom: string,
+    selectedCatalogue: string) => void;
 }
 
 
-export const Filters: FC<FiltersProps> = ({catalogues, onSubmit}) => {
+export const Filters: FC<FiltersProps> = ({onSubmit, catalogues}) => {
 
-  const [paymentFrom, setPaymentFrom] = useState('');
   const [paymentTo, setPaymentTo] = useState('');
+  const [paymentFrom, setPaymentFrom] = useState('');
   const [selectedCatalogue, setSelectedCatalogue] = useState('');
 
-  const handlePaymentFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPaymentFrom(e.target.value);
-  };
-  const handlePaymentToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePaymentTo = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPaymentTo(e.target.value);
   };
-  const handleSelectedCatalogueChange = (value: string) => {
+  const handlePaymentFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPaymentFrom(e.target.value);
+  };
+  const handleSelectedCatalogue = (value: string) => {
     setSelectedCatalogue(value);
   };
-
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(paymentFrom, paymentTo, selectedCatalogue);
@@ -35,35 +36,44 @@ export const Filters: FC<FiltersProps> = ({catalogues, onSubmit}) => {
 
   return (
     <form className={styles.filters} onSubmit={handleSubmit}>
+
       <div className={styles.header}>
         <h2 className={styles.title}>Фильтры</h2>
+
         <ResetButton/>
       </div>
 
       <div className={styles.body}>
         <div className={styles.select}>
           <h3>Отрасль</h3>
+
           <Select
             catalogues={catalogues}
-            onChange={handleSelectedCatalogueChange}/>
+            onChange={handleSelectedCatalogue}
+          />
         </div>
-        <div className={styles.numberInput}>
+
+        <div className={styles.numberInputs}>
           <h3>Оклад</h3>
           <div className={styles.inputs}>
+
             <NumberInput
-              value={paymentFrom}
-              onChange={handlePaymentFromChange}
               placeholder='От'
+              value={paymentFrom}
+              onChange={handlePaymentFrom}
             />
             <NumberInput
-              value={paymentTo}
-              onChange={handlePaymentToChange}
               placeholder='До'
+              value={paymentTo}
+              onChange={handlePaymentTo}
             />
+
           </div>
         </div>
+
         <PrimaryButton type='submit' size='large'>Применить</PrimaryButton>
       </div>
+
     </form>
   )
 }

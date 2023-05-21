@@ -7,6 +7,7 @@ import {VacancyHeader} from "../VacancyHeader/VacancyHeader";
 
 
 interface ListJobProps {
+  isLoading: boolean,
   vacancies: IVacancies;
   favoriteVacancies: IVacancy[];
   addFavoriteVacancy: (vacancy: IVacancy) => void;
@@ -15,13 +16,14 @@ interface ListJobProps {
 
 
 export const ListJob: FC<ListJobProps> = ({
+                                            isLoading,
                                             vacancies,
                                             favoriteVacancies,
                                             addFavoriteVacancy,
                                             removeFavoriteVacancy,
                                           }) => {
 
-  const favoriteVacancyIds = favoriteVacancies.map((fav) => fav.id);
+  const favoriteVacancyId = favoriteVacancies.map((fav) => fav.id);
 
   return (
     <div className={styles.listJob}>
@@ -30,9 +32,10 @@ export const ListJob: FC<ListJobProps> = ({
           <VacancyHeader
             key={item.id}
             vacancy={{...item}}
+            isLoading={isLoading}
             addFavoriteVacancy={addFavoriteVacancy}
             removeFavoriteVacancy={removeFavoriteVacancy}
-            isFavorite1={favoriteVacancyIds.includes(item.id)}
+            isFavorite1={favoriteVacancyId.includes(item.id)}
           />
         ))
       }

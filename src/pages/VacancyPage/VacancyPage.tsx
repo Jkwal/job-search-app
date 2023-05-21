@@ -1,34 +1,58 @@
 import {FC, useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 
 import styles from './VacancyPage.module.scss';
 
+import {getVacancy} from "api";
 import {IVacancy} from "types";
-import {getVacancy} from "utils";
 import {VacancyCard} from "components";
-import {useParams} from "react-router-dom";
+
 
 interface VacancyPageProps {
-  addFavoriteVacancy: (vacancy: IVacancy) => void;
-  removeFavoriteVacancy: (vacancy: IVacancy) => void;
-  favoriteVacancies: IVacancy[];
+  favoriteVacancies: IVacancy[],
+  addFavoriteVacancy: (vacancy: IVacancy) => void,
+  removeFavoriteVacancy: (vacancy: IVacancy) => void,
 }
 
-export const VacancyPage: FC<VacancyPageProps> = ({favoriteVacancies,removeFavoriteVacancy,addFavoriteVacancy}) => {
+
+export const VacancyPage: FC<VacancyPageProps> = ({
+
+                                                    favoriteVacancies,
+                                                    addFavoriteVacancy,
+                                                    removeFavoriteVacancy
+                                                  }) => {
+
 
   const {id} = useParams();
-  const [vacancy, setVacancy] = useState<IVacancy>({} as IVacancy)
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [vacancy, setVacancy] = useState<IVacancy>({} as IVacancy);
+
   const isFavorite = favoriteVacancies.some((fav) => fav.id === vacancy.id);
 
   useEffect(() => {
+    setIsLoading(true)
 
     getVacancy(id!).then(data => setVacancy(data))
 
-  }, [id])
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [id]);
 
   return (
 
     <section className={styles.vacancyPage}>
-      <VacancyCard isFavorite1={isFavorite} removeFavoriteVacancy={removeFavoriteVacancy} addFavoriteVacancy={addFavoriteVacancy} vacancy={vacancy}/>
+
+      <VacancyCard
+        vacancy={vacancy}
+        isLoading={isLoading}
+        isFavorite1={isFavorite}
+        addFavoriteVacancy={addFavoriteVacancy}
+        removeFavoriteVacancy={removeFavoriteVacancy}
+      />
+
     </section>
   )
 }

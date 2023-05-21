@@ -6,9 +6,9 @@ import {TopBar} from "../../TopBar/TopBar";
 
 
 export const Header: FC = () => {
-    return (
-        <section className={styles.header}>
-            <TopBar/>
-        </section>
-    )
+  return (
+    <section className={styles.header}>
+      <TopBar/>
+    </section>
+  )
 }

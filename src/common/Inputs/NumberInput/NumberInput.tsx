@@ -1,4 +1,4 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import {Input} from "@mantine/core";
 
 import './NumberInput.scss';
@@ -8,21 +8,25 @@ import {ReactComponent as IconDown} from "assets/IconDown.svg";
 
 
 interface NumberInputProps {
-  placeholder: string;
-  value: string;
-  onChange: (e: any) => void;
+  value: string,
+  placeholder: string,
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-export const NumberInput: FC<NumberInputProps> = ({placeholder, value, onChange}) => {
+
+export const NumberInput: FC<NumberInputProps> = ({
+                                                    value,
+                                                    onChange,
+                                                    placeholder
+                                                  }) => {
   return (
     <Input
-      data-elem={"asfasfas"}
-      placeholder={placeholder}
-      onChange={onChange}
       value={value}
+      onChange={onChange}
+      placeholder={placeholder}
       rightSection={[
-        <IconUp className='iconInput'/>,
-        <IconDown className='iconInput'/>
+        <IconUp key='up' className='iconInput'/>,
+        <IconDown key='down' className='iconInput'/>
       ]}
     />
   )

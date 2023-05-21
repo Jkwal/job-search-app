@@ -19,6 +19,7 @@ export const TopBar: FC = () => {
                     <Link path={ROUTES.FAVORITES} name='Избранное'/>
                 </ul>
             </div>
+
         </div>
     )
 }

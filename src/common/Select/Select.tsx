@@ -4,8 +4,8 @@ import {Select as SelectMantine} from '@mantine/core';
 import './Select.scss';
 
 import {ICatalogues} from "types";
-import {ReactComponent as IconDown} from "assets/IconDown.svg";
 import {ReactComponent as IconUp} from "assets/IconUp.svg";
+import {ReactComponent as IconDown} from "assets/IconDown.svg";
 
 
 interface SelectProps {
@@ -15,8 +15,9 @@ interface SelectProps {
 
 
 export const Select: FC<SelectProps> = ({catalogues, onChange}) => {
-  const [searchValue, onSearchChange] = useState('');
+
   const [isOpen, setIsOpen] = useState(false);
+  const [searchValue, onSearchChange] = useState('');
 
   const toggleSelect = () => {
     setIsOpen(!isOpen);
@@ -24,11 +25,8 @@ export const Select: FC<SelectProps> = ({catalogues, onChange}) => {
 
   const handleSelectChange = (value: string) => {
     onSearchChange(value);
-    console.log(value)
     onChange(value);
   };
-
-  console.log(catalogues)
 
   const data = catalogues.map((item) => ({
     label: item.title,
@@ -38,17 +36,16 @@ export const Select: FC<SelectProps> = ({catalogues, onChange}) => {
   return (
     <SelectMantine
       data={data}
-
       value={searchValue}
       onChange={handleSelectChange}
       placeholder="Выберeте отрасль"
+      onDropdownOpen={toggleSelect}
+      onDropdownClose={toggleSelect}
       rightSection={
         isOpen
           ? <IconUp className='iconSelect active'/>
           : <IconDown className='iconSelect'/>
       }
-      onDropdownOpen={toggleSelect}
-      onDropdownClose={toggleSelect}
     />
   )
 }

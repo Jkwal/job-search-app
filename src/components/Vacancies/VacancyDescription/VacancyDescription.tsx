@@ -7,18 +7,20 @@ import {IVacancy} from "types";
 
 
 interface VacancyDescriptionProps {
-  vacancy: IVacancy;
+  isLoading: boolean,
+  vacancy: IVacancy,
 }
 
 
-export const VacancyDescription: FC<VacancyDescriptionProps> = ({vacancy}) => {
+export const VacancyDescription: FC<VacancyDescriptionProps> = ({isLoading, vacancy}) => {
+
   const {vacancyRichText} = vacancy;
   const parsedMarkup = vacancyRichText ? vacancyRichText.replace(/<br\s*\/?>/gi, "") : '';
 
   return (
     <div className={styles.vacancyDescription}>
       {
-        !vacancyRichText
+        isLoading
           ? <Loader/>
           : <div
             className={styles.vacancyRichText}

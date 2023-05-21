@@ -1,1 +1,3 @@
-export type {IVacancy, IVacancies, ICatalogues} from './vacancy';
+export type {ICatalogues} from './catalogues';
+export type {IAuth, IAuthResponse} from './auth';
+export type {IVacancy, IVacancies} from './vacancy';

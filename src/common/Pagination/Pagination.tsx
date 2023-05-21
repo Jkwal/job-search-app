@@ -1,4 +1,4 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import {Pagination as PaginationMantine} from '@mantine/core';
 
 import './Pagination.scss'
@@ -8,19 +8,24 @@ import {ReactComponent as IconRight} from "assets/IconRight.svg";
 
 
 interface PaginationProps {
-    total: number,
-    value: number,
-    onChange: (e:any) => void,
+  total: number,
+  value: number,
+  onChange: React.Dispatch<React.SetStateAction<number>>,
 }
 
-export const Pagination: FC<PaginationProps> = ({total, value,onChange}) => {
-    return (
-        <PaginationMantine
-            value={value}
-            total={total}
-            onChange={onChange}
-            nextIcon={IconRight}
-            previousIcon={IconLeft}
-        />
-    )
+
+export const Pagination: FC<PaginationProps> = ({
+                                                  total,
+                                                  value,
+                                                  onChange
+                                                }) => {
+  return (
+    <PaginationMantine
+      total={total}
+      value={value}
+      onChange={onChange}
+      nextIcon={IconRight}
+      previousIcon={IconLeft}
+    />
+  )
 }

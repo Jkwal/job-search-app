@@ -19,8 +19,3 @@ export interface IVacancy {
   vacancyRichText: string;
 }
 
-export interface  ICatalogues{
-  title:string,
-  key:number,
-}
-

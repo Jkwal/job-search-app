@@ -6,12 +6,13 @@ import {ReactComponent as IconCross} from "assets/IconCross.svg";
 
 
 export const ResetButton: FC = () => {
-    return (
-        <div>
-            <button className={styles.resetButton}>
-                Сбросить все
-                <IconCross className={styles.iconCross}/>
-            </button>
-        </div>
-    );
+  return (
+    <button type="reset" className={styles.resetButton}>
+
+      <p>Сбросить все</p>
+
+      <IconCross className={styles.iconCross}/>
+
+    </button>
+  );
 };

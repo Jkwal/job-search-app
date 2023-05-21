@@ -6,18 +6,40 @@ import {IVacancy} from "types";
 import {VacancyHeader} from "../VacancyHeader/VacancyHeader";
 import {VacancyDescription} from "../VacancyDescription/VacancyDescription";
 
+
 interface VacancyCardProps {
-  vacancy: IVacancy;
-  addFavoriteVacancy: (vacancy: IVacancy) => void;
-  removeFavoriteVacancy: (vacancy: IVacancy) => void;
-  isFavorite1: boolean;
+  vacancy: IVacancy,
+  isLoading:boolean,
+  isFavorite1: boolean,
+  addFavoriteVacancy: (vacancy: IVacancy) => void,
+  removeFavoriteVacancy: (vacancy: IVacancy) => void,
 }
 
-export const VacancyCard: FC<VacancyCardProps> = ({isFavorite1,removeFavoriteVacancy,vacancy,addFavoriteVacancy}) => {
+
+export const VacancyCard: FC<VacancyCardProps> = ({
+                                                    vacancy,
+                                                    isLoading,
+                                                    isFavorite1,
+                                                    addFavoriteVacancy,
+                                                    removeFavoriteVacancy
+                                                  }) => {
   return (
     <div className={styles.vacancyCard}>
-      <VacancyHeader   isFavorite1={isFavorite1} removeFavoriteVacancy={removeFavoriteVacancy} vacancy={vacancy} useOtherStyles={true} addFavoriteVacancy={addFavoriteVacancy}/>
-      <VacancyDescription vacancy={vacancy}/>
+
+      <VacancyHeader
+        vacancy={vacancy}
+        isLoading={isLoading}
+        useOtherStyles={true}
+        isFavorite1={isFavorite1}
+        removeFavoriteVacancy={removeFavoriteVacancy}
+        addFavoriteVacancy={addFavoriteVacancy}
+      />
+
+      <VacancyDescription
+        vacancy={vacancy}
+        isLoading={isLoading}
+      />
+
     </div>
   )
 }

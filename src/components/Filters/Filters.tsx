@@ -10,7 +10,7 @@ interface FiltersProps {
   onSubmit: (
     paymentTo: string,
     paymentFrom: string,
-    selectedCatalogue: string) => void;
+    selectedCatalogue: string) => void,
 }
 
 
@@ -34,8 +34,18 @@ export const Filters: FC<FiltersProps> = ({onSubmit, catalogues}) => {
     onSubmit(paymentFrom, paymentTo, selectedCatalogue);
   };
 
+  const handleReset = () => {
+    setPaymentTo("");
+    setPaymentFrom("");
+    setSelectedCatalogue("");
+  };
+
   return (
-    <form className={styles.filters} onSubmit={handleSubmit}>
+    <form
+      onReset={handleReset}
+      onSubmit={handleSubmit}
+      className={styles.filters}
+    >
 
       <div className={styles.header}>
         <h2 className={styles.title}>Фильтры</h2>
@@ -49,6 +59,7 @@ export const Filters: FC<FiltersProps> = ({onSubmit, catalogues}) => {
 
           <Select
             catalogues={catalogues}
+            value={selectedCatalogue}
             onChange={handleSelectedCatalogue}
           />
         </div>

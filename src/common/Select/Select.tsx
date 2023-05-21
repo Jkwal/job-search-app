@@ -9,24 +9,21 @@ import {ReactComponent as IconDown} from "assets/IconDown.svg";
 
 
 interface SelectProps {
+  value: string,
   catalogues: ICatalogues[],
-  onChange: (value: string) => void;
+  onChange: (value: string) => void,
 }
 
 
-export const Select: FC<SelectProps> = ({catalogues, onChange}) => {
+export const Select: FC<SelectProps> = ({value, catalogues, onChange}) => {
 
   const [isOpen, setIsOpen] = useState(false);
-  const [searchValue, onSearchChange] = useState('');
+
 
   const toggleSelect = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSelectChange = (value: string) => {
-    onSearchChange(value);
-    onChange(value);
-  };
 
   const data = catalogues.map((item) => ({
     label: item.title,
@@ -36,8 +33,8 @@ export const Select: FC<SelectProps> = ({catalogues, onChange}) => {
   return (
     <SelectMantine
       data={data}
-      value={searchValue}
-      onChange={handleSelectChange}
+      value={value}
+      onChange={onChange}
       placeholder="Выберeте отрасль"
       onDropdownOpen={toggleSelect}
       onDropdownClose={toggleSelect}

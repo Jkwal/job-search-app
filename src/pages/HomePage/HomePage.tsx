@@ -45,7 +45,7 @@ export const HomePage: FC<HomePageProps> = ({
         <Search onSubmit={handleSearch}/>
 
         {
-          !vacancies.objects.length
+          !vacancies.objects?.length
             ? <Empty/>
             : <>
               <ListJob

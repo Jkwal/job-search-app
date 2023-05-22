@@ -3,7 +3,7 @@ import React, {FC, useState} from "react";
 import styles from './HomePage.module.scss';
 
 import {Loader, Pagination} from "common";
-import {Empty, Filters, ListJob, Search} from "components";
+import {Filters, ListJob, Search} from "components";
 import {ICatalogues, IFilters, IVacancies, IVacancy} from "types";
 
 

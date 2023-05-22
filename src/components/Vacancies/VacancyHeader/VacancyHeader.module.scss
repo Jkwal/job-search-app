@@ -15,6 +15,8 @@
 }
 
 .about {
+  width: 87%;
+
   display: flex;
   flex-direction: column;
   gap: 13px;
@@ -27,6 +29,10 @@
   line-height: 24px;
 
   color: $Blue-500;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .info {

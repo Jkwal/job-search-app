@@ -1,38 +1,39 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 
 import styles from './Search.module.scss';
 
+import {IFilters} from "types";
 import {Input, PrimaryButton} from "common";
 import {ReactComponent as IconSearch} from "assets/IconSearch.svg";
 
 
 interface SearchProps {
-  onSubmit: (searchValue: string) => void;
+    filters: IFilters,
+    handleKeyword: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onSubmit: (keyword: string, paymentTo: string, paymentFrom: string, selectedCatalogue: string) => void,
 }
 
 
-export const Search: FC<SearchProps> = ({onSubmit}) => {
+export const Search: FC<SearchProps> = ({
+                                            filters,
+                                            onSubmit,
+                                            handleKeyword,
+                                        }) => {
 
-  const [searchValue, setSearchValue] = useState("");
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        onSubmit(filters.keyword, filters.paymentFrom, filters.paymentTo, filters.selectedCatalogue);
+    };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
+    return (
+        <form className={styles.search} onSubmit={handleSubmit}>
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(searchValue);
-  };
+            <IconSearch className={styles.icon}/>
 
-  return (
-    <form className={styles.search} onSubmit={handleSubmit}>
+            <Input value={filters.keyword} onChange={handleKeyword} placeholder='Введите название вакансии'/>
 
-      <IconSearch className={styles.icon}/>
+            <PrimaryButton type='submit' size='small'>Поиск</PrimaryButton>
 
-      <Input value={searchValue} onChange={handleChange} placeholder='Введите название вакансии'/>
-
-      <PrimaryButton type='submit' size='small'>Поиск</PrimaryButton>
-
-    </form>
-  )
+        </form>
+    )
 }

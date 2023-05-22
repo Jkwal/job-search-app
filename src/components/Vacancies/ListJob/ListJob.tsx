@@ -28,7 +28,7 @@ export const ListJob: FC<ListJobProps> = ({
   return (
     <div className={styles.listJob}>
       {
-        vacancies.objects.map((item) => (
+        vacancies.objects?.map((item) => (
           <VacancyHeader
             key={item.id}
             vacancy={{...item}}

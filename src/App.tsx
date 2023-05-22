@@ -5,101 +5,112 @@ import './styles/global.scss'
 import {Layout} from "./components";
 import {AppRoutes} from "./AppRoutes";
 import {getCatalogues, getVacancies} from "./api";
-import {ICatalogues, IVacancies, IVacancy} from "./types";
+import {ICatalogues, IFilters, IVacancies, IVacancy} from "./types";
 
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false)
+    // const [isAuth, setIsAuth] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-  const [keyword, setKeyword] = useState('');
+    const [activePage, setPage] = useState(1);
 
-  const [activePage, setPage] = useState(1);
+    const [catalogues, setCatalogues] = useState<ICatalogues[]>([]);
+    const [vacancies, setVacancies] = useState<IVacancies>({objects: []});
+    const [favoriteVacancies, setFavoriteVacancies] = useState<IVacancy[]>([]);
 
-  const [catalogues, setCatalogues] = useState<ICatalogues[]>([]);
-  const [vacancies, setVacancies] = useState<IVacancies>({objects: null});
-  const [favoriteVacancies, setFavoriteVacancies] = useState<IVacancy[]>([]);
+    const [filters, setFilters] = useState<IFilters>({
+        keyword: '',
+        paymentTo: '',
+        paymentFrom: '',
+        selectedCatalogue: '',
+    });
 
-  const [paymentTo, setPaymentTo] = useState('');
-  const [paymentFrom, setPaymentFrom] = useState('');
-  const [selectedCatalogue, setSelectedCatalogue] = useState('');
+    const {keyword, paymentTo, selectedCatalogue, paymentFrom} = filters;
 
-  useEffect(() => {
-    setIsLoading(true)
+    useEffect(() => {
+        setIsLoading(true)
 
-    getVacancies(keyword, paymentFrom, activePage, paymentTo, selectedCatalogue)
-
-      .then(data => setVacancies(data))
-
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [keyword, paymentFrom, activePage, paymentTo, selectedCatalogue]);
+        getVacancies(keyword, paymentFrom, activePage, paymentTo, selectedCatalogue)
+            .then(data => setVacancies(data))
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, [keyword, paymentFrom, activePage, paymentTo, selectedCatalogue]);
 
 
-  useEffect(() => {
-    getCatalogues().then(data => setCatalogues(data));
-  }, [])
+    useEffect(() => {
+        getCatalogues().then(data => setCatalogues(data));
+    }, [])
 
-  useEffect(() => {
-    localStorage.setItem("favoriteVacancies", JSON.stringify(favoriteVacancies));
-  }, [favoriteVacancies]);
+    useEffect(() => {
+        localStorage.setItem("favoriteVacancies", JSON.stringify(favoriteVacancies));
+    }, [favoriteVacancies]);
 
-  useEffect(() => {
-    const storedFavorites = localStorage.getItem("favoriteVacancies");
-    if (storedFavorites) {
-      setFavoriteVacancies(JSON.parse(storedFavorites));
+    useEffect(() => {
+        const storedFavorites = localStorage.getItem("favoriteVacancies");
+        if (storedFavorites) {
+            setFavoriteVacancies(JSON.parse(storedFavorites));
+        }
+    }, []);
+
+    const addFavoriteVacancy = (vacancy: IVacancy) => {
+        const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
+        if (!isFavorite) {
+            setFavoriteVacancies((prevVacancies) => [...prevVacancies, vacancy]);
+        }
+    };
+
+    const removeFavoriteVacancy = (vacancy: IVacancy) => {
+        const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
+        if (isFavorite) {
+            setFavoriteVacancies((prevVacancies) =>
+                prevVacancies.filter((item) => item.id !== vacancy.id)
+            );
+        }
+    };
+
+    const handleFilters = (keyword: string, paymentFrom: string, paymentTo: string, selectedCatalogue: string) => {
+        setFilters(prev => ({
+            ...prev,
+            keyword: keyword,
+            paymentTo: paymentTo,
+            paymentFrom: paymentFrom,
+            selectedCatalogue: selectedCatalogue
+        }));
+        setPage(1);
+    };
+
+    const handleResetFilters = () => {
+        setFilters(prev => ({
+            ...prev,
+            keyword: '',
+            paymentTo: '',
+            paymentFrom: '',
+            selectedCatalogue: ''
+        }));
+        setPage(1);
     }
-  }, []);
 
-  const addFavoriteVacancy = (vacancy: IVacancy) => {
-    const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
-    if (!isFavorite) {
-      setFavoriteVacancies((prevVacancies) => [...prevVacancies, vacancy]);
-    }
-  };
+    return (
+        <Layout>
+            <AppRoutes
+                isLoading={isLoading}
 
-  const removeFavoriteVacancy = (vacancy: IVacancy) => {
-    const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
-    if (isFavorite) {
-      setFavoriteVacancies((prevVacancies) =>
-        prevVacancies.filter((item) => item.id !== vacancy.id)
-      );
-    }
-  };
+                vacancies={vacancies}
+                catalogues={catalogues}
 
-  const handleSearch = (searchValue: string) => {
-    setKeyword(searchValue)
-    setPage(1)
-  };
+                setPage={setPage}
+                activePage={activePage}
 
-  const handleFilters = (paymentFrom: string, paymentTo: string, selectedCatalogue: string) => {
-    setPaymentFrom(paymentFrom);
-    setPaymentTo(paymentTo);
-    setSelectedCatalogue(selectedCatalogue);
-    setPage(1);
-  };
+                handleFilters={handleFilters}
+                handleResetFilters={handleResetFilters}
 
-
-  return (
-    <Layout>
-      <AppRoutes
-        isLoading={isLoading}
-
-        vacancies={vacancies}
-        catalogues={catalogues}
-
-        setPage={setPage}
-        activePage={activePage}
-
-        handleSearch={handleSearch}
-        handleFilters={handleFilters}
-
-        favoriteVacancies={favoriteVacancies}
-        addFavoriteVacancy={addFavoriteVacancy}
-        removeFavoriteVacancy={removeFavoriteVacancy}
-      />
-    </Layout>
-  );
+                favoriteVacancies={favoriteVacancies}
+                addFavoriteVacancy={addFavoriteVacancy}
+                removeFavoriteVacancy={removeFavoriteVacancy}
+            />
+        </Layout>
+    );
 }
 
 export default App;

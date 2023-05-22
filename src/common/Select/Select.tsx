@@ -9,40 +9,38 @@ import {ReactComponent as IconDown} from "assets/IconDown.svg";
 
 
 interface SelectProps {
-  value: string,
-  catalogues: ICatalogues[],
-  onChange: (value: string) => void,
+    value: string,
+    catalogues: ICatalogues[],
+    onChange: (value: string) => void,
 }
 
 
 export const Select: FC<SelectProps> = ({value, catalogues, onChange}) => {
 
-  const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
+    const toggleSelect = () => {
+        setIsOpen(!isOpen);
+    };
 
-  const toggleSelect = () => {
-    setIsOpen(!isOpen);
-  };
+    const data = catalogues.map((item) => ({
+        label: item.title,
+        value: String(item.key),
+    }));
 
-
-  const data = catalogues.map((item) => ({
-    label: item.title,
-    value: String(item.key),
-  }));
-
-  return (
-    <SelectMantine
-      data={data}
-      value={value}
-      onChange={onChange}
-      placeholder="Выберeте отрасль"
-      onDropdownOpen={toggleSelect}
-      onDropdownClose={toggleSelect}
-      rightSection={
-        isOpen
-          ? <IconUp className='iconSelect active'/>
-          : <IconDown className='iconSelect'/>
-      }
-    />
-  )
+    return (
+        <SelectMantine
+            data={data}
+            value={value}
+            onChange={onChange}
+            placeholder="Выберeте отрасль"
+            onDropdownOpen={toggleSelect}
+            onDropdownClose={toggleSelect}
+            rightSection={
+                isOpen
+                    ? <IconUp className='iconSelect active'/>
+                    : <IconDown className='iconSelect'/>
+            }
+        />
+    )
 }

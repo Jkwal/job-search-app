@@ -8,29 +8,29 @@ type ButtonSize = 'small' | 'medium' | 'large';
 type ButtonType = 'button' | 'submit' | 'reset';
 
 interface ButtonProps {
-  size: ButtonSize,
-  type: ButtonType,
-  children: ReactNode,
+    size: ButtonSize,
+    type: ButtonType,
+    children: ReactNode,
 }
 
 
 export const PrimaryButton: FC<ButtonProps> = ({
-                                                 size,
-                                                 type,
-                                                 children
+                                                   size,
+                                                   type,
+                                                   children
                                                }) => {
 
-  const buttonClasses = classNames({
-    [styles.buttonSmall]: size === 'small',
-    [styles.buttonMedium]: size === 'medium',
-    [styles.buttonLarge]: size === 'large',
-  });
+    const buttonClasses = classNames({
+        [styles.buttonSmall]: size === 'small',
+        [styles.buttonMedium]: size === 'medium',
+        [styles.buttonLarge]: size === 'large',
+    });
 
-  return (
-    <button type={type} className={buttonClasses}>
+    return (
+        <button type={type} className={buttonClasses}>
 
-      {children}
+            {children}
 
-    </button>
-  );
+        </button>
+    );
 };

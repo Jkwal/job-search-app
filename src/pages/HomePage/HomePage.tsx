@@ -1,74 +1,127 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 
 import styles from './HomePage.module.scss';
 
-import {Pagination} from "common";
-import {ICatalogues, IVacancies, IVacancy} from "types";
+import {Loader, Pagination} from "common";
 import {Empty, Filters, ListJob, Search} from "components";
+import {ICatalogues, IFilters, IVacancies, IVacancy} from "types";
 
 
 interface HomePageProps {
-  activePage: number,
-  isLoading: boolean,
-  vacancies: IVacancies,
-  catalogues: ICatalogues[],
-  favoriteVacancies: IVacancy[],
-  handleSearch: (searchValue: string) => void,
-  addFavoriteVacancy: (vacancy: IVacancy) => void,
-  removeFavoriteVacancy: (vacancy: IVacancy) => void,
-  setPage: React.Dispatch<React.SetStateAction<number>>,
-  handleFilters: (paymentFrom: string, paymentTo: string, selectedCatalogue: string) => void,
+    activePage: number,
+    isLoading: boolean,
+    vacancies: IVacancies,
+    catalogues: ICatalogues[],
+    favoriteVacancies: IVacancy[],
+    handleResetFilters: () => void,
+    addFavoriteVacancy: (vacancy: IVacancy) => void,
+    removeFavoriteVacancy: (vacancy: IVacancy) => void,
+    setPage: React.Dispatch<React.SetStateAction<number>>,
+    handleFilters: (keyword: string, paymentFrom: string, paymentTo: string, selectedCatalogue: string) => void,
 }
 
 
 export const HomePage: FC<HomePageProps> = ({
-                                              setPage,
-                                              isLoading,
-                                              vacancies,
-                                              activePage,
-                                              catalogues,
-                                              handleSearch,
-                                              handleFilters,
-                                              favoriteVacancies,
-                                              addFavoriteVacancy,
-                                              removeFavoriteVacancy
+                                                setPage,
+                                                isLoading,
+                                                vacancies,
+                                                activePage,
+                                                catalogues,
+                                                handleFilters,
+                                                favoriteVacancies,
+                                                addFavoriteVacancy,
+                                                handleResetFilters,
+                                                removeFavoriteVacancy
                                             }) => {
 
-  const countPage = (vacancies.total && vacancies.total <= 500) ? (vacancies.total / 4) : (500 / 4)
 
-  return (
-    <section className={styles.homePage}>
+    const [filters, setFilters] = useState<IFilters>({
+        keyword: '',
+        paymentTo: '',
+        paymentFrom: '',
+        selectedCatalogue: '',
+    });
 
-      <Filters catalogues={catalogues} onSubmit={handleFilters}/>
+    const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilters(prev => ({
+            ...prev,
+            keyword: e.target.value
+        }));
+    };
 
-      <div className={styles.list}>
-        <Search onSubmit={handleSearch}/>
+    const handlePaymentTo = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilters(prev => ({
+            ...prev,
+            paymentTo: e.target.value
+        }));
+    };
+    const handlePaymentFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFilters(prev => ({
+            ...prev,
+            paymentFrom: e.target.value
+        }));
+    };
 
-        {
-          !vacancies.objects?.length
-            ? <Empty/>
-            : <>
-              <ListJob
-                isLoading={isLoading}
-                vacancies={vacancies}
-                favoriteVacancies={favoriteVacancies}
-                addFavoriteVacancy={addFavoriteVacancy}
-                removeFavoriteVacancy={removeFavoriteVacancy}
-              />
+    const handleReset = () => {
+        setFilters(prev => ({
+            ...prev,
+            keyword: '',
+            paymentTo: '',
+            paymentFrom: '',
+            selectedCatalogue: '',
+        }));
+        handleResetFilters();
+    }
 
-              <div className={styles.pagination}>
+
+    const countPage = vacancies.total <= 500 ? (vacancies.total / 4) : ((500 / 4) - 2)
+
+    return (
+
+        <section className={styles.homePage}>
+
+            <Filters
+                filters={filters}
+                setFilters={setFilters}
+                catalogues={catalogues}
+                onSubmit={handleFilters}
+                handleReset={handleReset}
+                handlePaymentTo={handlePaymentTo}
+                handlePaymentFrom={handlePaymentFrom}
+            />
+
+            <div className={styles.list}>
+                <Search
+                    filters={filters}
+                    onSubmit={handleFilters}
+                    handleKeyword={handleKeyword}
+                />
+
                 {
-                  !!vacancies.total && <Pagination
-                        total={countPage}
-                        value={activePage}
-                        onChange={setPage}
-                    />
-                }
-              </div>
-            </>
-        }
-      </div>
+                    !vacancies.more
+                        ? <Loader/>
+                        : <>
+                            <ListJob
+                                isLoading={isLoading}
+                                vacancies={vacancies}
+                                favoriteVacancies={favoriteVacancies}
+                                addFavoriteVacancy={addFavoriteVacancy}
+                                removeFavoriteVacancy={removeFavoriteVacancy}
+                            />
 
-    </section>
-  )
+                            <div className={styles.pagination}>
+                                {
+                                    vacancies.more && <Pagination
+                                        total={countPage}
+                                        value={activePage}
+                                        onChange={setPage}
+                                    />
+                                }
+                            </div>
+                        </>
+                }
+            </div>
+
+        </section>
+    )
 }

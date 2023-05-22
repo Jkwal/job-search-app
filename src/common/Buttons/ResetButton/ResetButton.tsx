@@ -5,18 +5,27 @@ import styles from "./ResetButton.module.scss";
 import {ReactComponent as IconCross} from "assets/IconCross.svg";
 
 
-export const ResetButton: FC = () => {
-  return (
-    <div>
+interface ResetButtonProps {
+    onClick: () => void,
+}
 
-      <button type='reset' className={styles.resetButton}>
 
-        Сбросить все
+export const ResetButton: FC<ResetButtonProps> = ({onClick}) => {
+    return (
+        <div>
 
-        <IconCross className={styles.iconCross}/>
+            <button
+                type='reset'
+                onClick={onClick}
+                className={styles.resetButton}
+            >
 
-      </button>
+                Сбросить все
 
-    </div>
-  );
+                <IconCross className={styles.iconCross}/>
+
+            </button>
+
+        </div>
+    );
 };

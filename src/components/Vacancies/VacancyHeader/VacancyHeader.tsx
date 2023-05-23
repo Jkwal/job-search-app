@@ -76,13 +76,16 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
                 <p className={salaryClasses}>
                   {
                     payment_from === 0 && payment_to === 0
-                      ? "з/п по договоренности"
-                      : `з/п
-                        ${(payment_from > 0 && payment_to > 0) ? `${payment_from} - ${payment_to}` : ''}
-                        ${(payment_from > 0 && payment_to === 0) ? `от ${payment_from} ${currency === "rub" && " руб"}` : ''}
-                        ${(payment_to > 0 && payment_from === 0) ? `${payment_to}` : ''}
-                        ${currency === "rub" && " руб"}
-                  `}
+                        ? "з/п по договоренности"
+                        : payment_from === payment_to
+                            ? `з/п 
+                                ${payment_from}  ${currency === "rub" && " руб"}`
+                            : `з/п
+                                ${(payment_from > 0 && payment_to > 0) ? `${payment_from} - ${payment_to}` : ''}
+                                ${(payment_from > 0 && payment_to === 0) ? `от ${payment_from}` : ''}
+                                ${(payment_to > 0 && payment_from === 0) ? `до ${payment_to}` : ''}
+                                ${currency === "rub" && " руб"}`
+                  }
                 </p>
                 <IconDot/>
                 <p className={rateClasses}>{type_of_work?.title}</p>

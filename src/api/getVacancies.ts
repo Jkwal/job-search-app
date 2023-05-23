@@ -13,8 +13,8 @@ export const getVacancies =
         const queryParams = new URLSearchParams({
             count: '4',
             published: '1',
+            keyword: keyword,
             no_agreement: '0',
-            keyword,
             payment_to: paymentTo || '',
             payment_from: paymentFrom || '',
             page: activePage.toString(),

@@ -38,7 +38,7 @@ export const Filters: FC<FiltersProps> = ({
         e.preventDefault();
         onSubmit(filters.keyword, filters.paymentFrom, filters.paymentTo, filters.selectedCatalogue);
     };
-
+//  Todo добавить валидацию для отрицательных значений
     return (
         <form
             onSubmit={handleSubmit}

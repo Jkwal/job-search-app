@@ -1,4 +1,11 @@
 export {ROUTES} from './routes';
+
 export {mockAuth} from './mockAuth';
-export {fetchData, SECRET_KEY, API_APP_ID} from './apiConstans';
-export {BASE_URL, VACANCIES, CATALOGUES, AUTH} from './urlConstans';
+
+export {fetchData, API_APP_ID, SECRET_KEY, fetchAuthData,
+} from './apiConstans';
+
+export {AUTH, REFRESH, BASE_URL, VACANCIES, CATALOGUES,
+} from './urlConstans';
+
+export * from './localStorage';

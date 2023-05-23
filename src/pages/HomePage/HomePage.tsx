@@ -3,7 +3,7 @@ import React, {FC, useState} from "react";
 import styles from './HomePage.module.scss';
 
 import {Loader, Pagination} from "common";
-import {Filters, ListJob, Search} from "components";
+import {Empty, Filters, ListJob, Search} from "components";
 import {ICatalogues, IFilters, IVacancies, IVacancy} from "types";
 
 
@@ -98,27 +98,31 @@ export const HomePage: FC<HomePageProps> = ({
                 />
 
                 {
-                    !vacancies.more
+                    isLoading || vacancies.objects === null
                         ? <Loader/>
-                        : <>
-                            <ListJob
-                                isLoading={isLoading}
-                                vacancies={vacancies}
-                                favoriteVacancies={favoriteVacancies}
-                                addFavoriteVacancy={addFavoriteVacancy}
-                                removeFavoriteVacancy={removeFavoriteVacancy}
-                            />
-
-                            <div className={styles.pagination}>
-                                {
-                                    vacancies.more && <Pagination
-                                        total={countPage}
-                                        value={activePage}
-                                        onChange={setPage}
+                        : (
+                            vacancies.objects?.length
+                                ? <>
+                                    <ListJob
+                                        isLoading={isLoading}
+                                        vacancies={vacancies}
+                                        favoriteVacancies={favoriteVacancies}
+                                        addFavoriteVacancy={addFavoriteVacancy}
+                                        removeFavoriteVacancy={removeFavoriteVacancy}
                                     />
-                                }
-                            </div>
-                        </>
+
+                                    <div className={styles.pagination}>
+                                        {
+                                            vacancies.more && <Pagination
+                                                total={countPage}
+                                                value={activePage}
+                                                onChange={setPage}
+                                            />
+                                        }
+                                    </div>
+                                </>
+                                : <Empty/>
+                        )
                 }
             </div>
 

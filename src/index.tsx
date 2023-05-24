@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {MantineProvider} from "@mantine/core";
-import {BrowserRouter} from "react-router-dom";
+import { HashRouter} from "react-router-dom";
 
 import App from './App';
 
@@ -10,9 +10,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <MantineProvider withGlobalStyles withNormalizeCSS>
-    <BrowserRouter basename='/job-search-app'>
+    <HashRouter basename='/job-search-app'>
       <App/>
-    </BrowserRouter>
+    </HashRouter>
   </MantineProvider>
 );
 

@@ -1,12 +1,12 @@
-import {API_APP_ID, fetchAuthData, REFRESH, setUserToLocalStorage} from "utils";
+import {CLIENT_ID, CLIENT_SECRET, fetchAuthData, REFRESH, setUserToLocalStorage} from "utils";
 
 
-export const refreshAccessToken = async (REFRESH_TOKEN: string) => {
-
-    const refreshParams = new URLSearchParams ({
+    export
+const refreshAccessToken = async (REFRESH_TOKEN: string) => {
+    const refreshParams = new URLSearchParams({
         refresh_token: `${REFRESH_TOKEN}`,
-        client_id: '2356',
-        client_secret: API_APP_ID,
+        client_id: CLIENT_ID,
+        client_secret: CLIENT_SECRET,
     });
 
     const url = `${REFRESH}/?${refreshParams.toString()}`;

@@ -10,14 +10,12 @@ import {ReactComponent as IconDown} from "assets/IconDown.svg";
 interface NumberInputProps {
     value: string,
     placeholder: string,
-    onClick?: () => void,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 
 export const NumberInput: FC<NumberInputProps> = ({
                                                       value,
-                                                      onClick,
                                                       onChange,
                                                       placeholder,
                                                   }) => {
@@ -30,8 +28,8 @@ export const NumberInput: FC<NumberInputProps> = ({
             onChange={onChange}
             placeholder={placeholder}
             rightSection={[
-                <IconUp key='up' className='iconInput' onClick={onClick}/>,
-                <IconDown key='down' className='iconInput' onClick={onClick}/>
+                <IconUp key='up' className='iconInput'/>,
+                <IconDown key='down' className='iconInput'/>
             ]}
         />
     )

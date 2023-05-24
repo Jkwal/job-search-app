@@ -7,8 +7,8 @@ import {NumberInput, PrimaryButton, ResetButton, Select} from "common";
 
 interface FiltersProps {
     filters: IFilters,
-    catalogues: ICatalogues[],
     handleReset: () => void,
+    catalogues: ICatalogues[],
     setFilters: React.Dispatch<React.SetStateAction<IFilters>>,
     handlePaymentTo: (e: React.ChangeEvent<HTMLInputElement>) => void,
     handlePaymentFrom: (e: React.ChangeEvent<HTMLInputElement>) => void,
@@ -38,7 +38,6 @@ export const Filters: FC<FiltersProps> = ({
         e.preventDefault();
         onSubmit(filters.keyword, filters.paymentFrom, filters.paymentTo, filters.selectedCatalogue);
     };
-//  Todo добавить валидацию для отрицательных значений
     return (
         <form
             onSubmit={handleSubmit}

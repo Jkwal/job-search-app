@@ -11,6 +11,7 @@ interface LogoProps {
     name: string,
 }
 
+
 export const Logo: FC<LogoProps> = ({path, name}) => {
     return (
         <NavLink to={path} className={styles.logo}>

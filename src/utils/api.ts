@@ -1,40 +1,36 @@
-import {refreshAccessToken} from "../api";
+import {refreshAccessToken} from "api";
+import {IHeaders} from "types";
 import {getUserFromLocalStorage} from "./localStorage";
-
-export const SECRET_KEY = 'GEU4nvd3rej*jeh.eqp';
-export const API_APP_ID = 'v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948';
+import {CLIENT_SECRET, SECRET_KEY} from "./constans";
 
 
-const defaultHeaders = {
+const defaultHeaders: IHeaders = {
     'x-secret-key': SECRET_KEY,
-    'X-Api-App-Id': API_APP_ID,
+    'X-Api-App-Id': CLIENT_SECRET,
 };
 
-
-const getDefaultHeaders = (shouldTokenBeAdded = true) => {
-    const headers: any = {...defaultHeaders}
+const getDefaultHeaders = (shouldTokenBeAdded: boolean) => {
+    const headers = {...defaultHeaders};
 
     if (shouldTokenBeAdded) {
-        const user = getUserFromLocalStorage()
+        const user = getUserFromLocalStorage();
         if (user) {
-            headers.Authorization = `Bearer ${user.access_token}`
+            headers.Authorization = `Bearer ${user.access_token}`;
         }
     }
     return headers;
 }
 
-
 export const fetchData = async (url: string, method: string, count: number = 1): Promise<any> => {
-
     const response = await fetch(url, {
         method,
-        headers: getDefaultHeaders(),
+        headers: getDefaultHeaders(true),
     });
 
     if (response.status === 410 && count <= 2) {
         const user = getUserFromLocalStorage();
         await refreshAccessToken(user.refresh_token);
-        return fetchData(url, method, count + 1)
+        return fetchData(url, method, count + 1);
     }
 
     if (!response.ok) {

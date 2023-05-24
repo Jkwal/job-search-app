@@ -1,9 +1,8 @@
-import {AUTH, fetchAuthData, setUserToLocalStorage} from "utils";
 import {IAuth, IAuthResponse} from "types";
+import {AUTH, fetchAuthData, setUserToLocalStorage} from "utils";
 
 
 export const getAccessToken = async (mockAuth: IAuth): Promise<IAuthResponse> => {
-
     const authParams =new URLSearchParams ({
         login: mockAuth.login,
         password: mockAuth.password,
@@ -19,5 +18,4 @@ export const getAccessToken = async (mockAuth: IAuth): Promise<IAuthResponse> =>
     setUserToLocalStorage(user);
 
     return user;
-
 }

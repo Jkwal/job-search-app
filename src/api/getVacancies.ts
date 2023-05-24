@@ -1,6 +1,7 @@
 import {IVacancies} from "types";
 import {fetchData, VACANCIES} from "utils";
 
+
 export const getVacancies =
     async (
         keyword: string,

@@ -2,6 +2,7 @@ import React, {FC, useState} from "react";
 
 import styles from './HomePage.module.scss';
 
+import {findCountPage} from "utils";
 import {Loader, Pagination} from "common";
 import {Empty, Filters, ListJob, Search} from "components";
 import {ICatalogues, IFilters, IVacancies, IVacancy} from "types";
@@ -50,16 +51,21 @@ export const HomePage: FC<HomePageProps> = ({
     };
 
     const handlePaymentTo = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilters(prev => ({
-            ...prev,
-            paymentTo: e.target.value
-        }));
+        if (+e.target.value >= 0) {
+            setFilters(prev => ({
+                ...prev,
+                paymentTo: e.target.value
+            }));
+        }
+
     };
     const handlePaymentFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilters(prev => ({
-            ...prev,
-            paymentFrom: e.target.value
-        }));
+        if (+e.target.value >= 0) {
+            setFilters(prev => ({
+                ...prev,
+                paymentFrom: e.target.value
+            }));
+        }
     };
 
     const handleReset = () => {
@@ -72,9 +78,6 @@ export const HomePage: FC<HomePageProps> = ({
         }));
         handleResetFilters();
     }
-
-
-    const countPage = vacancies.total <= 500 ? (vacancies.total / 4) : ((500 / 4) - 2)
 
     return (
 
@@ -114,7 +117,7 @@ export const HomePage: FC<HomePageProps> = ({
                                     <div className={styles.pagination}>
                                         {
                                             vacancies.more && <Pagination
-                                                total={countPage}
+                                                total={findCountPage(vacancies)}
                                                 value={activePage}
                                                 onChange={setPage}
                                             />

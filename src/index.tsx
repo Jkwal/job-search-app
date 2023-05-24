@@ -5,13 +5,12 @@ import {BrowserRouter} from "react-router-dom";
 
 import App from './App';
 
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <MantineProvider withGlobalStyles withNormalizeCSS>
-    <BrowserRouter basename='job-search-app'>
+    <BrowserRouter basename='/job-search-app'>
       <App/>
     </BrowserRouter>
   </MantineProvider>

@@ -3,11 +3,11 @@ import {Route, Routes} from "react-router-dom";
 
 import {NotFoundPage} from "./pages/NotFoundPage";
 import {HomePage} from "./pages/HomePage/HomePage";
-import {FavoritesPage} from "./pages/FavoritesPage/FavoritesPage";
+import {EmptyPage} from "./pages/EmptyPage/EmptyPage";
 import {VacancyPage} from "./pages/VacancyPage/VacancyPage";
+import {FavoritesPage} from "./pages/FavoritesPage/FavoritesPage";
 
 import {ROUTES} from "./utils";
-import {EmptyPage} from "./pages/EmptyPage/EmptyPage";
 import {ICatalogues, IVacancies, IVacancy} from "./types";
 
 
@@ -26,7 +26,6 @@ interface AppRoutesProps {
 
 
 export const AppRoutes: FC<AppRoutesProps> = ({
-
                                                   setPage,
                                                   isLoading,
                                                   vacancies,

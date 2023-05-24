@@ -6,14 +6,14 @@ import {Layout} from "./components";
 import {AppRoutes} from "./AppRoutes";
 import {getAccessToken, getCatalogues, getVacancies} from "./api";
 import {ICatalogues, IFilters, IVacancies, IVacancy} from "./types";
+import {ReactComponent as IconBalloon} from "assets/IconBalloon.svg";
 import {
     mockAuth,
     getUserFromLocalStorage,
     addFavoriteToLocalStorage,
     getFavoritesToLocalStorage,
-    removeFromFavoriteToLocalStorage,
+    removeFromFavoriteToLocalStorage
 } from "./utils";
-import {Loader} from "./common";
 
 
 function App() {
@@ -82,13 +82,13 @@ function App() {
 
 
     if (isInit === false) {
-        return <Loader/>
+        return <IconBalloon/>
+
     }
 
     const addFavoriteVacancy = (vacancy: IVacancy) => {
         const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
         if (!isFavorite) {
-            //Todo убрать дублирование логики
             setFavoriteVacancies((prevVacancies) => [...prevVacancies, vacancy]);
             addFavoriteToLocalStorage(vacancy);
         }
@@ -97,7 +97,6 @@ function App() {
     const removeFavoriteVacancy = (vacancy: IVacancy) => {
         const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
         if (isFavorite) {
-            //Todo убрать дублирование логики
             setFavoriteVacancies((prevVacancies) =>
                 prevVacancies.filter((item) => item.id !== vacancy.id)
             );

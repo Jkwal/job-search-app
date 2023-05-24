@@ -1,26 +1,27 @@
 @import "styles/variables";
 
 .mantine-Input-input {
+    min-height: 42px;
+    border: 1px solid $Grey-300;
+    border-radius: 8px;
 
-  border: 1px solid $Grey-300;
-  border-radius: 8px;
+    background: $White;
 
-  background: $White;
+    &::placeholder {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
 
-  &::placeholder {
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
+      color: $Grey-500;
+    }
 
-    color: $Grey-500;
-  }
-
-  &:hover {
-    border: 1px solid $Blue-500;
-  }
+    &:hover {
+      border: 1px solid $Blue-500;
+    }
 }
+
 
 .mantine-Input-rightSection {
   display: flex;

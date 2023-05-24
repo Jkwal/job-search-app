@@ -1,4 +1,4 @@
-export interface  ICatalogues{
-  title:string,
-  key:number,
+export interface ICatalogues {
+  title: string,
+  key: number,
 }

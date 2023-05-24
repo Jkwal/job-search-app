@@ -8,32 +8,32 @@ import {ReactComponent as IconDown} from "assets/IconDown.svg";
 
 
 interface NumberInputProps {
-    value: string,
-    dataElem: string,
-    placeholder: string,
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  value: string,
+  dataElem: string,
+  placeholder: string,
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 
 export const NumberInput: FC<NumberInputProps> = ({
-                                                      value,
-                                                      onChange,
-                                                      dataElem,
-                                                      placeholder,
+                                                    value,
+                                                    onChange,
+                                                    dataElem,
+                                                    placeholder,
                                                   }) => {
 
 
-    return (
-        <Input
-            type='number'
-            value={value}
-            onChange={onChange}
-            data-elem={dataElem}
-            placeholder={placeholder}
-            rightSection={[
-                <IconUp key='up' className='iconInput'/>,
-                <IconDown key='down' className='iconInput'/>
-            ]}
-        />
-    )
+  return (
+    <Input
+      type='number'
+      value={value}
+      onChange={onChange}
+      data-elem={dataElem}
+      placeholder={placeholder}
+      rightSection={[
+        <IconUp key='up' className='iconInput'/>,
+        <IconDown key='down' className='iconInput'/>
+      ]}
+    />
+  )
 }

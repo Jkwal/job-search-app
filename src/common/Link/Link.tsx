@@ -13,7 +13,8 @@ interface NavLinkProps {
 
 export const Link: FC<NavLinkProps> = ({
                                          name,
-                                         path}) => {
+                                         path
+                                       }) => {
 
   const location = useLocation();
   const currentPath = location.pathname;

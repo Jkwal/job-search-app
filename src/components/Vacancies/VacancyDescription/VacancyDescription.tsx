@@ -7,8 +7,8 @@ import {IVacancy} from "types";
 
 
 interface VacancyDescriptionProps {
-  isLoading: boolean,
   vacancy: IVacancy,
+  isLoading: boolean,
 }
 
 

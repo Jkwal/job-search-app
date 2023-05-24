@@ -11,6 +11,10 @@ li a {
 
   transition: color .3s ease-in-out;
 
+  &:hover {
+    color: $Blue-600;
+  }
+
   &:active, &.active {
     font-weight: 500;
     color: $Blue-500;

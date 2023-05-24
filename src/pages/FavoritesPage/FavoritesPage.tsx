@@ -3,14 +3,14 @@ import React, {FC} from "react";
 import styles from './FavoritesPage.module.scss';
 
 import {IVacancy} from "types";
+import {Pagination} from "common";
 import {VacancyHeader} from "components/Vacancies/VacancyHeader/VacancyHeader";
-import {Pagination} from "../../common";
 
 
 interface FavoritesPageProps {
-  favoriteVacancies: IVacancy[];
-  addFavoriteVacancy: (vacancy: IVacancy) => void;
-  removeFavoriteVacancy: (vacancy: IVacancy) => void;
+  favoriteVacancies: IVacancy[],
+  addFavoriteVacancy: (vacancy: IVacancy) => void,
+  removeFavoriteVacancy: (vacancy: IVacancy) => void,
 }
 
 

@@ -1,7 +1,7 @@
 export interface IVacancies {
   objects: IVacancy[],
   total?: number,
-  more?:boolean,
+  more?: boolean,
 }
 
 export interface IVacancy {
@@ -16,7 +16,7 @@ export interface IVacancy {
   }
   payment_to: number,
   payment_from: number,
-  no_agreement?:number,
+  no_agreement?: number,
   currency: string,
   vacancyRichText: string,
 }

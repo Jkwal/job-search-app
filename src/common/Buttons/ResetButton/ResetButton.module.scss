@@ -19,6 +19,8 @@
 
   cursor: pointer;
 
+  transition: color .3s ease-in-out;
+
   &:hover {
     color: $Blue-400;
 

@@ -1,25 +1,38 @@
 import {FC} from "react";
+import {Indicator} from "@mantine/core";
 
 import styles from './TopBar.module.scss';
 
 import {ROUTES} from "utils";
+import {IVacancy} from "types";
 import {Link, Logo} from "common";
 
 
-export const TopBar: FC = () => {
-    return (
-        <div className={styles.topBar}>
+interface TopBarProps {
+  favoriteVacancies: IVacancy[],
+}
 
-            <Logo path={ROUTES.HOME} name='Jobored'/>
+export const TopBar: FC<TopBarProps> = ({favoriteVacancies}) => {
+  return (
+    <div className={styles.topBar}>
 
-            <div className={styles.wrapper}>
-                <ul className={styles.links}>
-                    <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
+      <Logo path={ROUTES.HOME} name='Jobored'/>
 
-                    <Link path={ROUTES.FAVORITES} name='Избранное'/>
-                </ul>
-            </div>
+      <div className={styles.wrapper}>
+        <ul className={styles.links}>
+          <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
+          <Indicator
+            size={7}
+            offset={5}
+            color="cyan"
+            position="top-end"
+            disabled={favoriteVacancies.length === 0}
+          >
+            <Link path={ROUTES.FAVORITES} name='Избранное'/>
+          </Indicator>
+        </ul>
+      </div>
 
-        </div>
-    )
+    </div>
+  )
 }

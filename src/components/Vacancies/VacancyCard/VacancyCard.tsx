@@ -8,8 +8,9 @@ import {VacancyDescription} from "../VacancyDescription/VacancyDescription";
 
 
 interface VacancyCardProps {
+  dataElem: string,
   vacancy: IVacancy,
-  isLoading:boolean,
+  isLoading: boolean,
   isFavorite1: boolean,
   addFavoriteVacancy: (vacancy: IVacancy) => void,
   removeFavoriteVacancy: (vacancy: IVacancy) => void,
@@ -19,6 +20,7 @@ interface VacancyCardProps {
 export const VacancyCard: FC<VacancyCardProps> = ({
                                                     vacancy,
                                                     isLoading,
+                                                    dataElem,
                                                     isFavorite1,
                                                     addFavoriteVacancy,
                                                     removeFavoriteVacancy
@@ -28,6 +30,7 @@ export const VacancyCard: FC<VacancyCardProps> = ({
 
       <VacancyHeader
         vacancy={vacancy}
+        dataElem={dataElem}
         isLoading={isLoading}
         useOtherStyles={true}
         isFavorite1={isFavorite1}

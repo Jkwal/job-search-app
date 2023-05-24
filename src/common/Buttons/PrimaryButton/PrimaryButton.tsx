@@ -10,6 +10,7 @@ type ButtonType = 'button' | 'submit' | 'reset';
 interface ButtonProps {
     size: ButtonSize,
     type: ButtonType,
+    dataElem?: string,
     children: ReactNode,
 }
 
@@ -17,7 +18,8 @@ interface ButtonProps {
 export const PrimaryButton: FC<ButtonProps> = ({
                                                    size,
                                                    type,
-                                                   children
+                                                   children,
+                                                   dataElem
                                                }) => {
 
     const buttonClasses = classNames({
@@ -27,7 +29,11 @@ export const PrimaryButton: FC<ButtonProps> = ({
     });
 
     return (
-        <button type={type} className={buttonClasses}>
+        <button
+            type={type}
+            data-elem={dataElem}
+            className={buttonClasses}
+        >
 
             {children}
 

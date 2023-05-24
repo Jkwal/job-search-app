@@ -33,6 +33,7 @@ export const Select: FC<SelectProps> = ({value, catalogues, onChange}) => {
             data={data}
             value={value}
             onChange={onChange}
+            data-elem='industry-select'
             placeholder="Выберeте отрасль"
             onDropdownOpen={toggleSelect}
             onDropdownClose={toggleSelect}

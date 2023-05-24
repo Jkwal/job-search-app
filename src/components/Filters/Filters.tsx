@@ -69,17 +69,25 @@ export const Filters: FC<FiltersProps> = ({
                             placeholder='От'
                             value={filters.paymentFrom}
                             onChange={handlePaymentFrom}
+                            dataElem={'salary-from-input'}
                         />
                         <NumberInput
                             placeholder='До'
                             value={filters.paymentTo}
                             onChange={handlePaymentTo}
+                            dataElem={'salary-to-input'}
                         />
 
                     </div>
                 </div>
 
-                <PrimaryButton type='submit' size='large'>Применить</PrimaryButton>
+                <PrimaryButton
+                    size='large'
+                    type='submit'
+                    dataElem={"search-button"}
+                >
+                    Применить
+                </PrimaryButton>
             </div>
 
         </form>

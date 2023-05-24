@@ -8,47 +8,49 @@ import {Pagination} from "../../common";
 
 
 interface FavoritesPageProps {
-    favoriteVacancies: IVacancy[];
-    addFavoriteVacancy: (vacancy: IVacancy) => void;
-    removeFavoriteVacancy: (vacancy: IVacancy) => void;
+  favoriteVacancies: IVacancy[];
+  addFavoriteVacancy: (vacancy: IVacancy) => void;
+  removeFavoriteVacancy: (vacancy: IVacancy) => void;
 }
 
 
 export const FavoritesPage: FC<FavoritesPageProps> = ({
-                                                          favoriteVacancies,
-                                                          addFavoriteVacancy,
-                                                          removeFavoriteVacancy
+                                                        favoriteVacancies,
+                                                        addFavoriteVacancy,
+                                                        removeFavoriteVacancy
                                                       }) => {
-    return (
-        <>
-            <section className={styles.favoritesPage}>
+  return (
+    <>
+      <section className={styles.favoritesPage}>
 
-                <ul className={styles.list}>
-                    {
-                        favoriteVacancies.map((vacancy) => (
-                            <li key={vacancy.id}>
-                                <VacancyHeader
-                                    vacancy={vacancy}
-                                    isFavorite1={true}
-                                    addFavoriteVacancy={addFavoriteVacancy}
-                                    removeFavoriteVacancy={removeFavoriteVacancy}
-                                />
-                            </li>
-                        ))
-                    }
-                </ul>
+        <ul className={styles.list}>
+          {
+            favoriteVacancies.map((vacancy) => (
+              <li key={vacancy.id}>
+                <VacancyHeader
+                  dataElem={`vacancy-${vacancy.id}`}
+                  vacancy={vacancy}
+                  isFavorite1={true}
+                  addFavoriteVacancy={addFavoriteVacancy}
+                  removeFavoriteVacancy={removeFavoriteVacancy}
+                />
+              </li>
+            ))
+          }
+        </ul>
 
-                <div className={styles.pagination}>
-                    {
-                        favoriteVacancies.length > 3 && <Pagination
-                            total={3}
-                            value={1}
-                            onChange={() => {}}
-                        />
-                    }
-                </div>
+        <div className={styles.pagination}>
+          {
+            favoriteVacancies.length > 3 && <Pagination
+                  total={3}
+                  value={1}
+                  onChange={() => {
+                  }}
+              />
+          }
+        </div>
 
-            </section>
-        </>
-    );
+      </section>
+    </>
+  );
 };

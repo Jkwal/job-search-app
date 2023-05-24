@@ -32,7 +32,13 @@ export const Search: FC<SearchProps> = ({
 
             <Input value={filters.keyword} onChange={handleKeyword} placeholder='Введите название вакансии'/>
 
-            <PrimaryButton type='submit' size='small'>Поиск</PrimaryButton>
+            <PrimaryButton
+                size='small'
+                type='submit'
+                dataElem={'search-button'}
+            >
+                Поиск
+            </PrimaryButton>
 
         </form>
     )

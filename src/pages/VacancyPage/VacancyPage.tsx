@@ -9,51 +9,52 @@ import {VacancyCard} from "components";
 
 
 interface VacancyPageProps {
-  favoriteVacancies: IVacancy[],
-  addFavoriteVacancy: (vacancy: IVacancy) => void,
-  removeFavoriteVacancy: (vacancy: IVacancy) => void,
+    favoriteVacancies: IVacancy[],
+    addFavoriteVacancy: (vacancy: IVacancy) => void,
+    removeFavoriteVacancy: (vacancy: IVacancy) => void,
 }
 
 
 export const VacancyPage: FC<VacancyPageProps> = ({
 
-                                                    favoriteVacancies,
-                                                    addFavoriteVacancy,
-                                                    removeFavoriteVacancy
+                                                      favoriteVacancies,
+                                                      addFavoriteVacancy,
+                                                      removeFavoriteVacancy
                                                   }) => {
 
 
-  const {id} = useParams();
+    const {id} = useParams();
 
-  const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-  const [vacancy, setVacancy] = useState<IVacancy>({} as IVacancy);
+    const [vacancy, setVacancy] = useState<IVacancy>({} as IVacancy);
 
-  const isFavorite = favoriteVacancies.some((fav) => fav.id === vacancy.id);
+    const isFavorite = favoriteVacancies.some((fav) => fav.id === vacancy.id);
 
-  useEffect(() => {
-    setIsLoading(true)
+    useEffect(() => {
+        setIsLoading(true)
 
-    getVacancy(id!).then(data => setVacancy(data))
+        getVacancy(id!).then(data => setVacancy(data))
 
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [id]);
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, [id]);
 
-  return (
+    return (
 
-    <section className={styles.vacancyPage}>
+        <section className={styles.vacancyPage}>
 
-      <VacancyCard
-        vacancy={vacancy}
-        isLoading={isLoading}
-        isFavorite1={isFavorite}
-        addFavoriteVacancy={addFavoriteVacancy}
-        removeFavoriteVacancy={removeFavoriteVacancy}
-      />
+            <VacancyCard
+                dataElem={`vacancy-${id}`}
+                vacancy={vacancy}
+                isLoading={isLoading}
+                isFavorite1={isFavorite}
+                addFavoriteVacancy={addFavoriteVacancy}
+                removeFavoriteVacancy={removeFavoriteVacancy}
+            />
 
-    </section>
-  )
+        </section>
+    )
 }
 

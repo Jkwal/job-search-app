@@ -8,15 +8,17 @@ import {ReactComponent as IconLocation} from "assets/IconLocation.svg";
 
 
 interface VacancyHeaderProps {
-  vacancy: IVacancy;
+  dataElem: string,
+  vacancy: IVacancy,
   isLoading?: boolean,
-  isFavorite1: boolean;
-  useOtherStyles?: boolean;
-  addFavoriteVacancy: (vacancy: IVacancy) => void;
-  removeFavoriteVacancy: (vacancy: IVacancy) => void;
+  isFavorite1: boolean,
+  useOtherStyles?: boolean,
+  addFavoriteVacancy: (vacancy: IVacancy) => void,
+  removeFavoriteVacancy: (vacancy: IVacancy) => void,
 }
 
 export const VacancyHeader: FC<VacancyHeaderProps> = ({
+                                                        dataElem,
                                                         vacancy,
                                                         isLoading,
                                                         isFavorite1,
@@ -63,12 +65,15 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
   };
 
   return (
-    <div className={vacancyHeaderClasses}>
+    <div data-elem={dataElem} className={vacancyHeaderClasses}>
       {
         isLoading
           ? <Loader/>
           : <>
-            <ContainerComponent to={`/vacancy/${id}`} className={aboutClasses}>
+            <ContainerComponent
+              to={`/vacancy/${id}`}
+              className={aboutClasses}
+            >
 
               <h2 className={titleClasses}>{profession}</h2>
 
@@ -76,11 +81,11 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
                 <p className={salaryClasses}>
                   {
                     payment_from === 0 && payment_to === 0
-                        ? "з/п по договоренности"
-                        : payment_from === payment_to
-                            ? `з/п 
+                      ? "з/п по договоренности"
+                      : payment_from === payment_to
+                        ? `з/п 
                                 ${payment_from}  ${currency === "rub" && " руб"}`
-                            : `з/п
+                        : `з/п
                                 ${(payment_from > 0 && payment_to > 0) ? `${payment_from} - ${payment_to}` : ''}
                                 ${(payment_from > 0 && payment_to === 0) ? `от ${payment_from}` : ''}
                                 ${(payment_to > 0 && payment_from === 0) ? `до ${payment_to}` : ''}
@@ -99,6 +104,7 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
             </ContainerComponent>
 
             <FavoritesButton
+              dataElem={dataElem}
               onClick={handleFavorite}
               isFavorite1={isFavorite}
             />

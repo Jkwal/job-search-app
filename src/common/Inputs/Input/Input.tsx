@@ -20,6 +20,7 @@ export const Input: FC<InputProps> = ({
       type='text'
       value={value}
       onChange={onChange}
+      data-elem='search-input'
       className={styles.input}
       placeholder={placeholder}
     />

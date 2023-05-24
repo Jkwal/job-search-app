@@ -7,6 +7,7 @@ import {ReactComponent as IconStar} from "assets/IconStar.svg";
 
 
 interface FavoritesButtonProps {
+  dataElem: string,
   onClick: () => void,
   isFavorite1: boolean,
 }
@@ -14,7 +15,9 @@ interface FavoritesButtonProps {
 
 export const FavoritesButton: FC<FavoritesButtonProps> = ({
                                                             onClick,
-                                                            isFavorite1}) => {
+                                                            dataElem,
+                                                            isFavorite1
+                                                          }) => {
 
   const iconClass = classNames(styles.iconStar, {
     [styles.favorite]: isFavorite1,
@@ -25,9 +28,13 @@ export const FavoritesButton: FC<FavoritesButtonProps> = ({
   };
 
   return (
-    <button onClick={handleClick} className={styles.favoritesButton}>
+    <button
+      data-elem={`${dataElem}-shortlist-button`}
+      onClick={handleClick}
+      className={styles.favoritesButton}
+    >
 
-      <IconStar className={iconClass} />
+      <IconStar className={iconClass}/>
 
     </button>
   );

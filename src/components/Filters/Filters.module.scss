@@ -1,12 +1,14 @@
 @import "styles/variables";
 
 .filters {
-  width: 335px;
+  //width: 335px;
+  width: 100%;
   min-height: 360px;
   padding: 20px;
 
   display: flex;
   flex-direction: column;
+  flex: 2 0 300px;
   gap: 29px;
 
   border: 1px solid $Grey-200;

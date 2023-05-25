@@ -13,17 +13,12 @@ body {
   background-color: #E5E5E5 !important;
 }
 
-.wrapper {
-  max-width: 1440px;
-  min-height: 900px;
-  margin: auto;
-
-  border-radius: 12px;
-  background: #F7F7F8;
-}
 
 main {
+  width: 100%;
   padding: 40px 162px 52px 162px;
+
+  background-color: #F7F7F8;
 }
 
 a {

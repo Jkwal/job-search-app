@@ -1,10 +1,14 @@
 .homePage {
+  width:100%;
+
   display: flex;
   align-items: flex-start;
   column-gap: 28px;
 }
 
 .list {
+  width: 100%;
+
   display: flex;
   align-items: center;
   flex-direction: column;

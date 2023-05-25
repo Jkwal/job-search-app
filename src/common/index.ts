@@ -1,5 +1,6 @@
 export {Link} from './Link/Link';
 export {Logo} from './Logo/Logo';
+export {Burger} from './Burger/Burger';
 export {Loader} from './Loader/Loader';
 export {Select} from './Select/Select';
 export {Input, NumberInput} from './Inputs';

@@ -11,11 +11,13 @@ interface  LayoutProps{
 
 export const Layout: FC<LayoutProps> = ({favoriteVacancies,children}) => {
   return (
-    <div className='wrapper'>
 
-      <Header favoriteVacancies={favoriteVacancies}/>
-      <main>{children}</main>
+<>
+  <Header favoriteVacancies={favoriteVacancies}/>
+  <main>{children}</main>
+</>
 
-    </div>
+
+
   )
 }

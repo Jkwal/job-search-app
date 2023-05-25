@@ -1,21 +1,52 @@
 @import "styles/variables";
 
 .topBar {
-  width: 100%;
+  width: 776px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  row-gap: 10px;
+
+  @media (max-width: 320px) {
+    justify-content: space-between;
+  }
+
+  @media (min-width: 321px) and (max-width: 767px) {
+    column-gap: 20px;
+  }
+}
+
+
+.links {
+  width: 47%;
 
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  column-gap: 40px;
+  row-gap: 10px;
+
+  @media (max-width: 320px) {
+    display: none;
+  }
+
+  @media (min-width: 321px) and (max-width: 767px) {
+    display: none;
+  }
 }
 
-.wrapper {
-  width: 100%;
-  margin-right: 140px;
+.burger {
+  display: none;
+  flex-direction: row-reverse;
 
-  display: flex;
-  justify-content: center;
-}
+  @media (max-width: 320px) {
+    display: flex;
 
-.links {
-  display: flex;
-  column-gap: 50px;
+  }
+
+  @media (min-width: 321px) and (max-width: 767px) {
+    display: flex;
+  }
 }

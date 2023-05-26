@@ -10,6 +10,7 @@ import App from './App';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+//Todo Решить проблему с деплоем на gh-pages
 root.render(
   <MantineProvider withGlobalStyles>
     <BrowserRouter basename='/job-search-app'>

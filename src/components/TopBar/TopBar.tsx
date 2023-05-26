@@ -1,4 +1,4 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import {Indicator} from "@mantine/core";
 
 import styles from './TopBar.module.scss';
@@ -33,7 +33,7 @@ export const TopBar: FC<TopBarProps> = ({favoriteVacancies}) => {
       </ul>
 
       <div className={styles.burger}>
-        <Burger />
+        <Burger/>
       </div>
 
     </div>

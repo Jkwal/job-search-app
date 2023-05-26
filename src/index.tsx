@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <MantineProvider withGlobalStyles withNormalizeCSS>
+  <MantineProvider withGlobalStyles>
     <BrowserRouter basename='/job-search-app'>
       <Notifications  position='bottom-right' limit={3}/>
       <App/>

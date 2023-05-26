@@ -34,6 +34,11 @@
 
 .buttonSmall {
   @include buttonStyles;
+
+  @media (max-width: 320px) {
+    width: 66px;
+    padding: 4px 9px;
+  }
 }
 
 .buttonMedium {
@@ -66,7 +71,7 @@
 
 .buttonLarge {
   @include buttonStyles;
-  width: 275px;
+  width: 100%;
   min-height: 40px;
   margin-left: -1px;
 }

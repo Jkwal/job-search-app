@@ -18,6 +18,7 @@ import {
 
 
 function App() {
+  //Todo Перевести на useContext
   const [isInit, setIsInit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

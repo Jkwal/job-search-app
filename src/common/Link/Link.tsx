@@ -24,7 +24,7 @@ export const Link: FC<NavLinkProps> = ({
   });
 
   return (
-    <li>
+    <li className={styles.link}>
       <NavLink to={path} className={linkClassName}>
 
         {name}

@@ -26,22 +26,20 @@ body {
 header {
   width: 100%;
   min-height: 84px;
-  padding: 0 162px;
+  padding: 0 30px;
 
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
   background-color: $White;
 
   @media (max-width: 320px) {
-    padding: 5px 30px;
+    padding-top: 5px
   }
 
-  @media (min-width: 321px) and (max-width: 767px) {
-    padding: 0 30px;
-  }
+
 }
 
 main {

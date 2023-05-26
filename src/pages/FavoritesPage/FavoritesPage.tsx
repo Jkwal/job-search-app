@@ -26,7 +26,7 @@ export const FavoritesPage: FC<FavoritesPageProps> = ({
         <ul className={styles.list}>
           {
             favoriteVacancies.map((vacancy) => (
-              <li key={vacancy.id}>
+              <li className={styles.item} key={vacancy.id}>
                 <VacancyHeader
                   dataElem={`vacancy-${vacancy.id}`}
                   vacancy={vacancy}
@@ -41,6 +41,7 @@ export const FavoritesPage: FC<FavoritesPageProps> = ({
 
         <div className={styles.pagination}>
           {
+              //Todo Реализовать логику пагинации для Избранного
             favoriteVacancies.length > 3 && <Pagination
                   total={3}
                   value={1}

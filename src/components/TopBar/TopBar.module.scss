@@ -1,7 +1,7 @@
 @import "styles/variables";
 
 .topBar {
-  width: 776px;
+  width: 1116px;
 
   display: flex;
   flex-wrap: wrap;
@@ -20,7 +20,7 @@
 
 
 .links {
-  width: 47%;
+  width: calc(63% + 2px);
 
   display: flex;
   align-items: center;

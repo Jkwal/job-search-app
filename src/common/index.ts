@@ -4,6 +4,7 @@ export {Burger} from './Burger/Burger';
 export {Loader} from './Loader/Loader';
 export {Select} from './Select/Select';
 export {Input, NumberInput} from './Inputs';
+export {Indicator} from './Indicator/Indicator';
 export {Pagination} from './Pagination/Pagination';
 export {notification} from './Notification/Notification';
 export {PrimaryButton, ResetButton, FavoritesButton} from './Buttons';

@@ -20,7 +20,7 @@ li {
 
 
 body {
-  background-color: #E5E5E5 !important;
+  background-color: #F7F7F8 !important;
 }
 
 header {
@@ -55,6 +55,30 @@ main {
   @media (min-width: 321px) and (max-width: 767px) {
     padding: 30px 20px;
   }
+}
+
+.wrapper-balloon{
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: rotate .5s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mantine-gebwyd {
+  position: relative;
+  display: inline-block;
 }
 
 

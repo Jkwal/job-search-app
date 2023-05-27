@@ -6,12 +6,11 @@ import {ReactComponent as LogoJobored} from 'assets/Logo.svg';
 
 
 interface LogoProps {
-  path: string,
   name: string,
 }
 
 
-export const Logo: FC<LogoProps> = ({path, name}) => {
+export const Logo: FC<LogoProps> = ({name}) => {
   return (
     <a href={'/job-search-app'} className={styles.logo}>
 

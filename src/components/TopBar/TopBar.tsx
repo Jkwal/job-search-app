@@ -16,7 +16,7 @@ export const TopBar: FC<TopBarProps> = ({favoriteVacancies}) => {
     return (
         <div className={styles.topBar}>
 
-            <Logo path={ROUTES.HOME} name='Jobored'/>
+            <Logo name='Jobored'/>
 
 
             <ul className={styles.links}>

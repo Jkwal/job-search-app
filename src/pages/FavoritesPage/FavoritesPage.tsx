@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useEffect, useState} from "react";
 
 import styles from './FavoritesPage.module.scss';
 
@@ -8,50 +8,66 @@ import {VacancyHeader} from "components/Vacancies/VacancyHeader/VacancyHeader";
 
 
 interface FavoritesPageProps {
-  favoriteVacancies: IVacancy[],
-  addFavoriteVacancy: (vacancy: IVacancy) => void,
-  removeFavoriteVacancy: (vacancy: IVacancy) => void,
+    favoriteVacancies: IVacancy[],
+    addFavoriteVacancy: (vacancy: IVacancy) => void,
+    removeFavoriteVacancy: (vacancy: IVacancy) => void,
 }
 
 
 export const FavoritesPage: FC<FavoritesPageProps> = ({
-                                                        favoriteVacancies,
-                                                        addFavoriteVacancy,
-                                                        removeFavoriteVacancy
+                                                          favoriteVacancies,
+                                                          addFavoriteVacancy,
+                                                          removeFavoriteVacancy
                                                       }) => {
-  return (
-    <>
-      <section className={styles.favoritesPage}>
 
-        <ul className={styles.list}>
-          {
-            favoriteVacancies.map((vacancy) => (
-              <li className={styles.item} key={vacancy.id}>
-                <VacancyHeader
-                  dataElem={`vacancy-${vacancy.id}`}
-                  vacancy={vacancy}
-                  isFavorite1={true}
-                  addFavoriteVacancy={addFavoriteVacancy}
-                  removeFavoriteVacancy={removeFavoriteVacancy}
-                />
-              </li>
-            ))
-          }
-        </ul>
+    const [currentPage, setCurrentPage] = useState(1);
 
-        <div className={styles.pagination}>
-          {
-              //Todo Реализовать логику пагинации для Избранного
-            favoriteVacancies.length > 3 && <Pagination
-                  total={3}
-                  value={1}
-                  onChange={() => {
-                  }}
-              />
-          }
-        </div>
+    const itemsPerPage = 4;
+    const totalPages = Math.ceil(favoriteVacancies.length / itemsPerPage);
 
-      </section>
-    </>
-  );
+    const getPageItems = () => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        return favoriteVacancies.slice(startIndex, endIndex);
+    };
+
+    useEffect(() => {
+        if (currentPage > totalPages) {
+            setCurrentPage(currentPage - 1);
+        }
+    }, [currentPage, totalPages]);
+
+    return (
+        <>
+            <section className={styles.favoritesPage}>
+                <ul className={styles.list}>
+                    {
+                        getPageItems().map((vacancy) => (
+                            <li className={styles.item} key={vacancy.id}>
+                                <VacancyHeader
+                                    vacancy={vacancy}
+                                    isFavorite1={true}
+                                    dataElem={`vacancy-${vacancy.id}`}
+                                    addFavoriteVacancy={addFavoriteVacancy}
+                                    removeFavoriteVacancy={removeFavoriteVacancy}
+                                />
+                            </li>
+                        ))
+                    }
+                </ul>
+
+                <div className={styles.pagination}>
+                    {
+                        favoriteVacancies.length >= itemsPerPage && (
+                            <Pagination
+                                total={totalPages}
+                                value={currentPage}
+                                onChange={setCurrentPage}
+                            />
+                        )
+                    }
+                </div>
+            </section>
+        </>
+    );
 };

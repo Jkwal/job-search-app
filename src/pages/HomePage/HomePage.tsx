@@ -124,7 +124,7 @@ export const HomePage: FC<HomePageProps> = ({
                                         }
                                     </div>
                                 </>
-                                : <Empty/>
+                                : <Empty isButton={false}/>
                         )
                 }
             </div>

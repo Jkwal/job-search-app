@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {useDisclosure} from '@mantine/hooks';
-import {Burger as BurgerMantine} from '@mantine/core';
+import {Burger as BurgerMantine, Modal} from '@mantine/core';
 
 import styles from './Burger.module.scss';
 
@@ -26,15 +26,21 @@ export const Burger: FC<BurgerProps> = ({favoriteVacancies}) => {
                 onClick={toggle}
                 aria-label={label}
             />
-
             {
+
                 opened
-                    ? <ul className={styles.menu}>
-                        <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
-                        <Indicator disabled={favoriteVacancies.length === 0}>
-                            <Link path={ROUTES.FAVORITES} name='Избранное'/>
-                        </Indicator>
-                    </ul>
+                    ? <Modal
+                        opened={opened}
+                        onClose={toggle}
+                        title={"Jobored"}
+                    >
+                        <ul className={styles.menu}>
+                            <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
+                            <Indicator disabled={favoriteVacancies.length === 0}>
+                                <Link path={ROUTES.FAVORITES} name='Избранное'/>
+                            </Indicator>
+                        </ul>
+                    </Modal>
                     : ''
             }
         </>

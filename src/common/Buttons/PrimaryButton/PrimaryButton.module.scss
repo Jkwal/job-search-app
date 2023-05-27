@@ -36,8 +36,8 @@
   @include buttonStyles;
 
   @media (max-width: 320px) {
-    width: 66px;
-    padding: 4px 9px;
+    width: 61px;
+    padding: 5px 5px;
   }
 }
 
@@ -45,6 +45,7 @@
   @include buttonStyles;
   width: 164px;
   min-height: 42px;
+  padding: 0;
 
   font-weight: 600;
   line-height: 22px;
@@ -56,6 +57,7 @@
     font-size: 14px;
     line-height: 22px;
     color: $Blue-600;
+    padding: 10px 24px;
   }
 
   background-color: $Blue-100;

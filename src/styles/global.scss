@@ -57,7 +57,7 @@ main {
   }
 }
 
-.wrapper-balloon{
+.wrapper-balloon {
   height: 100vh;
 
   display: flex;
@@ -77,11 +77,31 @@ main {
 }
 
 .mantine-gebwyd {
-  position: relative;
-  display: inline-block;
+  width: 100px;
 }
 
+.mantine-1k9itrp {
+  font-weight: 600;
+}
 
+.mantine-1w30zfw {
+  padding: 0;
+  right: 0;
+  position: fixed;
+
+  justify-content: flex-end;
+
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    right: -440px;
+  }
+  to {
+    right: 0;
+  }
+}
 
 
 

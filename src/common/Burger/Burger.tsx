@@ -4,7 +4,7 @@ import {Burger as BurgerMantine, Modal} from '@mantine/core';
 
 import styles from './Burger.module.scss';
 
-import {Indicator, Link} from 'common';
+import {Indicator, Link, Logo} from 'common';
 import {ROUTES} from "utils";
 import {IVacancy} from "types";
 
@@ -32,7 +32,7 @@ export const Burger: FC<BurgerProps> = ({favoriteVacancies}) => {
                     ? <Modal
                         opened={opened}
                         onClose={toggle}
-                        title={"Jobored"}
+                        title={<Logo name='Jobored'/>}
                     >
                         <ul className={styles.menu}>
                             <Link path={ROUTES.HOME} name='Поиск Вакансий'/>

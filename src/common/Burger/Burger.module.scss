@@ -1,6 +1,11 @@
 .menu{
+  padding: 10px;
+
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 20px;
+
+  border: 1px solid #EAEBED;
+  border-radius: 10px;
 }
 

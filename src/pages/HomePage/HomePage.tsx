@@ -101,7 +101,7 @@ export const HomePage: FC<HomePageProps> = ({
                 />
 
                 {
-                    isLoading || vacancies.objects === null
+                     vacancies.objects === null
                         ? <Loader/>
                         : (
                             vacancies.objects?.length

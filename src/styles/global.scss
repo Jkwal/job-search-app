@@ -76,20 +76,20 @@ main {
   }
 }
 
+
+// Filters
 .mantine-gebwyd {
   width: 100px;
 }
 
-.mantine-1k9itrp {
-  font-weight: 600;
-}
-
+//BurgerMenuWrapper
 .mantine-1w30zfw {
   padding: 0;
   right: 0;
   position: fixed;
 
   justify-content: flex-end;
+
 
   animation: slideInRight 0.3s ease;
 }
@@ -103,5 +103,21 @@ main {
   }
 }
 
+// BurgerTitle
+.mantine-1k9itrp {
+  margin-bottom: 20px;
+}
+
+//BurgerMenuItemsWrapper
+.mantine-3cevnw {
+  border: 1px solid #EAEBED;
+  border-bottom-left-radius: 10px;
+}
+
+//Indicator
+.mantine-10hwfkz {
+  right: 0;
+  top: 7px
+}
 
 

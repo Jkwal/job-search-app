@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {MantineProvider} from "@mantine/core";
 import {BrowserRouter} from "react-router-dom";
-import {AppProvider} from "./context/app.context";
 import {Notifications} from "@mantine/notifications";
+
+import {AppProvider} from "./context";
 
 import App from './App';
 

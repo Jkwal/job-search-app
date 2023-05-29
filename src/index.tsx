@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {MantineProvider} from "@mantine/core";
 import {BrowserRouter} from "react-router-dom";
-import {AppProvider} from "./context/AppContext";
+import {AppProvider} from "./context/app.context";
 import {Notifications} from "@mantine/notifications";
 
 import App from './App';
@@ -11,7 +11,6 @@ import App from './App';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-//Todo Решить проблему с деплоем на gh-pages
 root.render(
   <AppProvider>
     <MantineProvider withGlobalStyles>

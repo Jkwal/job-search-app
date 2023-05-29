@@ -1,11 +1,12 @@
+@import "styles/mixins";
 @import "styles/variables";
 
 .link a {
   padding: 10px;
-  font-size: 16px;
-  font-weight: 400;
+
+  @include font-400-16;
   line-height: 20px;
-  font-style: normal;
+
   white-space: nowrap;
 
   color: $Black;

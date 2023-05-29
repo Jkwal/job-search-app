@@ -1,3 +1,4 @@
+@import "styles/mixins";
 @import 'styles/variables';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
@@ -9,10 +10,7 @@
   border: none;
   border-radius: 8px;
 
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
+  @include font-500-14;
   line-height: 21px;
 
   color: $White;
@@ -75,5 +73,5 @@
   @include buttonStyles;
   width: 100%;
   min-height: 40px;
-  margin-left: -1px;
+
 }

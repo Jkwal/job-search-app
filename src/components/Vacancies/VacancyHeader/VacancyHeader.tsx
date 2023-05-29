@@ -2,7 +2,7 @@ import {FC, useContext, useEffect, useState} from "react";
 
 import {IVacancy} from "types";
 import {useStyles} from "./useStyles";
-import {appContext} from "context/AppContext";
+import {appContext} from "context/app.context";
 import {FavoritesButton, Loader, notification} from "common";
 import {ReactComponent as IconDot} from "assets/IconDot.svg";
 import {ReactComponent as IconLocation} from "assets/IconLocation.svg";
@@ -102,12 +102,12 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
                       ? "з/п по договоренности"
                       : payment_from === payment_to
                         ? `з/п 
-                                ${payment_from}  ${currency === "rub" && " руб"}`
+                                ${payment_from}  ${currency}`
                         : `з/п
                                 ${(payment_from > 0 && payment_to > 0) ? `${payment_from} - ${payment_to}` : ''}
                                 ${(payment_from > 0 && payment_to === 0) ? `от ${payment_from}` : ''}
                                 ${(payment_to > 0 && payment_from === 0) ? `до ${payment_to}` : ''}
-                                ${currency === "rub" && " руб"}`
+                                ${currency}`
                   }
                 </p>
                 <IconDot/>

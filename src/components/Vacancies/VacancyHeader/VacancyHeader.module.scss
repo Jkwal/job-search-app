@@ -1,10 +1,11 @@
+@import "styles/mixins";
 @import "styles/variables";
 
 .vacancyHeader {
   width: 100%;
   max-width: 773px;
   min-height: 137px;
-  padding: 23px 25px 23px 21px;
+  padding: 23px 23px 23px 23px;
 
   display: flex;
   justify-content: space-between;
@@ -24,9 +25,7 @@
 }
 
 .title {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+  @include font-600-20;
   line-height: 24px;
 
   color: $Blue-500;
@@ -41,18 +40,14 @@
 }
 
 .salary {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
+  @include font-600-16;
   line-height: 20px;
 
   color: $Black;
 }
 
 .rate {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  @include font-400-16;
   line-height: 20px;
 
   color: $Black;
@@ -65,9 +60,7 @@
 }
 
 .address {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  @include font-400-16;
   line-height: 19px;
 
   color: $Black;

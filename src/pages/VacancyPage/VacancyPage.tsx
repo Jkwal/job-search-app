@@ -6,7 +6,7 @@ import styles from './VacancyPage.module.scss';
 import {getVacancy} from "api";
 import {IVacancy} from "types";
 import {VacancyCard} from "components";
-import {appContext} from "context/AppContext";
+import {appContext} from "context/app.context";
 
 
 export const VacancyPage: FC = () => {

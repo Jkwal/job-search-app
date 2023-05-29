@@ -1,7 +1,8 @@
+@import "styles/mixins";
+
 .listJob {
   width: 100%;
 
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   row-gap: 16px;
 }

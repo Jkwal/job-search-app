@@ -3,14 +3,15 @@ import {useCallback, useContext, useEffect} from "react";
 import './styles/global.scss'
 
 import {Layout} from "./components";
+import {appContext} from "./context";
 import {AppRoutes} from "./AppRoutes";
-import {appContext} from "./context/AppContext";
 import {mockAuth, getUserFromLocalStorage} from "./utils";
 import {getAccessToken, getCatalogues, getVacancies} from "./api";
 import {ReactComponent as IconBalloon} from "assets/IconBalloon.svg";
 
 
 function App() {
+
   const {
     isInit,
     filters,
@@ -22,10 +23,6 @@ function App() {
     favoriteVacancies,
     setFavoriteVacancies,
   } = useContext(appContext);
-
-
-  const {keyword, paymentTo, selectedCatalogue, paymentFrom} = filters;
-
 
   const login = useCallback(async () => {
     const user = getUserFromLocalStorage()
@@ -47,22 +44,13 @@ function App() {
 
     setIsLoading(true)
 
-    getVacancies(keyword, paymentFrom, activePage, paymentTo, selectedCatalogue)
+    getVacancies(filters.keyword, filters.paymentFrom, activePage, filters.paymentTo, filters.selectedCatalogue)
       .then(data => setVacancies(data))
       .finally(() => {
         setIsLoading(false);
       });
 
-  }, [
-    isInit,
-    keyword,
-    paymentTo,
-    activePage,
-    paymentFrom,
-    setIsLoading,
-    setVacancies,
-    selectedCatalogue
-  ]);
+  }, [isInit, activePage, setVacancies, setIsLoading, filters.keyword, filters.paymentTo, filters.paymentFrom, filters.selectedCatalogue]);
 
 
   useEffect(() => {

@@ -5,13 +5,13 @@
   .icon {
     position: absolute;
     top: 16px;
-    left: 11px;
+    left: 12px;
   }
 
   button {
     position: absolute;
     top: 8px;
-    right: 14px;
+    right: 12px;
 
     @media (max-width: 320px) {
       right: 10px;

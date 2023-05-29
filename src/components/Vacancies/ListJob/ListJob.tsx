@@ -3,7 +3,7 @@ import {FC, useContext} from "react";
 import styles from "./ListJob.module.scss";
 
 import {VacancyHeader} from "components";
-import {appContext} from "context/AppContext";
+import {appContext} from "context/app.context";
 
 export const ListJob: FC = () => {
   const {vacancies, favoriteVacancies} = useContext(appContext);

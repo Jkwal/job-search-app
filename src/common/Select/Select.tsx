@@ -5,7 +5,7 @@ import './Select.scss';
 
 import {ReactComponent as IconUp} from "assets/IconUp.svg";
 import {ReactComponent as IconDown} from "assets/IconDown.svg";
-import {appContext} from "context/AppContext";
+import {appContext} from "context/app.context";
 
 
 interface SelectProps {

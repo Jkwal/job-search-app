@@ -1,18 +1,15 @@
 @import "styles/mixins";
-@import "styles/variables";
 
-.empty {
-  width: 100%;
+.notFoundPage {
   margin-top: 80px;
-  margin-left: 2px;
 
   @include flex-column-center;
-  gap: 32px;
+  row-gap: 32px;
 }
 
-.title {
+.text {
   @include font-700-24;
   line-height: 29px;
-
-  color: #343A40;;
+  color: #343A40;
 }
+

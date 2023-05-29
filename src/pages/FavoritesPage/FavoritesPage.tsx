@@ -3,11 +3,12 @@ import React, {FC, useContext, useEffect, useState} from "react";
 import styles from './FavoritesPage.module.scss';
 
 import {Pagination} from "common";
-import { VacancyHeader } from "components";
-import {appContext} from "context/AppContext";
+import {VacancyHeader} from "components";
+import {appContext} from "context/app.context";
 
 
 export const FavoritesPage: FC = () => {
+
   const {favoriteVacancies} = useContext(appContext);
 
   const [currentPage, setCurrentPage] = useState(1);

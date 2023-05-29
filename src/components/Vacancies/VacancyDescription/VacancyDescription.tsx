@@ -4,7 +4,7 @@ import styles from './VacancyDescription.module.scss';
 
 import {Loader} from "common";
 import {IVacancy} from "types";
-import {appContext} from "context/AppContext";
+import {appContext} from "context/app.context";
 
 
 interface VacancyDescriptionProps {

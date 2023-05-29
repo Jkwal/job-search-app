@@ -1,3 +1,4 @@
+@import "mixins";
 @import "variables";
 
 * {
@@ -28,10 +29,8 @@ header {
   min-height: 84px;
   padding: 0 30px;
 
-  display: flex;
+  @include flex-center;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
 
   background-color: $White;
 
@@ -60,9 +59,7 @@ main {
 .wrapper-balloon {
   height: 100vh;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 
   animation: rotate .5s linear infinite;
 }

@@ -3,7 +3,7 @@ import {FC, useContext} from "react";
 import styles from './TopBar.module.scss';
 
 import {ROUTES} from "utils";
-import {appContext} from "context/AppContext";
+import {appContext} from "context/app.context";
 import {Burger, Indicator, Link, Logo} from "common";
 
 

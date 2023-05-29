@@ -5,7 +5,7 @@ import styles from './HomePage.module.scss';
 import {IFilters} from "types";
 import {findCountPage} from "utils";
 import {Loader, Pagination} from "common";
-import {appContext} from "context/AppContext";
+import {appContext} from "context/app.context";
 import {Empty, Filters, ListJob, Search} from "components";
 
 

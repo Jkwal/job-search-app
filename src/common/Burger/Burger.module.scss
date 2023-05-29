@@ -1,8 +1,9 @@
-.menu{
+@import "styles/mixins";
+
+.menu {
   padding: 10px;
 
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   row-gap: 20px;
 
   border: 1px solid #EAEBED;

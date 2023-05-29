@@ -1,17 +1,14 @@
+@import "styles/mixins";
 @import "styles/variables";
 
 .resetButton {
-  padding: 1px;
   border: none;
 
   display: flex;
   align-items: center;
   gap: 4px;
 
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
+  @include font-500-14;
   line-height: 20px;
 
   background: none;
@@ -27,7 +24,6 @@
     .iconCross line {
       stroke: $Blue-400;
     }
-
   }
 
   &:active {
@@ -37,5 +33,4 @@
       stroke: $Blue-500;
     }
   }
-
 }

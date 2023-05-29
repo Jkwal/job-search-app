@@ -1,31 +1,28 @@
+@import "styles/mixins";
 @import "styles/variables";
 
 .mantine-Input-input {
-    min-height: 42px;
-    border: 1px solid $Grey-300;
-    border-radius: 8px;
+  min-height: 42px;
+  padding: 0 4px 2px 11px;
+  border: 1px solid $Grey-300;
+  border-radius: 8px;
 
-    background: $White;
+  background: $White;
 
-    &::placeholder {
-      font-family: 'Inter', sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 20px;
+  &::placeholder {
+    @include font-400-14;
+    line-height: 20px;
 
-      color: $Grey-500;
-    }
+    color: $Grey-500;
+  }
 
-    &:hover {
-      border: 1px solid $Blue-500;
-    }
+  &:hover {
+    border: 1px solid $Blue-500;
+  }
 }
 
-
 .mantine-Input-rightSection {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   row-gap: 8px;
 
   .iconInput {

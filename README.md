@@ -7,8 +7,8 @@
 Готовое приложение - [GitHub Pages](https://jkwal.github.io/job-search-app/)
 
 Создано на
-основе API сервиса [Superjob](https://api.superjob.ru/)
-и [дизайна](https://www.figma.com/file/HxEJ0c4CEEuh1fSBfX3w8I/Job-Search-App?type=design&node-id=62-491&t=kbGHzf2gprJXIneI-0)
+основе [дизайна](https://www.figma.com/file/HxEJ0c4CEEuh1fSBfX3w8I/Job-Search-App?type=design&node-id=62-491&t=kbGHzf2gprJXIneI-0)
+и API сервиса [Superjob](https://api.superjob.ru/)
 
 #### Стек технологий:
 

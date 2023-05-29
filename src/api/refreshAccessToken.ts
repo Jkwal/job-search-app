@@ -1,4 +1,4 @@
-import {CLIENT_ID, CLIENT_SECRET, fetchAuthData, REFRESH, setUserToLocalStorage} from "utils";
+import {CLIENT_ID, CLIENT_SECRET, REFRESH, fetchAuthData, setUserToLocalStorage} from "utils";
 
 
 export const refreshAccessToken = async (REFRESH_TOKEN: string) => {

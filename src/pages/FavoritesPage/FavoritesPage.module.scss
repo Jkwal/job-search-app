@@ -1,10 +1,10 @@
-.favoritesPage{
+@import "styles/mixins";
+
+.favoritesPage {
   width: 100%;
 
-  display: flex;
-  align-items: center;
+  @include flex-center;
   flex-direction: column;
-  justify-content: center;
   row-gap: 104px;
 
   @media (max-width: 320px) {
@@ -12,21 +12,19 @@
   }
 
   @media (min-width: 321px) and (max-width: 767px) {
-    row-gap:46px;
+    row-gap: 46px;
   }
 }
 
-.list{
+.list {
   width: 100%;
 
-  display: flex;
-  align-items: center;
+  @include flex-center;
   flex-direction: column;
-  justify-content: center;
   gap: 16px;
 }
 
-.item{
+.item {
   width: 100%;
   display: flex;
   justify-content: center;

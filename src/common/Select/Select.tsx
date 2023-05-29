@@ -1,21 +1,21 @@
-import {FC, useState} from "react";
+import {FC, useContext, useState} from "react";
 import {Select as SelectMantine} from '@mantine/core';
 
 import './Select.scss';
 
-import {ICatalogues} from "types";
 import {ReactComponent as IconUp} from "assets/IconUp.svg";
 import {ReactComponent as IconDown} from "assets/IconDown.svg";
+import {appContext} from "context/AppContext";
 
 
 interface SelectProps {
   value: string,
-  catalogues: ICatalogues[],
   onChange: (value: string) => void,
 }
 
 
-export const Select: FC<SelectProps> = ({value, catalogues, onChange}) => {
+export const Select: FC<SelectProps> = ({value, onChange}) => {
+  const { catalogues} = useContext(appContext)
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,7 +23,7 @@ export const Select: FC<SelectProps> = ({value, catalogues, onChange}) => {
     setIsOpen(!isOpen);
   };
 
-  const data = catalogues.map((item) => ({
+  const data = catalogues.map((item:any) => ({
     label: item.title,
     value: String(item.key),
   }));

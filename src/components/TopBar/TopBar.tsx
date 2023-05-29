@@ -1,37 +1,34 @@
-import {FC} from "react";
+import {FC, useContext} from "react";
 
 import styles from './TopBar.module.scss';
 
 import {ROUTES} from "utils";
-import {IVacancy} from "types";
+import {appContext} from "context/AppContext";
 import {Burger, Indicator, Link, Logo} from "common";
 
 
-interface TopBarProps {
-    favoriteVacancies: IVacancy[],
-}
+export const TopBar: FC = () => {
+  const {favoriteVacancies} = useContext(appContext);
+
+  return (
+    <div className={styles.topBar}>
+
+      <Logo name='Jobored'/>
 
 
-export const TopBar: FC<TopBarProps> = ({favoriteVacancies}) => {
-    return (
-        <div className={styles.topBar}>
+      <ul className={styles.links}>
+        <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
 
-            <Logo name='Jobored'/>
+        <Indicator disabled={favoriteVacancies.length === 0}>
+          <Link path={ROUTES.FAVORITES} name='Избранное'/>
+        </Indicator>
 
+      </ul>
 
-            <ul className={styles.links}>
-                <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
+      <div className={styles.burger}>
+        <Burger favoriteVacancies={favoriteVacancies}/>
+      </div>
 
-                <Indicator disabled={favoriteVacancies.length === 0}>
-                    <Link path={ROUTES.FAVORITES} name='Избранное'/>
-                </Indicator>
-
-            </ul>
-
-            <div className={styles.burger}>
-                    <Burger favoriteVacancies={favoriteVacancies}/>
-            </div>
-
-        </div>
-    )
+    </div>
+  )
 }

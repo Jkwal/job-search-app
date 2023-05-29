@@ -1,7 +1,8 @@
-export {Empty} from './Empty/Empty';
-export {Layout} from './Layout/Layout';
-export {Search} from './Search/Search';
-export {Filters} from './Filters/Filters';
-export {ListJob, VacancyCard} from './Vacancies';
+export * from './Vacancies';
+export * from './Empty/Empty';
+export * from './Layout/Layout';
+export * from './Search/Search';
+export * from './TopBar/TopBar';
+export * from './Filters/Filters';
 
 

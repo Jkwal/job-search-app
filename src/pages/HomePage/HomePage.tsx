@@ -1,134 +1,131 @@
-import React, {FC, useState} from "react";
+import React, {FC, useContext, useState} from "react";
 
 import styles from './HomePage.module.scss';
 
+import {IFilters} from "types";
 import {findCountPage} from "utils";
 import {Loader, Pagination} from "common";
+import {appContext} from "context/AppContext";
 import {Empty, Filters, ListJob, Search} from "components";
-import {ICatalogues, IFilters, IVacancies, IVacancy} from "types";
 
 
-interface HomePageProps {
-    activePage: number,
-    isLoading: boolean,
-    vacancies: IVacancies,
-    catalogues: ICatalogues[],
-    favoriteVacancies: IVacancy[],
-    handleResetFilters: () => void,
-    addFavoriteVacancy: (vacancy: IVacancy) => void,
-    removeFavoriteVacancy: (vacancy: IVacancy) => void,
-    setPage: React.Dispatch<React.SetStateAction<number>>,
-    handleFilters: (keyword: string, paymentFrom: string, paymentTo: string, selectedCatalogue: string) => void,
-}
+export const HomePage: FC = () => {
 
+  const {
+    setPage,
+    vacancies,
+    activePage,
+    setFilters
+  } = useContext(appContext);
 
-export const HomePage: FC<HomePageProps> = ({
-                                                setPage,
-                                                isLoading,
-                                                vacancies,
-                                                activePage,
-                                                catalogues,
-                                                handleFilters,
-                                                favoriteVacancies,
-                                                addFavoriteVacancy,
-                                                handleResetFilters,
-                                                removeFavoriteVacancy
-                                            }) => {
+  const [form, setForm] = useState<IFilters>({
+    keyword: '',
+    paymentTo: '',
+    paymentFrom: '',
+    selectedCatalogue: '',
+  });
 
-
-    const [filters, setFilters] = useState<IFilters>({
-        keyword: '',
-        paymentTo: '',
-        paymentFrom: '',
-        selectedCatalogue: '',
+  const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      keyword: e.target.value
     });
+  };
 
-    const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFilters(prev => ({
-            ...prev,
-            keyword: e.target.value
-        }));
-    };
-
-    const handlePaymentTo = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (+e.target.value >= 0) {
-            setFilters(prev => ({
-                ...prev,
-                paymentTo: e.target.value
-            }));
-        }
-
-    };
-    const handlePaymentFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (+e.target.value >= 0) {
-            setFilters(prev => ({
-                ...prev,
-                paymentFrom: e.target.value
-            }));
-        }
-    };
-
-    const handleReset = () => {
-        setFilters(prev => ({
-            ...prev,
-            keyword: '',
-            paymentTo: '',
-            paymentFrom: '',
-            selectedCatalogue: '',
-        }));
-        handleResetFilters();
+  const handlePaymentTo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (+e.target.value >= 0) {
+      setForm({
+        ...form,
+        paymentTo: e.target.value
+      });
     }
 
-    return (
+  };
+  const handlePaymentFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (+e.target.value >= 0) {
+      setForm({
+        ...form,
+        paymentFrom: e.target.value
+      });
+    }
+  };
 
-        <section className={styles.homePage}>
+  const handleReset = () => {
+    setForm({
+      ...form,
+      keyword: '',
+      paymentTo: '',
+      paymentFrom: '',
+      selectedCatalogue: '',
+    });
+    handleResetFilters();
+  }
 
-            <Filters
-                filters={filters}
-                setFilters={setFilters}
-                catalogues={catalogues}
-                onSubmit={handleFilters}
-                handleReset={handleReset}
-                handlePaymentTo={handlePaymentTo}
-                handlePaymentFrom={handlePaymentFrom}
-            />
+  const handleFilters = (keyword: string, paymentFrom: string, paymentTo: string, selectedCatalogue: string) => {
+    setFilters(prev => ({
+      ...prev,
+      keyword: keyword,
+      paymentTo: paymentTo,
+      paymentFrom: paymentFrom,
+      selectedCatalogue: selectedCatalogue
+    }));
+    setPage(1);
+  };
 
-            <div className={styles.list}>
-                <Search
-                    filters={filters}
-                    onSubmit={handleFilters}
-                    handleKeyword={handleKeyword}
-                />
+  const handleResetFilters = () => {
+    setFilters(prev => ({
+      ...prev,
+      keyword: '',
+      paymentTo: '',
+      paymentFrom: '',
+      selectedCatalogue: ''
+    }));
+    setPage(1);
+  }
 
-                {
-                     vacancies.objects === null
-                        ? <Loader/>
-                        : (
-                            vacancies.objects?.length
-                                ? <>
-                                    <ListJob
-                                        isLoading={isLoading}
-                                        vacancies={vacancies}
-                                        favoriteVacancies={favoriteVacancies}
-                                        addFavoriteVacancy={addFavoriteVacancy}
-                                        removeFavoriteVacancy={removeFavoriteVacancy}
-                                    />
+  return (
 
-                                    <div className={styles.pagination}>
-                                        {
-                                            vacancies.more && <Pagination
-                                                total={findCountPage(vacancies)}
-                                                value={activePage}
-                                                onChange={setPage}
-                                            />
-                                        }
-                                    </div>
-                                </>
-                                : <Empty isButton={false}/>
-                        )
-                }
-            </div>
+    <section className={styles.homePage}>
 
-        </section>
-    )
+      <Filters
+        filters={form}
+        setFilters={setForm}
+        onSubmit={handleFilters}
+        handleReset={handleReset}
+        handlePaymentTo={handlePaymentTo}
+        handlePaymentFrom={handlePaymentFrom}
+      />
+
+      <div className={styles.list}>
+        <Search
+          filters={form}
+          onSubmit={handleFilters}
+          handleKeyword={handleKeyword}
+        />
+
+        {
+          vacancies.objects === null
+            ? <Loader/>
+            : (
+              vacancies.objects?.length
+                ? <>
+                  <ListJob/>
+
+                  <div className={styles.pagination}>
+                    {
+                      vacancies.more && <Pagination
+                            total={findCountPage(vacancies)}
+                            value={activePage}
+                            onChange={setPage}
+                        />
+                    }
+                  </div>
+                </>
+                : <Empty isButton={false}/>
+            )
+        }
+      </div>
+
+    </section>
+  )
 }

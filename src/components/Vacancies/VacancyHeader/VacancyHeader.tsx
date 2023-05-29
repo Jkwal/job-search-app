@@ -1,31 +1,29 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useContext, useEffect, useState} from "react";
 
 import {IVacancy} from "types";
 import {useStyles} from "./useStyles";
-import {FavoritesButton, Loader} from "common";
+import {appContext} from "context/AppContext";
+import {FavoritesButton, Loader, notification} from "common";
 import {ReactComponent as IconDot} from "assets/IconDot.svg";
 import {ReactComponent as IconLocation} from "assets/IconLocation.svg";
+import {addFavoriteToLocalStorage, removeFromFavoriteToLocalStorage} from "utils";
 
 
 interface VacancyHeaderProps {
   dataElem: string,
   vacancy: IVacancy,
-  isLoading?: boolean,
   isFavorite1: boolean,
   useOtherStyles?: boolean,
-  addFavoriteVacancy: (vacancy: IVacancy) => void,
-  removeFavoriteVacancy: (vacancy: IVacancy) => void,
 }
 
 export const VacancyHeader: FC<VacancyHeaderProps> = ({
-                                                        dataElem,
                                                         vacancy,
-                                                        isLoading,
+                                                        dataElem,
                                                         isFavorite1,
                                                         useOtherStyles,
-                                                        addFavoriteVacancy,
-                                                        removeFavoriteVacancy,
                                                       }) => {
+  const {isLoading, favoriteVacancies, setFavoriteVacancies} = useContext(appContext);
+
   const {
     infoClasses,
     rateClasses,
@@ -49,6 +47,26 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
   } = vacancy;
 
   const [isFavorite, setIsFavorite] = useState(isFavorite1);
+
+  const addFavoriteVacancy = (vacancy: IVacancy) => {
+    const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
+    if (!isFavorite) {
+      setFavoriteVacancies((prevVacancies) => [...prevVacancies, vacancy]);
+      addFavoriteToLocalStorage(vacancy);
+      notification("Вакансия добавлена в избранное")
+    }
+  };
+
+  const removeFavoriteVacancy = (vacancy: IVacancy) => {
+    const isFavorite = favoriteVacancies.some((item) => item.id === vacancy.id);
+    if (isFavorite) {
+      setFavoriteVacancies((prevVacancies) =>
+        prevVacancies.filter((item) => item.id !== vacancy.id)
+      );
+      removeFromFavoriteToLocalStorage(vacancy)
+      notification("Вакансия удалена из избранного")
+    }
+  };
 
   useEffect(() => {
     setIsFavorite(isFavorite1);

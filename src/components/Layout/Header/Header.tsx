@@ -1,18 +1,13 @@
 import {FC} from "react";
 
-import styles from './Header.module.scss'
+import styles from './Header.module.scss';
 
-import {IVacancy} from "types";
-import {TopBar} from "../../TopBar/TopBar";
+import {TopBar} from "components";
 
-interface HeaderProps{
-  favoriteVacancies:IVacancy[],
-}
-
-export const Header: FC<HeaderProps> = ({favoriteVacancies}) => {
+export const Header: FC = () => {
   return (
     <header className={styles.header}>
-      <TopBar favoriteVacancies={favoriteVacancies}/>
+      <TopBar/>
     </header>
   )
 }

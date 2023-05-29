@@ -1,18 +1,19 @@
-import {FC} from "react";
+import {FC, useContext} from "react";
 
 import styles from './VacancyDescription.module.scss';
 
 import {Loader} from "common";
 import {IVacancy} from "types";
+import {appContext} from "context/AppContext";
 
 
 interface VacancyDescriptionProps {
   vacancy: IVacancy,
-  isLoading: boolean,
 }
 
 
-export const VacancyDescription: FC<VacancyDescriptionProps> = ({isLoading, vacancy}) => {
+export const VacancyDescription: FC<VacancyDescriptionProps> = ({vacancy}) => {
+  const {isLoading} = useContext(appContext);
 
   const {vacancyRichText} = vacancy;
   const parsedMarkup = vacancyRichText ? vacancyRichText.replace(/<br\s*\/?>/gi, "") : '';

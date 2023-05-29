@@ -1,27 +1,12 @@
-import {FC} from "react";
+import {FC, useContext} from "react";
 
 import styles from "./ListJob.module.scss";
 
-import {IVacancies, IVacancy} from "types";
-import {VacancyHeader} from "../VacancyHeader/VacancyHeader";
+import {VacancyHeader} from "components";
+import {appContext} from "context/AppContext";
 
-
-interface ListJobProps {
-  isLoading: boolean,
-  vacancies: IVacancies,
-  favoriteVacancies: IVacancy[],
-  addFavoriteVacancy: (vacancy: IVacancy) => void,
-  removeFavoriteVacancy: (vacancy: IVacancy) => void,
-}
-
-
-export const ListJob: FC<ListJobProps> = ({
-                                            isLoading,
-                                            vacancies,
-                                            favoriteVacancies,
-                                            addFavoriteVacancy,
-                                            removeFavoriteVacancy,
-                                          }) => {
+export const ListJob: FC = () => {
+  const {vacancies, favoriteVacancies} = useContext(appContext);
 
   const favoriteVacancyId = favoriteVacancies.map((fav) => fav.id);
 
@@ -32,10 +17,7 @@ export const ListJob: FC<ListJobProps> = ({
           <VacancyHeader
             key={item.id}
             vacancy={{...item}}
-            isLoading={isLoading}
             dataElem={`vacancy-${item.id}`}
-            addFavoriteVacancy={addFavoriteVacancy}
-            removeFavoriteVacancy={removeFavoriteVacancy}
             isFavorite1={favoriteVacancyId.includes(item.id)}
           />
         ))

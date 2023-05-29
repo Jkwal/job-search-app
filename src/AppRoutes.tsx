@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, useContext} from "react";
 import {Route, Routes} from "react-router-dom";
 
 import {NotFoundPage} from "./pages/NotFoundPage";
@@ -8,67 +8,25 @@ import {VacancyPage} from "./pages/VacancyPage/VacancyPage";
 import {FavoritesPage} from "./pages/FavoritesPage/FavoritesPage";
 
 import {ROUTES} from "./utils";
-import {ICatalogues, IVacancies, IVacancy} from "./types";
+import {appContext} from "./context/AppContext";
 
 
-interface AppRoutesProps {
-  activePage: number,
-  isLoading: boolean,
-  vacancies: IVacancies,
-  catalogues: ICatalogues[],
-  favoriteVacancies: IVacancy[],
-  handleResetFilters: () => void,
-  addFavoriteVacancy: (vacancy: IVacancy) => void,
-  removeFavoriteVacancy: (vacancy: IVacancy) => void,
-  setPage: React.Dispatch<React.SetStateAction<number>>,
-  handleFilters: (keyword: string, paymentFrom: string, paymentTo: string, selectedCatalogue: string) => void,
-}
+export const AppRoutes: FC = () => {
 
-
-export const AppRoutes: FC<AppRoutesProps> = ({
-                                                setPage,
-                                                isLoading,
-                                                vacancies,
-                                                activePage,
-                                                catalogues,
-                                                handleFilters,
-                                                favoriteVacancies,
-                                                addFavoriteVacancy,
-                                                handleResetFilters,
-                                                removeFavoriteVacancy
-                                              }) => {
+  const {favoriteVacancies} = useContext(appContext);
 
   return (
     <Routes>
       <Route
         path={ROUTES.HOME}
         element={
-          <HomePage
-            isLoading={isLoading}
-
-            vacancies={vacancies}
-            catalogues={catalogues}
-
-            setPage={setPage}
-            activePage={activePage}
-
-            handleFilters={handleFilters}
-            handleResetFilters={handleResetFilters}
-
-            favoriteVacancies={favoriteVacancies}
-            addFavoriteVacancy={addFavoriteVacancy}
-            removeFavoriteVacancy={removeFavoriteVacancy}
-          />
+          <HomePage/>
         }
       />
       <Route
         path={ROUTES.VACANCY}
         element={
-          <VacancyPage
-            favoriteVacancies={favoriteVacancies}
-            addFavoriteVacancy={addFavoriteVacancy}
-            removeFavoriteVacancy={removeFavoriteVacancy}
-          />
+          <VacancyPage/>
         }
       />
       <Route
@@ -76,11 +34,7 @@ export const AppRoutes: FC<AppRoutesProps> = ({
         element={
           favoriteVacancies.length === 0
             ? <EmptyPage/>
-            : <FavoritesPage
-              favoriteVacancies={favoriteVacancies}
-              addFavoriteVacancy={addFavoriteVacancy}
-              removeFavoriteVacancy={removeFavoriteVacancy}
-            />
+            : <FavoritesPage/>
         }
       />
       <Route path="*" element={<NotFoundPage/>}/>

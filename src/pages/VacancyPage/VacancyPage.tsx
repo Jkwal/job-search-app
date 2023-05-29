@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
 import styles from './VacancyPage.module.scss';
@@ -6,26 +6,14 @@ import styles from './VacancyPage.module.scss';
 import {getVacancy} from "api";
 import {IVacancy} from "types";
 import {VacancyCard} from "components";
+import {appContext} from "context/AppContext";
 
 
-interface VacancyPageProps {
-  favoriteVacancies: IVacancy[],
-  addFavoriteVacancy: (vacancy: IVacancy) => void,
-  removeFavoriteVacancy: (vacancy: IVacancy) => void,
-}
-
-
-export const VacancyPage: FC<VacancyPageProps> = ({
-
-                                                    favoriteVacancies,
-                                                    addFavoriteVacancy,
-                                                    removeFavoriteVacancy
-                                                  }) => {
+export const VacancyPage: FC = () => {
+  const {favoriteVacancies, setIsLoading} = useContext(appContext);
 
 
   const {id} = useParams();
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const [vacancy, setVacancy] = useState<IVacancy>({} as IVacancy);
 
@@ -39,7 +27,7 @@ export const VacancyPage: FC<VacancyPageProps> = ({
       .finally(() => {
         setIsLoading(false);
       });
-  }, [id]);
+  }, [id, setIsLoading]);
 
   return (
 
@@ -48,10 +36,7 @@ export const VacancyPage: FC<VacancyPageProps> = ({
       <VacancyCard
         dataElem={`vacancy-${id}`}
         vacancy={vacancy}
-        isLoading={isLoading}
         isFavorite1={isFavorite}
-        addFavoriteVacancy={addFavoriteVacancy}
-        removeFavoriteVacancy={removeFavoriteVacancy}
       />
 
     </section>

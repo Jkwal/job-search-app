@@ -1,23 +1,18 @@
 import {FC, ReactNode} from "react";
 
 import {Header} from "./Header/Header";
-import {IVacancy} from "types";
 
-interface  LayoutProps{
-  children:ReactNode,
-  favoriteVacancies:IVacancy[],
 
+interface LayoutProps {
+  children: ReactNode,
 }
 
-export const Layout: FC<LayoutProps> = ({favoriteVacancies,children}) => {
+
+export const Layout: FC<LayoutProps> = ({children}) => {
   return (
-
-<>
-  <Header favoriteVacancies={favoriteVacancies}/>
-  <main>{children}</main>
-</>
-
-
-
+    <>
+      <Header/>
+      <main>{children}</main>
+    </>
   )
 }

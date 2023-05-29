@@ -4,9 +4,9 @@ import {Burger as BurgerMantine, Modal} from '@mantine/core';
 
 import styles from './Burger.module.scss';
 
-import {Indicator, Link, Logo} from 'common';
 import {ROUTES} from "utils";
 import {IVacancy} from "types";
+import {Indicator, Link, Logo} from 'common';
 
 
 interface BurgerProps {

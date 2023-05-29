@@ -2,13 +2,12 @@ import React, {FC} from "react";
 
 import styles from './Filters.module.scss';
 
-import {ICatalogues, IFilters} from "types";
+import {IFilters} from "types";
 import {NumberInput, PrimaryButton, ResetButton, Select} from "common";
 
 interface FiltersProps {
   filters: IFilters,
   handleReset: () => void,
-  catalogues: ICatalogues[],
   setFilters: React.Dispatch<React.SetStateAction<IFilters>>,
   handlePaymentTo: (e: React.ChangeEvent<HTMLInputElement>) => void,
   handlePaymentFrom: (e: React.ChangeEvent<HTMLInputElement>) => void,
@@ -19,7 +18,6 @@ interface FiltersProps {
 export const Filters: FC<FiltersProps> = ({
                                             filters,
                                             onSubmit,
-                                            catalogues,
                                             setFilters,
                                             handleReset,
                                             handlePaymentTo,
@@ -36,7 +34,12 @@ export const Filters: FC<FiltersProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(filters.keyword, filters.paymentFrom, filters.paymentTo, filters.selectedCatalogue);
+    onSubmit(
+      filters.keyword,
+      filters.paymentFrom,
+      filters.paymentTo,
+      filters.selectedCatalogue
+    );
   };
   return (
     <form
@@ -55,7 +58,6 @@ export const Filters: FC<FiltersProps> = ({
           <h3>Отрасль</h3>
 
           <Select
-            catalogues={catalogues}
             value={filters.selectedCatalogue}
             onChange={handleSelectedCatalogue}
           />

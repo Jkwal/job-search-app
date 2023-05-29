@@ -1,7 +1,7 @@
 import {IHeaders} from "types";
 import {refreshAccessToken} from "api";
-import {getUserFromLocalStorage} from "./localStorage";
 import {CLIENT_SECRET, SECRET_KEY} from "./constans";
+import {getUserFromLocalStorage} from "./localStorage";
 
 
 const defaultHeaders: IHeaders = {

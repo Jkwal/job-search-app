@@ -26,11 +26,20 @@ export const HomePage: FC = () => {
 	});
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.name === 'keyword' || 'paymentTo' || 'paymentFrom') {
+		if (e.target.name === 'keyword') {
 			setForm({
 				...form,
 				[e.target.name]: e.target.value
-			})
+			});
+		}
+
+		if (e.target.name === 'paymentTo' || 'paymentFrom') {
+			if (+e.target.value >= 0) {
+				setForm({
+					...form,
+					[e.target.name]: e.target.value.toString()
+				});
+			}
 		}
 	};
 

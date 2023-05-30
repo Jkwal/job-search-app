@@ -11,106 +11,106 @@ import {Empty, Filters, ListJob, Search} from "components";
 
 export const HomePage: FC = () => {
 
-    const {
-        setPage,
-        vacancies,
-        activePage,
-        setFilters
-    } = useContext(AppContext);
+	const {
+		setPage,
+		vacancies,
+		activePage,
+		setFilters
+	} = useContext(AppContext);
 
-    const [form, setForm] = useState<IFilters>({
-        keyword: '',
-        paymentTo: '',
-        paymentFrom: '',
-        selectedCatalogue: '',
-    });
+	const [form, setForm] = useState<IFilters>({
+		keyword: '',
+		paymentTo: '',
+		paymentFrom: '',
+		selectedCatalogue: '',
+	});
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name === 'keyword' || 'paymentTo' || 'paymentFrom') {
-            setForm({
-                ...form,
-                [e.target.name]: e.target.value
-            })
-        }
-    };
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.name === 'keyword' || 'paymentTo' || 'paymentFrom') {
+			setForm({
+				...form,
+				[e.target.name]: e.target.value
+			})
+		}
+	};
 
-    const handleSelectedCatalogue = (value: string) => {
-        setForm({
-            ...form,
-            selectedCatalogue: value
-        });
-    };
+	const handleSelectedCatalogue = (value: string) => {
+		setForm({
+			...form,
+			selectedCatalogue: value
+		});
+	};
 
-    const handleFilters = (keyword: string, paymentFrom: string, paymentTo: string, selectedCatalogue: string) => {
-        setFilters(prev => ({
-            ...prev,
-            keyword: keyword,
-            paymentTo: paymentTo,
-            paymentFrom: paymentFrom,
-            selectedCatalogue: selectedCatalogue
-        }));
-        setPage(1);
-    };
+	const handleFilters = (keyword: string, paymentFrom: string, paymentTo: string, selectedCatalogue: string) => {
+		setFilters(prev => ({
+			...prev,
+			keyword: keyword,
+			paymentTo: paymentTo,
+			paymentFrom: paymentFrom,
+			selectedCatalogue: selectedCatalogue
+		}));
+		setPage(1);
+	};
 
-    const handleReset = () => {
-        setForm({
-            keyword: '',
-            paymentTo: '',
-            paymentFrom: '',
-            selectedCatalogue: ''
-        });
-        setFilters({
-            keyword: '',
-            paymentTo: '',
-            paymentFrom: '',
-            selectedCatalogue: ''
-        });
-        setPage(1);
-    };
+	const handleReset = () => {
+		setForm({
+			keyword: '',
+			paymentTo: '',
+			paymentFrom: '',
+			selectedCatalogue: ''
+		});
+		setFilters({
+			keyword: '',
+			paymentTo: '',
+			paymentFrom: '',
+			selectedCatalogue: ''
+		});
+		setPage(1);
+	};
 
 
-    return (
+	return (
 
-        <section className={styles.homePage}>
+		<section className={styles.homePage}>
 
-            <Filters
-                form={form}
-                onChange={handleChange}
-                onSubmit={handleFilters}
-                handleReset={handleReset}
-                handleSelectedCatalogue={handleSelectedCatalogue}
-            />
+			<Filters
+				form={form}
+				onChange={handleChange}
+				onSubmit={handleFilters}
+				handleReset={handleReset}
+				handleSelectedCatalogue={handleSelectedCatalogue}
+			/>
 
-            <div className={styles.list}>
-                <Search
-                    form={form}
-                    onChange={handleChange}
-                    onSubmit={handleFilters}
-                />
+			<div className={styles.list}>
+				<Search
+					form={form}
+					onChange={handleChange}
+					onSubmit={handleFilters}
+				/>
 
-                {
-                    vacancies.objects === null
-                        ? <Loader/>
-                        : (
-                            vacancies.objects?.length
-                                ? <>
-                                    <ListJob/>
+				{
+					vacancies.objects === null
+						? <Loader/>
+						: (
+							vacancies.objects?.length
+								? <>
+									<ListJob/>
 
-                                    <div className={styles.pagination}>
-                                        {
-                                            vacancies.more && <Pagination
-                                                total={findCountPage(vacancies)}
-                                                value={activePage}
-                                                onChange={setPage}
-                                            />
-                                        }
-                                    </div>
-                                </>
-                                : <Empty isButton={false}/>
-                        )
-                }
-            </div>
+									<div className={styles.pagination}>
+										{
+											vacancies.more && <Pagination
+                            value={activePage}
+                            onChange={setPage}
+                            total={findCountPage(vacancies)}
+                        />
+										}
+									</div>
+								</>
+								: <Empty isButton={false}/>
+						)
+				}
+			</div>
 
-        </section>
-    )
+		</section>
+	)
 }

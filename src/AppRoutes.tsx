@@ -13,14 +13,14 @@ import {AppContext} from "context";
 
 export const AppRoutes: FC = () => {
 
-    const {favoriteVacancies} = useContext(AppContext);
+	const {favoriteVacancies} = useContext(AppContext);
 
-    return (
-        <Routes>
-            <Route path={ROUTES.HOME} element={<HomePage/>}/>
-            <Route path={ROUTES.VACANCY} element={<VacancyPage/>}/>
-            <Route path={ROUTES.FAVORITES} element={favoriteVacancies.length ? <FavoritesPage/> : <EmptyPage/>}/>
-            <Route path="*" element={<NotFoundPage/>}/>
-        </Routes>
-    );
+	return (
+		<Routes>
+			<Route path={ROUTES.HOME} element={<HomePage/>}/>
+			<Route path={ROUTES.VACANCY} element={<VacancyPage/>}/>
+			<Route path={ROUTES.FAVORITES} element={favoriteVacancies.length ? <FavoritesPage/> : <EmptyPage/>}/>
+			<Route path="*" element={<NotFoundPage/>}/>
+		</Routes>
+	);
 };

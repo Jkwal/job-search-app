@@ -6,33 +6,26 @@ import {IVacancy} from "types";
 import {VacancyDescription, VacancyHeader} from "components";
 
 
-
 interface VacancyCardProps {
-  dataElem: string,
-  vacancy: IVacancy,
-  isFavorite1: boolean,
+	dataElem: string,
+	vacancy: IVacancy,
 }
 
 
-export const VacancyCard: FC<VacancyCardProps> = ({
-                                                    vacancy,
-                                                    dataElem,
-                                                    isFavorite1,
-                                                  }) => {
-  return (
-    <div className={styles.vacancyCard}>
+export const VacancyCard: FC<VacancyCardProps> = ({vacancy, dataElem,}) => {
+	return (
+		<div className={styles.vacancyCard}>
 
-      <VacancyHeader
-        vacancy={vacancy}
-        dataElem={dataElem}
-        useOtherStyles={true}
-        isFavorite1={isFavorite1}
-      />
+			<VacancyHeader
+				vacancy={vacancy}
+				dataElem={dataElem}
+				useOtherStyles={true}
+			/>
 
-      <VacancyDescription
-        vacancy={vacancy}
-      />
+			<VacancyDescription
+				vacancy={vacancy}
+			/>
 
-    </div>
-  )
+		</div>
+	)
 }

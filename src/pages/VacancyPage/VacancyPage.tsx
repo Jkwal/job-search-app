@@ -10,36 +10,32 @@ import {VacancyCard} from "components";
 
 
 export const VacancyPage: FC = () => {
-  const {favoriteVacancies, setIsLoading} = useContext(AppContext);
+	const {setIsLoading} = useContext(AppContext);
 
+	const {id} = useParams();
 
-  const {id} = useParams();
+	const [vacancy, setVacancy] = useState<IVacancy>({} as IVacancy);
 
-  const [vacancy, setVacancy] = useState<IVacancy>({} as IVacancy);
+	useEffect(() => {
+		setIsLoading(true)
 
-  const isFavorite = favoriteVacancies.some((fav) => fav.id === vacancy.id);
+		getVacancy(id!).then(data => setVacancy(data))
 
-  useEffect(() => {
-    setIsLoading(true)
+			.finally(() => {
+				setIsLoading(false);
+			});
+	}, [id, setIsLoading]);
 
-    getVacancy(id!).then(data => setVacancy(data))
+	return (
 
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [id, setIsLoading]);
+		<section className={styles.vacancyPage}>
 
-  return (
+			<VacancyCard
+				vacancy={vacancy}
+				dataElem={`vacancy-${id}`}
+			/>
 
-    <section className={styles.vacancyPage}>
-
-      <VacancyCard
-        dataElem={`vacancy-${id}`}
-        vacancy={vacancy}
-        isFavorite1={isFavorite}
-      />
-
-    </section>
-  )
+		</section>
+	)
 }
 

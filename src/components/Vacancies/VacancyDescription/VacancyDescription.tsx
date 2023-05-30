@@ -8,26 +8,26 @@ import {AppContext} from "context";
 
 
 interface VacancyDescriptionProps {
-  vacancy: IVacancy,
+	vacancy: IVacancy,
 }
 
 
 export const VacancyDescription: FC<VacancyDescriptionProps> = ({vacancy}) => {
-  const {isLoading} = useContext(AppContext);
+	const {isLoading} = useContext(AppContext);
 
-  const {vacancyRichText} = vacancy;
-  const parsedMarkup = vacancyRichText ? vacancyRichText.replace(/<br\s*\/?>/gi, "") : '';
+	const {vacancyRichText} = vacancy;
+	const parsedMarkup = vacancyRichText ? vacancyRichText.replace(/<br\s*\/?>/gi, "") : '';
 
-  return (
-    <div className={styles.vacancyDescription}>
-      {
-        isLoading
-          ? <Loader/>
-          : <div
-            className={styles.vacancyRichText}
-            dangerouslySetInnerHTML={{__html: parsedMarkup}}>
-          </div>
-      }
-    </div>
-  )
+	return (
+		<div className={styles.vacancyDescription}>
+			{
+				isLoading
+					? <Loader/>
+					: <div
+						className={styles.vacancyRichText}
+						dangerouslySetInnerHTML={{__html: parsedMarkup}}>
+					</div>
+			}
+		</div>
+	)
 }

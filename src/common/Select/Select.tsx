@@ -24,7 +24,7 @@ export const Select: FC<SelectProps> = ({value, onChange, catalogues}) => {
 		setIsOpen(!isOpen);
 	};
 
-	const data = catalogues.map((item: any) => ({
+	const data = catalogues.map((item: ICatalogues) => ({
 		label: item.title,
 		value: String(item.key),
 	}));

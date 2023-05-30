@@ -12,78 +12,78 @@ import {ReactComponent as IconBalloon} from "assets/IconBalloon.svg";
 
 function App() {
 
-    const {
-        isInit,
-        filters,
-        setIsInit,
-        activePage,
-        setIsLoading,
-        setVacancies,
-        setCatalogues,
-        favoriteVacancies,
-        setFavoriteVacancies,
-    } = useContext(AppContext);
+	const {
+		isInit,
+		filters,
+		setIsInit,
+		activePage,
+		setIsLoading,
+		setVacancies,
+		setCatalogues,
+		favoriteVacancies,
+		setFavoriteVacancies,
+	} = useContext(AppContext);
 
-    const login = useCallback(async () => {
-        const user = getUserFromLocalStorage()
+	const login = useCallback(async () => {
+		const user = getUserFromLocalStorage()
 
-        if (!user) {
-            await getAccessToken(mockAuth)
-        }
+		if (!user) {
+			await getAccessToken(mockAuth)
+		}
 
-        setIsInit(true);
+		setIsInit(true);
 
-    }, [setIsInit])
+	}, [setIsInit])
 
-    useEffect(() => {
-        login().then()
-    }, [login])
-
-
-    useEffect(() => {
-        if (isInit === false) {
-            return
-        }
-
-        setIsLoading(true)
-
-        getVacancies(filters.keyword, filters.paymentFrom, activePage, filters.paymentTo, filters.selectedCatalogue)
-            .then(data => setVacancies(data))
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }, [isInit, activePage, setVacancies, setIsLoading, filters.keyword, filters.paymentTo, filters.paymentFrom, filters.selectedCatalogue]);
+	useEffect(() => {
+		login().then()
+	}, [login])
 
 
-    useEffect(() => {
-        getCatalogues().then(data => setCatalogues(data));
-    }, [setCatalogues])
+	useEffect(() => {
+		if (isInit === false) {
+			return
+		}
 
-    useEffect(() => {
-        localStorage.setItem("favoriteVacancies", JSON.stringify(favoriteVacancies));
-    }, [favoriteVacancies]);
+		setIsLoading(true)
 
-    useEffect(() => {
-        const storedFavorites = localStorage.getItem("favoriteVacancies");
-        if (storedFavorites) {
-            setFavoriteVacancies(JSON.parse(storedFavorites));
-        }
-    }, [setFavoriteVacancies]);
+		getVacancies(filters.keyword, filters.paymentFrom, activePage, filters.paymentTo, filters.selectedCatalogue)
+			.then(data => setVacancies(data))
+			.finally(() => {
+				setIsLoading(false);
+			});
+	}, [isInit, activePage, setVacancies, setIsLoading, filters.keyword, filters.paymentTo, filters.paymentFrom, filters.selectedCatalogue]);
 
 
-    if (isInit === false) {
-        return (
-            <div className="wrapper-balloon">
-                <IconBalloon/>
-            </div>
-        )
-    }
+	useEffect(() => {
+		getCatalogues().then(data => setCatalogues(data));
+	}, [setCatalogues])
 
-    return (
-        <Layout>
-            <AppRoutes/>
-        </Layout>
-    );
+	useEffect(() => {
+		localStorage.setItem("favoriteVacancies", JSON.stringify(favoriteVacancies));
+	}, [favoriteVacancies]);
+
+	useEffect(() => {
+		const storedFavorites = localStorage.getItem("favoriteVacancies");
+		if (storedFavorites) {
+			setFavoriteVacancies(JSON.parse(storedFavorites));
+		}
+	}, [setFavoriteVacancies]);
+
+
+	if (isInit === false) {
+		return (
+			<div className="wrapper-balloon">
+				<IconBalloon/>
+			</div>
+		)
+	}
+
+	return (
+		<Layout>
+			<AppRoutes/>
+		</Layout>
+	);
 }
 
 export default App;

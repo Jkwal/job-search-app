@@ -6,11 +6,11 @@ import {Empty} from "components";
 
 
 export const EmptyPage: FC = () => {
-  return (
-    <section className={styles.emptyPage}>
+	return (
+		<section className={styles.emptyPage}>
 
-      <Empty/>
+			<Empty/>
 
-    </section>
-  )
+		</section>
+	)
 }

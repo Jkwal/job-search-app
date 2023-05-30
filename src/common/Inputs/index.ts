@@ -1,2 +1,2 @@
-export {Input} from './Input/Input';
-export {NumberInput} from './NumberInput/NumberInput';
+export * from './Input/Input';
+export * from './NumberInput/NumberInput';

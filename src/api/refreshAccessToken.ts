@@ -2,15 +2,15 @@ import {CLIENT_ID, CLIENT_SECRET, REFRESH, fetchAuthData, setUserToLocalStorage}
 
 
 export const refreshAccessToken = async (REFRESH_TOKEN: string) => {
-  const refreshParams = new URLSearchParams({
-    refresh_token: `${REFRESH_TOKEN}`,
-    client_id: CLIENT_ID,
-    client_secret: CLIENT_SECRET,
-  });
+	const refreshParams = new URLSearchParams({
+		refresh_token: `${REFRESH_TOKEN}`,
+		client_id: CLIENT_ID,
+		client_secret: CLIENT_SECRET,
+	});
 
-  const url = `${REFRESH}/?${refreshParams.toString()}`;
+	const url = `${REFRESH}/?${refreshParams.toString()}`;
 
-  const user = await fetchAuthData(url, 'GET');
+	const user = await fetchAuthData(url, 'GET');
 
-  setUserToLocalStorage(user);
+	setUserToLocalStorage(user);
 }

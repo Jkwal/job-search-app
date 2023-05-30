@@ -3,8 +3,8 @@ import {CATALOGUES, fetchData} from "utils";
 
 
 export const getCatalogues = async (): Promise<ICatalogues[]> => {
-  const url = `${CATALOGUES}`;
+	const url = `${CATALOGUES}`;
 
-  return fetchData(url, 'GET');
+	return fetchData(url, 'GET');
 };
 

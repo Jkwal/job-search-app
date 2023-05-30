@@ -1,8 +1,8 @@
 import {FC, useContext, useEffect, useState} from "react";
 
 import {IVacancy} from "types";
+import {AppContext} from "context";
 import {useStyles} from "./useStyles";
-import {appContext} from "context/app.context";
 import {FavoritesButton, Loader, notification} from "common";
 import {ReactComponent as IconDot} from "assets/IconDot.svg";
 import {ReactComponent as IconLocation} from "assets/IconLocation.svg";
@@ -22,7 +22,7 @@ export const VacancyHeader: FC<VacancyHeaderProps> = ({
                                                         isFavorite1,
                                                         useOtherStyles,
                                                       }) => {
-  const {isLoading, favoriteVacancies, setFavoriteVacancies} = useContext(appContext);
+  const {isLoading, favoriteVacancies, setFavoriteVacancies} = useContext(AppContext);
 
   const {
     infoClasses,

@@ -1,97 +1,92 @@
-import React, {FC} from "react";
+import React, {FC, useContext} from "react";
 
 import styles from './Filters.module.scss';
 
 import {IFilters} from "types";
+import {AppContext, ThemeContext} from "context";
 import {NumberInput, PrimaryButton, ResetButton, Select} from "common";
+import cn from "classnames";
 
 interface FiltersProps {
-  filters: IFilters,
-  handleReset: () => void,
-  setFilters: React.Dispatch<React.SetStateAction<IFilters>>,
-  handlePaymentTo: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  handlePaymentFrom: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  onSubmit: (keyword: string, paymentTo: string, paymentFrom: string, selectedCatalogue: string) => void,
+    form: IFilters,
+    handleReset: () => void,
+    handleSelectedCatalogue: (value: string) => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+    onSubmit: (keyword: string, paymentTo: string, paymentFrom: string, selectedCatalogue: string) => void,
 }
 
 
 export const Filters: FC<FiltersProps> = ({
-                                            filters,
-                                            onSubmit,
-                                            setFilters,
-                                            handleReset,
-                                            handlePaymentTo,
-                                            handlePaymentFrom,
+                                              form,
+                                              onChange,
+                                              onSubmit,
+                                              handleReset,
+                                              handleSelectedCatalogue
                                           }) => {
+    const {isDark} = useContext(ThemeContext);
+    const {catalogues} = useContext(AppContext);
 
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        onSubmit(form.keyword, form.paymentFrom, form.paymentTo, form.selectedCatalogue);
+    };
 
-  const handleSelectedCatalogue = (value: string) => {
-    setFilters(prev => ({
-      ...prev,
-      selectedCatalogue: value
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(
-      filters.keyword,
-      filters.paymentFrom,
-      filters.paymentTo,
-      filters.selectedCatalogue
-    );
-  };
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className={styles.filters}
-    >
-
-      <div className={styles.header}>
-        <h2 className={styles.title}>Фильтры</h2>
-
-        <ResetButton onClick={handleReset}/>
-      </div>
-
-      <div className={styles.body}>
-        <div className={styles.select}>
-          <h3>Отрасль</h3>
-
-          <Select
-            value={filters.selectedCatalogue}
-            onChange={handleSelectedCatalogue}
-          />
-        </div>
-
-        <div className={styles.numberInputs}>
-          <h3>Оклад</h3>
-          <div className={styles.inputs}>
-
-            <NumberInput
-              placeholder='От'
-              value={filters.paymentFrom}
-              onChange={handlePaymentFrom}
-              dataElem={'salary-from-input'}
-            />
-            <NumberInput
-              placeholder='До'
-              value={filters.paymentTo}
-              onChange={handlePaymentTo}
-              dataElem={'salary-to-input'}
-            />
-
-          </div>
-        </div>
-
-        <PrimaryButton
-          size='large'
-          type='submit'
-          dataElem={"search-button"}
+    return (
+        <form
+            onSubmit={handleSubmit}
+            className={cn(styles.filters, {
+                [styles.dark]: isDark
+            })}
         >
-          Применить
-        </PrimaryButton>
-      </div>
 
-    </form>
-  )
+            <div className={styles.header}>
+                <h2 className={styles.title}>Фильтры</h2>
+
+                <ResetButton onClick={handleReset}/>
+            </div>
+
+            <div className={styles.body}>
+                <div className={styles.select}>
+                    <h3>Отрасль</h3>
+
+                    <Select
+                        catalogues={catalogues}
+                        value={form.selectedCatalogue}
+                        onChange={handleSelectedCatalogue}
+                    />
+                </div>
+
+                <div className={styles.numberInputs}>
+                    <h3>Оклад</h3>
+                    <div className={styles.inputs}>
+
+                        <NumberInput
+                            placeholder='От'
+                            name="paymentFrom"
+                            onChange={onChange}
+                            value={form.paymentFrom}
+                            dataElem={'salary-from-input'}
+                        />
+                        <NumberInput
+                            placeholder='До'
+                            name="paymentTo"
+                            onChange={onChange}
+                            value={form.paymentTo}
+                            dataElem={'salary-to-input'}
+                        />
+
+                    </div>
+                </div>
+
+                <PrimaryButton
+                    size='large'
+                    type='submit'
+                    dataElem={"search-button"}
+                >
+                    Применить
+                </PrimaryButton>
+            </div>
+
+        </form>
+    )
 }

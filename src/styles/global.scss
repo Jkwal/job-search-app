@@ -1,6 +1,10 @@
 @import "mixins";
 @import "variables";
 
+#root {
+  height: 100vh;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -19,11 +23,6 @@ li {
   list-style-type: none;
 }
 
-
-body {
-  background-color: #F7F7F8 !important;
-}
-
 header {
   width: 100%;
   min-height: 84px;
@@ -37,12 +36,12 @@ header {
   @media (max-width: 320px) {
     padding-top: 5px
   }
-
-
 }
+
 
 main {
   width: 100%;
+  height: calc(100% - 84px);
   padding: 40px 30px;
 
   background-color: #F7F7F8;
@@ -116,5 +115,15 @@ main {
   right: 0;
   top: 7px
 }
+
+//Dark Theme
+.main.dark {
+  background-color: #232134;
+}
+
+.header.dark {
+  background-color: #232134;
+}
+
 
 

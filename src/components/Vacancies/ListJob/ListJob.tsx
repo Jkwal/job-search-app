@@ -2,11 +2,11 @@ import {FC, useContext} from "react";
 
 import styles from "./ListJob.module.scss";
 
+import {AppContext} from "context";
 import {VacancyHeader} from "components";
-import {appContext} from "context/app.context";
 
 export const ListJob: FC = () => {
-  const {vacancies, favoriteVacancies} = useContext(appContext);
+  const {vacancies, favoriteVacancies} = useContext(AppContext);
 
   const favoriteVacancyId = favoriteVacancies.map((fav) => fav.id);
 

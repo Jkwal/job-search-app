@@ -5,12 +5,12 @@ import styles from './VacancyPage.module.scss';
 
 import {getVacancy} from "api";
 import {IVacancy} from "types";
+import {AppContext} from "context";
 import {VacancyCard} from "components";
-import {appContext} from "context/app.context";
 
 
 export const VacancyPage: FC = () => {
-  const {favoriteVacancies, setIsLoading} = useContext(appContext);
+  const {favoriteVacancies, setIsLoading} = useContext(AppContext);
 
 
   const {id} = useParams();

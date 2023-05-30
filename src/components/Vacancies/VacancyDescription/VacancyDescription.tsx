@@ -4,7 +4,7 @@ import styles from './VacancyDescription.module.scss';
 
 import {Loader} from "common";
 import {IVacancy} from "types";
-import {appContext} from "context/app.context";
+import {AppContext} from "context";
 
 
 interface VacancyDescriptionProps {
@@ -13,7 +13,7 @@ interface VacancyDescriptionProps {
 
 
 export const VacancyDescription: FC<VacancyDescriptionProps> = ({vacancy}) => {
-  const {isLoading} = useContext(appContext);
+  const {isLoading} = useContext(AppContext);
 
   const {vacancyRichText} = vacancy;
   const parsedMarkup = vacancyRichText ? vacancyRichText.replace(/<br\s*\/?>/gi, "") : '';

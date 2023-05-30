@@ -1,18 +1,27 @@
-import {FC, ReactNode} from "react";
+import cn from 'classnames';
+import {FC, ReactNode, useContext} from "react";
 
+import {ThemeContext} from "context";
 import {Header} from "./Header/Header";
 
 
 interface LayoutProps {
-  children: ReactNode,
+	children: ReactNode,
 }
 
 
 export const Layout: FC<LayoutProps> = ({children}) => {
-  return (
-    <>
-      <Header/>
-      <main>{children}</main>
-    </>
-  )
+
+	const {isDark} = useContext(ThemeContext);
+
+	return (
+		<>
+			<Header/>
+			<main className={cn('main', {
+				dark: isDark
+			})}>
+				{children}
+			</main>
+		</>
+	)
 }

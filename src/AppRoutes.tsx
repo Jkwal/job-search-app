@@ -8,24 +8,19 @@ import {NotFoundPage} from "pages/NotFoundPage/NotFoundPage";
 import {FavoritesPage} from "./pages/FavoritesPage/FavoritesPage";
 
 import {ROUTES} from "./utils";
-import {appContext} from "context";
+import {AppContext} from "context";
 
 
 export const AppRoutes: FC = () => {
 
-  const {favoriteVacancies} = useContext(appContext);
+    const {favoriteVacancies} = useContext(AppContext);
 
-  return (
-    <Routes>
-      <Route path={ROUTES.HOME} element={<HomePage/>}/>
-      <Route path={ROUTES.VACANCY} element={<VacancyPage/>}/>
-      <Route path={ROUTES.FAVORITES} element={
-        favoriteVacancies.length === 0
-          ? <EmptyPage/>
-          : <FavoritesPage/>
-      }
-      />
-      <Route path="*" element={<NotFoundPage/>}/>
-    </Routes>
-  );
+    return (
+        <Routes>
+            <Route path={ROUTES.HOME} element={<HomePage/>}/>
+            <Route path={ROUTES.VACANCY} element={<VacancyPage/>}/>
+            <Route path={ROUTES.FAVORITES} element={favoriteVacancies.length ? <FavoritesPage/> : <EmptyPage/>}/>
+            <Route path="*" element={<NotFoundPage/>}/>
+        </Routes>
+    );
 };

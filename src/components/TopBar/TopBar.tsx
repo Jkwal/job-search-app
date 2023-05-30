@@ -3,32 +3,31 @@ import {FC, useContext} from "react";
 import styles from './TopBar.module.scss';
 
 import {ROUTES} from "utils";
-import {appContext} from "context/app.context";
+import {AppContext} from "context";
 import {Burger, Indicator, Link, Logo} from "common";
 
 
 export const TopBar: FC = () => {
-  const {favoriteVacancies} = useContext(appContext);
+	const {favoriteVacancies} = useContext(AppContext);
 
-  return (
-    <div className={styles.topBar}>
+	return (
+		<div className={styles.topBar}>
 
-      <Logo name='Jobored'/>
+			<Logo name='Jobored'/>
 
 
-      <ul className={styles.links}>
-        <Link path={ROUTES.HOME} name='Поиск Вакансий'/>
+			<ul className={styles.links}>
+				<Link path={ROUTES.HOME} name='Поиск Вакансий'/>
 
-        <Indicator disabled={favoriteVacancies.length === 0}>
-          <Link path={ROUTES.FAVORITES} name='Избранное'/>
-        </Indicator>
+				<Indicator disabled={favoriteVacancies.length === 0}>
+					<Link path={ROUTES.FAVORITES} name='Избранное'/>
+				</Indicator>
 
-      </ul>
+			</ul>
 
-      <div className={styles.burger}>
-        <Burger favoriteVacancies={favoriteVacancies}/>
-      </div>
-
-    </div>
-  )
+			<div className={styles.burger}>
+				<Burger favoriteVacancies={favoriteVacancies}/>
+			</div>
+		</div>
+	)
 }
